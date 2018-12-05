@@ -1,3 +1,8 @@
+/*
+ * Author: Celine Asurza and Zachary Maarse
+ * Date: Dec 05, 2018
+ * Purpose: (Opening Screen)
+ */
 package asurza_maarse.bestfriend;
 
 import java.net.URL;
