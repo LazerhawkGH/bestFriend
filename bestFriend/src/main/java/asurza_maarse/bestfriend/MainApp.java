@@ -17,8 +17,9 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("BestFriend");
         stage.setScene(scene);
+        stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
     }
 
@@ -30,6 +31,7 @@ public class MainApp extends Application {
      *
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         launch(args);
     }
