@@ -25,7 +25,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void btnPlay(ActionEvent event) throws IOException {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("FXMLPage2.fxml")); //where FXMLPage2 is the name of the scene
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/savingSlots.fxml")); //where FXMLPage2 is the name of the scene
 
         Scene home_page_scene = new Scene(home_page_parent);
 //get reference to the stage 
@@ -34,7 +34,7 @@ public class FXMLController implements Initializable {
         stage.hide(); //optional
         stage.setScene(home_page_scene); //puts the new scence in the stage
 
-        stage.setTitle("Page 2"); //changes the title
+        stage.setTitle("BestFriend"); //changes the title
         stage.show(); //shows the new page
     }
 

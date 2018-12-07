@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="745.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="asurza_maarse.bestfriend.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLController">
     <children>
-        <Button fx:id="button" layoutX="223.0" layoutY="303.0" onAction="#handleButtonAction" prefHeight="112.0" prefWidth="299.0" text="Play">
+        <Button layoutX="223.0" layoutY="331.0" onAction="#btnPlay" prefHeight="112.0" prefWidth="299.0" text="Play">
          <font>
             <Font size="36.0" />
          </font></Button>
