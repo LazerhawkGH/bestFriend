@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.SavingSlotsController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="761.0" style="-fx-background-color: #501515;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.SavingSlotsController">
    <children>
-      <Rectangle fill="#e1e1e1" height="572.0" layoutX="116.0" stroke="#5e5e5e" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
+      <Rectangle fill="#47464d" height="572.0" layoutX="116.0" stroke="#9a0000" strokeType="INSIDE" strokeWidth="0.0" width="530.0" />
    </children>
 </AnchorPane>
