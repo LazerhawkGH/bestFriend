@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="761.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller=".FXMLRoomOneController">
-    
+<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="761.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".FXMLRoomOneController">
+   <children>
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="572.0" stroke="BLACK" strokeType="OUTSIDE" width="5.0" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="572.0" layoutX="757.0" stroke="BLACK" strokeType="OUTSIDE" width="5.0" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="100.0" stroke="BLACK" strokeType="OUTSIDE" width="760.0" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="5.0" layoutY="567.0" stroke="BLACK" strokeType="OUTSIDE" width="760.0" />
+   </children>
 </AnchorPane>

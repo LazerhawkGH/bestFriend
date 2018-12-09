@@ -3,7 +3,7 @@ package asurza_maarse.bestfriend;
 /*
  * Author: Zachary Maarse
  * Date: Dec 7, 2018
- * Purpose: 
+ * Purpose: Initial starting room
  */
 
 import java.net.URL;
