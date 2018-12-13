@@ -7,8 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="761.0" translateX="900.0" translateY="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".FXMLFightingRoomOneController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#move" prefHeight="572.0" prefWidth="761.0" translateX="700.0" translateY="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".FXMLFightingRoomOneController">
    <children>
       <Pane fx:id="pnParallax" layoutX="-99.0" layoutY="-1387.0" prefHeight="2210.0" prefWidth="1500.0">
          <children>
@@ -31,10 +30,10 @@
             <Rectangle fx:id="wall11" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="393.0" layoutX="1211.0" layoutY="949.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
             <Rectangle fx:id="wall12" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="101.0" layoutX="1113.0" layoutY="951.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
             <Rectangle fx:id="wall13" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="285.0" layoutX="729.0" layoutY="671.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="576.0" />
-            <Circle fx:id="circDoor" fill="DODGERBLUE" layoutX="681.0" layoutY="873.0" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="cDoor" fill="DODGERBLUE" layoutX="681.0" layoutY="873.0" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
             <Rectangle fx:id="wallDoor" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="26.0" layoutX="633.0" layoutY="928.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-            <Rectangle fx:id="wall121" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="91.0" layoutX="1021.0" layoutY="1058.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="86.0" />
-            <Rectangle fx:id="wall1211" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="183.0" layoutX="1105.0" layoutY="1056.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
+            <Rectangle fx:id="wall14" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="91.0" layoutX="1021.0" layoutY="1058.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="86.0" />
+            <Rectangle fx:id="wall15" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="183.0" layoutX="1105.0" layoutY="1056.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
          </children>
       </Pane>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="94.0" stroke="#8c6969" strokeType="OUTSIDE" width="764.0" />
