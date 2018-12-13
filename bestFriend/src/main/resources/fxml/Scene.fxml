@@ -27,13 +27,16 @@
             <Image url="@../titlegood.png" />
          </image>
          <effect>
-            <DropShadow color="#42d9ff" height="5.0" offsetX="2.0" offsetY="3.0" radius="2.0" spread="1.0" width="5.0" />
+            <DropShadow color="#009ec6" height="5.0" offsetX="2.0" offsetY="3.0" radius="2.0" spread="1.0" width="5.0" />
          </effect>
       </ImageView>
-      <ImageView fitHeight="235.0" fitWidth="560.0" layoutX="93.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fitHeight="114.0" fitWidth="465.0" layoutX="156.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../titlebad.png" />
          </image>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#bf0707" height="5.0" offsetX="3.0" offsetY="4.0" radius="2.0" spread="1.0" width="5.0" />
+         </effect>
       </ImageView>
       <Button fx:id="button1" layoutX="219.0" layoutY="618.0" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="309.0" styleClass="yeet-button-blue-four" stylesheets="@../styles/styles-new.css" text="Close">
          <font>
