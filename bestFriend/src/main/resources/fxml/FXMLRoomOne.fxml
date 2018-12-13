@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMove" prefHeight="572.0" prefWidth="761.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomOneController">
@@ -16,8 +17,31 @@
                   <Image url="@../Starting%20Room.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="wall1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="215.0" layoutX="584.0" layoutY="1320.0" stroke="BLACK" strokeType="INSIDE" width="512.0" />
-            <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="699.0" layoutY="1658.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+            <Rectangle fx:id="wall1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="589.0" layoutX="583.0" layoutY="946.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="806.0" />
+            <Rectangle fx:id="wall2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="215.0" layoutX="292.0" layoutY="1902.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="877.0" />
+            <Rectangle fx:id="wall3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="369.0" layoutX="1096.0" layoutY="1534.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Rectangle fx:id="wall4" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="589.0" layoutX="220.0" layoutY="947.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="294.0" />
+            <Rectangle fx:id="wall5" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="369.0" layoutX="292.0" layoutY="1533.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Rectangle fx:id="wall6" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="215.0" layoutX="71.0" layoutY="732.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="222.0" />
+            <Rectangle fx:id="wall7" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="155.0" layoutX="71.0" layoutY="578.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Rectangle fx:id="wall8" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="362.0" layoutX="71.0" layoutY="218.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="222.0" />
+            <Ellipse fx:id="eSave" fill="#c4b6394e" layoutX="182.0" layoutY="630.0" radiusX="37.0" radiusY="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Rectangle fx:id="wall9" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="215.0" layoutX="218.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1172.0" />
+            <Rectangle fx:id="wall10" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="142.0" layoutX="292.0" layoutY="218.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="148.0" />
+            <Rectangle fx:id="wall11" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="155.0" layoutX="512.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="148.0" />
+            <Rectangle fx:id="wall12" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="155.0" layoutX="730.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="148.0" />
+            <Rectangle fx:id="wall13" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="155.0" layoutX="949.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="148.0" />
+            <Rectangle fx:id="wall14" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="155.0" layoutX="1170.0" layoutY="211.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="222.0" />
+            <Circle fx:id="cEntrance1" fill="DODGERBLUE" layoutX="474.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Circle fx:id="cEntrance12" fill="DODGERBLUE" layoutX="694.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Circle fx:id="cEntrance3" fill="DODGERBLUE" layoutX="913.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Circle fx:id="cEntrance4" fill="DODGERBLUE" layoutX="1133.0" layoutY="310.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Rectangle fx:id="wall15" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="222.0" layoutX="1022.0" layoutY="436.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="368.0" />
+            <Rectangle fx:id="wall16" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="72.0" layoutX="1316.0" layoutY="365.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Rectangle fx:id="wall17" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="149.0" layoutX="1022.0" layoutY="657.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Rectangle fx:id="wall18" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="290.0" layoutX="1316.0" layoutY="657.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
+            <Ellipse fx:id="eBear" fill="#c4b6394e" layoutX="1133.0" layoutY="698.0" radiusX="37.0" radiusY="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="715.0" layoutY="1654.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="94.0" layoutX="-2.0" layoutY="-2.0" stroke="#8c696900" strokeType="OUTSIDE" width="764.0" />
