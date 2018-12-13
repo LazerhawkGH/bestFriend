@@ -41,6 +41,8 @@ public class FXMLFightingRoomOneController implements Initializable {
     // The Booleans responsible for both moving the user, and for making collision work nicely
     private Boolean up = false, down = false, left = false, right = false;
     
+    
+    
     private boolean collisionLoop() {
         for (Rectangle i : walls) {    // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
             if (collision(cPlayer, i)) { // Checks for collision between the user and any of the walls
