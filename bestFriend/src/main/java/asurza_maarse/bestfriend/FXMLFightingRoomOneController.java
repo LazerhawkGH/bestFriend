@@ -22,6 +22,32 @@ import javafx.scene.shape.Rectangle;
  *
  * @author zacharym44
  */
+
+                        /*
+                       ////////////////////////////////////////////////////////////////////////
+                      ////                      Interaction Plan                          ////
+                     ////////////////////////////////////////////////////////////////////////
+                    ////                                                                ////
+                   ////   Key(s)                                                       ////
+                  ////   Weapons                                                      ////
+                 ////       - Wooden Knife                                           ////
+                ////       - Plastic Knife                                          ////
+               ////       - Kitchen Knife                                          ////
+              ////       - Dagger                                                 ////
+             ////       - Poison Dagger                                          ////
+            ////   Health packs/First aid                                       ////
+           ////   Lore                                                         ////
+          ////       - Notes                                                  ////
+         ////       - Flashbacks                                             ////
+        ////   Health debuffs                                               ////
+       ////       - Rotten food                                            ////
+      ////       - Poison                                                 ////
+     ////                                                                ////
+    ////////////////////////////////////////////////////////////////////////
+   ////                                                                ////
+  ////////////////////////////////////////////////////////////////////////
+*/
+
 public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the walls, so they may be used in the collision loop
@@ -44,7 +70,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     
     
     private boolean collisionLoop() {
-        for (Rectangle i : walls) {    // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
+        for (Rectangle i : walls) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
             if (collision(cPlayer, i)) { // Checks for collision between the user and any of the walls
                 return true;               
             }
@@ -58,7 +84,7 @@ public class FXMLFightingRoomOneController implements Initializable {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
     
-     @FXML
+    @FXML
     private void move(KeyEvent evt) {
         if (collisionLoop()) {
             if (up) {
