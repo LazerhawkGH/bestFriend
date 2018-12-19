@@ -10,12 +10,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 /**
  * FXML Controller class
@@ -79,10 +81,40 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
     
-    //Handles collision between a Circle and a rectangle
-    public boolean collision(Circle block1, Rectangle block2) {
-        //returns true if the areas intersect, false if they dont
-        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+     public boolean collision(Object block1, Object block2) {
+        try {
+            //If the objects can be changed to shapes just see if they intersect
+            Shape s1 = (Shape) block1;
+            Shape s2 = (Shape) block2;
+            Shape a = Shape.intersect(s1, s2);
+            return a.getBoundsInLocal().getWidth() != -1;
+        } catch (Exception e) {
+            //If the objects can't be changed to shapes, make a shape with there size and location
+            //Then rotate them
+
+            //Gets the real location and size of the first object
+            double rectX = ((Node) block1).getLayoutX() + ((Node) block1).getTranslateX();
+            double rectY = ((Node) block1).getLayoutY() + ((Node) block1).getTranslateY();
+            double rectWidth = ((Node) block1).getBoundsInLocal().getWidth();
+            double rectHeight = ((Node) block1).getBoundsInLocal().getHeight();
+
+            //Gets the real location and sizr of the second object
+            double rectX2 = ((Node) block2).getLayoutX() + ((Node) block2).getTranslateX();
+            double rectY2 = ((Node) block2).getLayoutY() + ((Node) block2).getTranslateY();
+            double rectWidth2 = ((Node) block2).getBoundsInLocal().getWidth();
+            double rectHeight2 = ((Node) block2).getBoundsInLocal().getHeight();
+
+            //makes two new shapes and rotates them
+            Shape rect = new Rectangle(rectX, rectY, rectWidth, rectHeight);
+            Shape rect2 = new Rectangle(rectX2, rectY2, rectWidth2, rectHeight2);
+            rect.setRotate(((Node) ((Node) block1)).getRotate());
+            rect2.setRotate(((Node) block2).getRotate());
+            //Makes a new shapes of where they touch
+            Shape a = Shape.intersect(rect, rect2);
+
+            //returns if they touch
+            return a.getBoundsInLocal().getWidth() != -1;
+        }
     }
     
     @FXML
