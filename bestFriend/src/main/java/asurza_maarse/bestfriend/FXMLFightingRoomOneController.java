@@ -58,6 +58,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     // Temporary player
     @FXML Circle cPlayer, cDoor; 
     
+    
     // The pane that will be moved in the opposite direction of the player to simulate parallax
     @FXML Pane pnParallax;
     
@@ -102,16 +103,16 @@ public class FXMLFightingRoomOneController implements Initializable {
             }
         } else {
             if (evt.getCode() == KeyCode.UP) {
-                setdirFalse();
+                setDirFalse();
                 up = true;
             } else if (evt.getCode() == KeyCode.DOWN) {
-                setdirFalse();
+                setDirFalse();
                 down = true;
             } else if (evt.getCode() == KeyCode.LEFT) {
-                setdirFalse();
+                setDirFalse();
                 left = true;
             } else if (evt.getCode() == KeyCode.RIGHT) {
-                setdirFalse();
+                setDirFalse();
                 right = true;
             }
             direction();
@@ -119,7 +120,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     }
 
-    private void setdirFalse() {
+    private void setDirFalse() {
         up = false;
         down = false;
         left = false;
@@ -140,7 +141,7 @@ public class FXMLFightingRoomOneController implements Initializable {
             pnParallax.setTranslateX(pnParallax.getTranslateX() - 5);
             cPlayer.setTranslateX(cPlayer.getTranslateX() + 5);
         } else {
-            setdirFalse();
+            setDirFalse();
         }
 
     }
