@@ -17,7 +17,6 @@
                </image>
             </ImageView>
             <Rectangle fx:id="wall1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="285.0" layoutX="-340.0" layoutY="1773.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="1562.0" />
-            <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="484.0" layoutY="1681.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
             <Rectangle fx:id="wall2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="391.0" layoutX="-343.0" layoutY="1402.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="92.0" />
             <Rectangle fx:id="wall3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="109.0" layoutX="-255.0" layoutY="1678.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
             <Rectangle fx:id="wall4" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="667.0" layoutX="-439.0" layoutY="1048.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
@@ -36,6 +35,7 @@
             <Rectangle fx:id="wall15" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="183.0" layoutX="1040.0" layoutY="1036.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="108.0" />
          </children>
       </Pane>
+      <Circle fx:id="cPlayer" fill="DODGERBLUE" radius="30.0" stroke="BLACK" strokeType="INSIDE" translateX="382.0" translateY="312.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="94.0" stroke="#8c6969" strokeType="OUTSIDE" width="764.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="572.0" stroke="#8c696900" strokeType="OUTSIDE" width="5.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="572.0" layoutX="759.0" stroke="#8c696900" strokeType="OUTSIDE" width="5.0" />
