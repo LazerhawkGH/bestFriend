@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMove" prefHeight="572.0" prefWidth="761.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomOneController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMove" onKeyReleased="#onRelease" prefHeight="572.0" prefWidth="761.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomOneController">
    <children>
       <Pane fx:id="pnParallax" layoutX="-331.0" layoutY="-1306.0" prefHeight="2210.0" prefWidth="1500.0">
          <children>
@@ -41,9 +41,9 @@
             <Rectangle fx:id="wall17" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="149.0" layoutX="1022.0" layoutY="657.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
             <Rectangle fx:id="wall18" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff1b" height="290.0" layoutX="1316.0" layoutY="657.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="74.0" />
             <Ellipse fx:id="eBear" fill="#c4b6394e" layoutX="1133.0" layoutY="698.0" radiusX="37.0" radiusY="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-            <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="715.0" layoutY="1654.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
+      <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="377.0" layoutY="329.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="94.0" layoutX="-2.0" layoutY="-2.0" stroke="#8c696900" strokeType="OUTSIDE" width="764.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="572.0" stroke="#8c696900" strokeType="OUTSIDE" width="5.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#a4a4a4" height="572.0" layoutX="757.0" stroke="#8c696900" strokeType="OUTSIDE" width="5.0" />
