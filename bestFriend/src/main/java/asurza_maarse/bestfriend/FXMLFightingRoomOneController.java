@@ -8,6 +8,8 @@ package asurza_maarse.bestfriend;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -70,7 +73,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     // The Booleans responsible for both moving the user, and for making collision work nicely
     private Boolean up = false, down = false, left = false, right = false;
     
-    
+    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
     
     private boolean collisionLoop() {
         for (Rectangle i : walls) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
@@ -117,65 +120,79 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
     
+     
+
     @FXML
-    private void move(KeyEvent evt) {
-        if (collisionLoop()) {
-            if (up) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() - 5);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() + 5);
-            } else if (down) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() + 5);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() - 5);
-            } else if (left) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() - 5);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() + 5);
-            } else if (right) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() + 5);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() - 5);
-            }
-        } else {
-            if (evt.getCode() == KeyCode.UP) {
-                setDirFalse();
-                up = true;
-            } else if (evt.getCode() == KeyCode.DOWN) {
-                setDirFalse();
-                down = true;
-            } else if (evt.getCode() == KeyCode.LEFT) {
-                setDirFalse();
-                left = true;
-            } else if (evt.getCode() == KeyCode.RIGHT) {
-                setDirFalse();
-                right = true;
-            }
-            direction();
+    private void moveKeyPressed(KeyEvent e) {
+        if (e.getCode() == KeyCode.UP) {
+            setDirFalse();
+            up = true;
+        } else if (e.getCode() == KeyCode.DOWN) {
+            setDirFalse();
+            down = true;
+        } else if (e.getCode() == KeyCode.LEFT) {
+            setDirFalse();
+            left = true;
+        } else if (e.getCode() == KeyCode.RIGHT) {
+            setDirFalse();
+            right = true;
         }
+ 
 
     }
 
+    private void move() {
+        if (collisionLoop()) {
+
+            if (up) {
+                pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
+
+            } else if (down) {
+                pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
+
+            } else if (left) {
+                pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
+
+            } else if (right) {
+                pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
+
+            }
+        } else {
+            direction();
+        }
+    }
+    
+    private void direction() {
+        if (up) {
+            pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
+
+        } else if (down) {
+            pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
+
+        } else if (left) {
+            pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
+
+        } else if (right) {
+            pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
+
+        } else {
+            setDirFalse();
+        }
+
+    }
+    
+    @FXML
+    private void moveKeyReleased(KeyEvent e){
+        if(e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN || e.getCode() == KeyCode.LEFT || e.getCode() == KeyCode.RIGHT){
+            setDirFalse();
+        }
+    }
+    
     private void setDirFalse() {
         up = false;
         down = false;
         left = false;
         right = false;
-    }
-
-    private void direction() {
-        if (up) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() + 5);
-            cPlayer.setTranslateY(cPlayer.getTranslateY() - 5);
-        } else if (down) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() - 5);
-            cPlayer.setTranslateY(cPlayer.getTranslateY() + 5);
-        } else if (left) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() + 5);
-            cPlayer.setTranslateX(cPlayer.getTranslateX() - 5);
-        } else if (right) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() - 5);
-            cPlayer.setTranslateX(cPlayer.getTranslateX() + 5);
-        } else {
-            setDirFalse();
-        }
-
     }
     
     @Override

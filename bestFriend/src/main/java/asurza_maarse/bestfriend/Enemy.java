@@ -22,9 +22,9 @@ public class Enemy {
     }
 
     public Enemy(String type, int damage, int health) {
-        this.type = type;
-        this.damage = damage;
-        this.health = health;
+        setType(type);
+        setDamage(damage);
+        setHealth(health);
     }
 
     public String getType() {
