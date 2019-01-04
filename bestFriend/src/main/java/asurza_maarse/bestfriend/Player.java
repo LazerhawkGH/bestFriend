@@ -19,7 +19,7 @@ public class Player {
         name = "Elliot";
         hasKnife= false;
         health = 100;
-        atk = 5;
+        atk = 50;
     }
     
     public Player(String n, Boolean hk, int h, int a){
