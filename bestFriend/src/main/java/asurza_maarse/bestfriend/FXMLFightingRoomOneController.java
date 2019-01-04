@@ -27,7 +27,7 @@ import javafx.util.Duration;
  * @author zacharym44
  */
 
-/*
+                        /*
                        ////////////////////////////////////////////////////////////////////////
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,8 @@ public class FXMLFightingRoomOneController implements Initializable {
               bounds6, bounds7, bounds8, bounds9, bounds10,
               bounds11, bounds12, bounds13, bounds14, bounds15;
 
-    // Temporary player
-    @FXML
-    Circle cPlayer, cDoor;
+    // Temporary player & area for the player to collide with to go to the next room
+    @FXML Circle cPlayer, cDoor;
 
     // The pane that will be moved in the opposite direction of the player to simulate parallax
     @FXML
@@ -77,7 +76,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     private boolean collisionLoop() {
         for (Rectangle i : bounds) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
-            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the boundss
+            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the bounds
                 return true;
             }
         }
@@ -122,18 +121,27 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @FXML
     private void moveKeyPressed(KeyEvent e) {
-        if (e.getCode() == KeyCode.W) {
-            setDirFalse();
-            up = true;
-        } else if (e.getCode() == KeyCode.S) {
-            setDirFalse();
-            down = true;
-        } else if (e.getCode() == KeyCode.A) {
-            setDirFalse();
-            left = true;
-        } else if (e.getCode() == KeyCode.D) {
-            setDirFalse();
-            right = true;
+        if (null != e.getCode()) {
+            switch (e.getCode()) {
+                case W:
+                    setDirFalse();
+                    up = true;
+                    break;
+                case S:
+                    setDirFalse();
+                    down = true;
+                    break;
+                case A:
+                    setDirFalse();
+                    left = true;
+                    break;
+                case D:
+                    setDirFalse();
+                    right = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
