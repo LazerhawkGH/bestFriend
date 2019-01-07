@@ -20,6 +20,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
+import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -27,7 +29,7 @@ import javafx.util.Duration;
  * @author zacharym44
  */
 
-/*
+                        /*
                        ////////////////////////////////////////////////////////////////////////
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
@@ -54,30 +56,30 @@ import javafx.util.Duration;
 public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
-    @FXML
-    Rectangle bounds1, bounds2, bounds3, bounds4, bounds5,
-              bounds6, bounds7, bounds8, bounds9, bounds10,
-              bounds11, bounds12, bounds13, bounds14, bounds15;
+    @FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5,
+                    bounds6, bounds7, bounds8, bounds9, bounds10,
+                    bounds11, bounds12, bounds13, bounds14, bounds15;
 
-    // Temporary player
-    @FXML
-    Circle cPlayer, cDoor;
+    // Temporary player & area for the player to collide with to go to the next room
+    @FXML Circle cPlayer, cDoor;
 
     // The pane that will be moved in the opposite direction of the player to simulate parallax
-    @FXML
-    Pane pnParallax;
+    @FXML Pane pnParallax;
 
     // Array of all the Rectangles, to simplify collision
     Rectangle bounds[];
 
     // The Booleans responsible for both moving the user, and for making collision work nicely
     private Boolean up = false, down = false, left = false, right = false;
-
+        
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
+    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(4), ae -> enemyCreation()));
 
+    Enemy enemy = new Enemy();
+    
     private boolean collisionLoop() {
         for (Rectangle i : bounds) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
-            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the boundss
+            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the bounds
                 return true;
             }
         }
@@ -120,38 +122,49 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
+    private void enemyCreation(){
+        int rand = ThreadLocalRandom.current().nextInt(1,5); // Determines the type of enemy to spawn
+        enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
+        pnParallax.getChildren().add(enemy); // Places the enemy
+        
+    }
+    
     @FXML
     private void moveKeyPressed(KeyEvent e) {
-        if (e.getCode() == KeyCode.W) {
-            setDirFalse();
-            up = true;
-        } else if (e.getCode() == KeyCode.S) {
-            setDirFalse();
-            down = true;
-        } else if (e.getCode() == KeyCode.A) {
-            setDirFalse();
-            left = true;
-        } else if (e.getCode() == KeyCode.D) {
-            setDirFalse();
-            right = true;
+        if (null != e.getCode()) {
+            switch (e.getCode()) {
+                case W:
+                    setDirFalse();
+                    up = true;
+                    break;
+                case S:
+                    setDirFalse();
+                    down = true;
+                    break;
+                case A:
+                    setDirFalse();
+                    left = true;
+                    break;
+                case D:
+                    setDirFalse();
+                    right = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     private void move() {
         if (collisionLoop()) {
-
             if (up) {
                 pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
-
             } else if (down) {
                 pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
-
             } else if (left) {
                 pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
-
             } else if (right) {
                 pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
-
             }
         } else {
             direction();
@@ -161,20 +174,15 @@ public class FXMLFightingRoomOneController implements Initializable {
     private void direction() {
         if (up) {
             pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
-
         } else if (down) {
             pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
-
         } else if (left) {
             pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
-
         } else if (right) {
             pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
-
         } else {
             setDirFalse();
         }
-
     }
 
     @FXML
@@ -193,6 +201,8 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tMove.setCycleCount(Timeline.INDEFINITE);
+        tMove.play();
         bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
