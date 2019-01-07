@@ -1,7 +1,7 @@
 /*
  * Author: Zachary Maarse
  * Date: Dec 13, 2018
- * Purpose: Player class
+ * Purpose: Handles the players properties
  */
 package asurza_maarse.bestfriend;
 
