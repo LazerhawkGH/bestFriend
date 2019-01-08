@@ -48,7 +48,7 @@ public class FXMLRoomOneController implements Initializable {
 
     private Boolean up = false, down = false, left = false, right = false;
 
-    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
+    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(10), ae -> move()));
 
     @FXML
     private void btnMove(KeyEvent e) {
@@ -74,7 +74,7 @@ public class FXMLRoomOneController implements Initializable {
 
             if (up) {
                 pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
-
+                
             } else if (down) {
                 pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
 
@@ -92,16 +92,16 @@ public class FXMLRoomOneController implements Initializable {
     
     private void direction() {
         if (up) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
+            pnParallax.setTranslateY(pnParallax.getTranslateY() + 2);
 
         } else if (down) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
+            pnParallax.setTranslateY(pnParallax.getTranslateY() - 2);
 
         } else if (left) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
+            pnParallax.setTranslateX(pnParallax.getTranslateX() + 2);
 
         } else if (right) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
+            pnParallax.setTranslateX(pnParallax.getTranslateX() - 2);
 
         } else {
             setDirFalse();
