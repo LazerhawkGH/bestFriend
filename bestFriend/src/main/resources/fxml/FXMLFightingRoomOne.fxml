@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="829.0" prefWidth="946.0" scaleZ="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLFightingRoomOneController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="829.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLFightingRoomOneController">
    <children>
       <ImageView fitHeight="767.0" fitWidth="974.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,5 +19,18 @@
          <effect>
             <DropShadow color="WHITE" height="5.0" radius="2.0" spread="1.0" width="5.0" />
          </effect></Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="132.0" layoutX="94.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="447.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="132.0" layoutX="587.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="271.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="132.0" layoutX="91.0" layoutY="649.0" stroke="BLACK" strokeType="INSIDE" width="767.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="132.0" layoutX="46.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="47.0" layoutX="92.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="185.0" layoutX="46.0" layoutY="419.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="182.0" layoutX="90.0" layoutY="468.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="47.0" layoutX="133.0" layoutY="603.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="47.0" layoutX="766.0" layoutY="241.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="136.0" layoutX="812.0" layoutY="287.0" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="185.0" layoutX="857.0" layoutY="421.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="182.0" layoutX="813.0" layoutY="468.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff29" height="47.0" layoutX="767.0" layoutY="604.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
    </children>
 </AnchorPane>
