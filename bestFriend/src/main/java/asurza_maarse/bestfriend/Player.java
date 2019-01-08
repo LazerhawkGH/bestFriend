@@ -1,7 +1,7 @@
 /*
  * Author: Zachary Maarse
  * Date: Dec 13, 2018
- * Purpose: Player class
+ * Purpose: Handles the players properties
  */
 package asurza_maarse.bestfriend;
 
@@ -19,7 +19,7 @@ public class Player {
         name = "Elliot";
         hasKnife= false;
         health = 100;
-        atk = 5;
+        atk = 50;
     }
     
     public Player(String n, Boolean hk, int h, int a){

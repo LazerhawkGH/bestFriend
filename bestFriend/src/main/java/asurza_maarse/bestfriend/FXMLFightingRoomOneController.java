@@ -5,9 +5,10 @@ package asurza_maarse.bestfriend;
  * Date: Dec 12, 2018
  * Purpose: One of the rooms the player can encounter
  */
-
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,6 +19,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
+import java.util.concurrent.ThreadLocalRandom;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -49,39 +53,40 @@ import javafx.scene.shape.Shape;
    ////                                                                ////
   ////////////////////////////////////////////////////////////////////////
 */
-
 public class FXMLFightingRoomOneController implements Initializable {
 
-    // Declaration of all of the walls, so they may be used in the collision loop
-    @FXML Rectangle wall1, wall2, wall3, wall4, wall5,
-                    wall6, wall7, wall8, wall9, wall10,
-                    wall11, wall12, wall13, wall14, wall15;
-    
-    // Temporary player
-    @FXML Circle cPlayer, cDoor; 
-    
-    
+    // Declaration of all of the boundss, so they may be used in the collision loop
+    @FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5,
+                    bounds6, bounds7, bounds8, bounds9, bounds10,
+                    bounds11, bounds12, bounds13, bounds14, bounds15;
+
+    // Temporary player & area for the player to collide with to go to the next room
+    @FXML Circle cPlayer, cDoor;
+
     // The pane that will be moved in the opposite direction of the player to simulate parallax
     @FXML Pane pnParallax;
-    
+
     // Array of all the Rectangles, to simplify collision
-    Rectangle walls []; 
-    
+    Rectangle bounds[];
+
     // The Booleans responsible for both moving the user, and for making collision work nicely
     private Boolean up = false, down = false, left = false, right = false;
-    
-    
+        
+    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
+    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(4), ae -> enemyCreation()));
+
+    Enemy enemy = new Enemy();
     
     private boolean collisionLoop() {
-        for (Rectangle i : walls) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
-            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the walls
-                return true;               
+        for (Rectangle i : bounds) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
+            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the bounds
+                return true;
             }
         }
         return false;
     }
-    
-     public boolean collision(Object block1, Object block2) {
+
+    public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
             Shape s1 = (Shape) block1;
@@ -116,40 +121,75 @@ public class FXMLFightingRoomOneController implements Initializable {
             return a.getBoundsInLocal().getWidth() != -1;
         }
     }
+
+    private void enemyCreation(){
+        int rand = ThreadLocalRandom.current().nextInt(1,5); // Determines the type of enemy to spawn
+        enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
+        pnParallax.getChildren().add(enemy); // Places the enemy
+        
+    }
     
     @FXML
-    private void move(KeyEvent evt) {
+    private void moveKeyPressed(KeyEvent e) {
+        if (null != e.getCode()) {
+            switch (e.getCode()) {
+                case W:
+                    setDirFalse();
+                    up = true;
+                    break;
+                case S:
+                    setDirFalse();
+                    down = true;
+                    break;
+                case A:
+                    setDirFalse();
+                    left = true;
+                    break;
+                case D:
+                    setDirFalse();
+                    right = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void move() {
         if (collisionLoop()) {
             if (up) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() - 5);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() + 5);
+                pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
             } else if (down) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() + 5);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() - 5);
+                pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
             } else if (left) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() - 5);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() + 5);
+                pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
             } else if (right) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() + 5);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() - 5);
+                pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
             }
         } else {
-            if (evt.getCode() == KeyCode.UP) {
-                setDirFalse();
-                up = true;
-            } else if (evt.getCode() == KeyCode.DOWN) {
-                setDirFalse();
-                down = true;
-            } else if (evt.getCode() == KeyCode.LEFT) {
-                setDirFalse();
-                left = true;
-            } else if (evt.getCode() == KeyCode.RIGHT) {
-                setDirFalse();
-                right = true;
-            }
             direction();
         }
+    }
 
+    private void direction() {
+        if (up) {
+            pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
+        } else if (down) {
+            pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
+        } else if (left) {
+            pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
+        } else if (right) {
+            pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
+        } else {
+            setDirFalse();
+        }
+    }
+
+    @FXML
+    private void moveKeyReleased(KeyEvent e) {
+        if (e.getCode() == KeyCode.W || e.getCode() == KeyCode.S || e.getCode() == KeyCode.A || e.getCode() == KeyCode.D) {
+            setDirFalse();
+        }
     }
 
     private void setDirFalse() {
@@ -159,28 +199,11 @@ public class FXMLFightingRoomOneController implements Initializable {
         right = false;
     }
 
-    private void direction() {
-        if (up) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() + 5);
-            cPlayer.setTranslateY(cPlayer.getTranslateY() - 5);
-        } else if (down) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() - 5);
-            cPlayer.setTranslateY(cPlayer.getTranslateY() + 5);
-        } else if (left) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() + 5);
-            cPlayer.setTranslateX(cPlayer.getTranslateX() - 5);
-        } else if (right) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() - 5);
-            cPlayer.setTranslateX(cPlayer.getTranslateX() + 5);
-        } else {
-            setDirFalse();
-        }
-
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        walls = new Rectangle[]{wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15};
-    }    
-    
+        tMove.setCycleCount(Timeline.INDEFINITE);
+        tMove.play();
+        bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
+    }
+
 }
