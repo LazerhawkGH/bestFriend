@@ -49,7 +49,7 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private GridPane gp2;  
     @FXML
-    private Label lblWeaponEquiped;   
+    private Label lblWeaponEquiped;  
     @FXML
     private Button btnKey1;
     @FXML
