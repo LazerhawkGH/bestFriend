@@ -1,7 +1,7 @@
 package asurza_maarse.bestfriend;
 
 /*
- * Author: Zachary Maarse
+ * Author: Zachary Maarse and Celine Asurza
  * Date: Dec 7, 2018
  * Purpose: Initial starting room
  */
@@ -21,6 +21,11 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Polygon;
 
 /**
  * FXML Controller class
@@ -30,7 +35,31 @@ import javafx.animation.Timeline;
 public class FXMLRoomOneController implements Initializable {
 
     @FXML
-    private Pane pnParallax;
+    private Pane pan;
+    
+    @FXML
+    private GridPane gp1;
+    @FXML
+    private Label lblRoomNum;
+    @FXML
+    private Button btnInventory;
+    @FXML
+    private Label lblHealth;
+    
+    @FXML
+    private GridPane gp2;  
+    @FXML
+    private Label lblWeaponEquiped;  
+    @FXML
+    private Button btnKey1;
+    @FXML
+    private Button btnKey2;
+    @FXML
+    private Button btnKey3;
+    @FXML
+    private Button btnOtherItem;
+    @FXML
+    private Button btnBack;
 
     @FXML
     private ImageView imgUser;
@@ -42,13 +71,26 @@ public class FXMLRoomOneController implements Initializable {
     private Rectangle recTop, recBottom, recLeft, recRight;
 
     @FXML
-    private Rectangle wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18;
+    private Polygon wall;
 
-    ArrayList<Rectangle> walls = new ArrayList();
+    ArrayList<Polygon> walls = new ArrayList();
 
     private Boolean up = false, down = false, left = false, right = false;
 
-    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(10), ae -> move()));
+    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(20), ae -> move()));
+    
+    @FXML
+    private void btnShowInvent(ActionEvent evt){
+        gp1.setVisible(false);
+        gp2.setVisible(true);
+    }
+    
+    @FXML
+    private void btnGoBack(ActionEvent evt){
+        gp2.setVisible(false);
+        gp1.setVisible(true);
+    }
+    
 
     @FXML
     private void btnMove(KeyEvent e) {
@@ -65,43 +107,50 @@ public class FXMLRoomOneController implements Initializable {
             setDirFalse();
             right = true;
         }
- 
-
+    }
+    
+    @FXML
+    private void btnShowInvent(){
+        
     }
 
     private void move() {
         if (collisionT()) {
 
             if (up) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
-                
+                cPlayer.setTranslateY(cPlayer.getTranslateY() + 3);
+                setDirFalse();
             } else if (down) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
-
+                cPlayer.setTranslateY(cPlayer.getTranslateY() - 3);
+                setDirFalse();
             } else if (left) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
-
+                cPlayer.setTranslateX(cPlayer.getTranslateX() + 3);
+                setDirFalse();
             } else if (right) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
-
+                cPlayer.setTranslateX(cPlayer.getTranslateX() - 3);
+                setDirFalse();
             }
         } else {
             direction();
         }
     }
     
+    private void Move(){
+        
+    }
+    
     private void direction() {
         if (up) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() + 2);
+            cPlayer.setTranslateY(cPlayer.getTranslateY() - 2);
 
         } else if (down) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() - 2);
+            cPlayer.setTranslateY(cPlayer.getTranslateY() + 2);
 
         } else if (left) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() + 2);
+            cPlayer.setTranslateX(cPlayer.getTranslateX() - 2);
 
         } else if (right) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() - 2);
+            cPlayer.setTranslateX(cPlayer.getTranslateX() + 2);
 
         } else {
             setDirFalse();
@@ -177,24 +226,7 @@ public class FXMLRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        walls.add(wall1);
-        walls.add(wall2);
-        walls.add(wall3);
-        walls.add(wall4);
-        walls.add(wall5);
-        walls.add(wall6);
-        walls.add(wall7);
-        walls.add(wall8);
-        walls.add(wall9);
-        walls.add(wall10);
-        walls.add(wall11);
-        walls.add(wall12);
-        walls.add(wall13);
-        walls.add(wall14);
-        walls.add(wall15);
-        walls.add(wall16);
-        walls.add(wall17);
-        walls.add(wall18);
+        walls.add(wall);
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
     }
