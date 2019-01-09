@@ -64,7 +64,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     @FXML Circle cPlayer, cDoor;
 
     // The pane that will be moved in the opposite direction of the player to simulate parallax
-    @FXML Pane pnParallax;
+    //@FXML Pane pnParallax;
 
     // Array of all the Rectangles, to simplify collision
     Rectangle bounds[];
@@ -123,9 +123,9 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
     private void enemyCreation(){
-        int rand = ThreadLocalRandom.current().nextInt(1,5); // Determines the type of enemy to spawn
+        int rand = ThreadLocalRandom.current().nextInt(1,4+1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
-        pnParallax.getChildren().add(enemy); // Places the enemy
+        //pnParallax.getChildren().add(enemy); // Places the enemy
         
     }
     
@@ -158,13 +158,13 @@ public class FXMLFightingRoomOneController implements Initializable {
     private void move() {
         if (collisionLoop()) {
             if (up) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
+                //pnParallax.setTranslateY(pnParallax.getTranslateY() - 3);
             } else if (down) {
-                pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
+               //pnParallax.setTranslateY(pnParallax.getTranslateY() + 3);
             } else if (left) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
+                //pnParallax.setTranslateX(pnParallax.getTranslateX() - 3);
             } else if (right) {
-                pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
+               //pnParallax.setTranslateX(pnParallax.getTranslateX() + 3);
             }
         } else {
             direction();
@@ -173,13 +173,13 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     private void direction() {
         if (up) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
+            //pnParallax.setTranslateY(pnParallax.getTranslateY() + 6);
         } else if (down) {
-            pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
+            //pnParallax.setTranslateY(pnParallax.getTranslateY() - 6);
         } else if (left) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
+            //pnParallax.setTranslateX(pnParallax.getTranslateX() + 6);
         } else if (right) {
-            pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
+            //pnParallax.setTranslateX(pnParallax.getTranslateX() - 6);
         } else {
             setDirFalse();
         }

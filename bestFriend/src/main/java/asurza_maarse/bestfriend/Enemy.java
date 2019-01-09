@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
  * Type:   | Deformed | Weak | Strong | Boss |
  * Damage: | 10       | 20   | 50     | 100  |
  * Health: | 150      | 200  | 250    | 350  |
- * Speed:  | 
+ * Speed:  | 2        | 5    | 7      | 20   |
  *
  */
 public class Enemy extends ImageView {
@@ -37,27 +37,31 @@ public class Enemy extends ImageView {
         super();
         switch (type) {
             case 1:
-                setType("Basic");
+                setType("Deformed");
                 setDamage(10);
                 setHealth(150);
+                setSpeed(2);
                 this.setImage(new Image(getClass().getResource("enemy.png").toString()));
                 break;
             case 2:
                 setType("Weak");
                 setDamage(20);
                 setHealth(200);
+                setSpeed(5);
                 this.setImage(new Image(getClass().getResource("enemy.png").toString()));
                 break;
             case 3: 
-                setType("Weak");
+                setType("Strong-");
                 setDamage(50);
                 setHealth(250);
+                setSpeed(7);
                 this.setImage(new Image(getClass().getResource("enemy.png").toString()));
                 break;
             case 4:
-                setType("Weak");
+                setType("Boss");
                 setDamage(100);
                 setHealth(350);
+                setSpeed(20);
                 this.setImage(new Image(getClass().getResource("enemy.png").toString()));
                 break;
         }
