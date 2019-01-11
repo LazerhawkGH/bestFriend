@@ -41,28 +41,36 @@ public class Enemy extends ImageView {
                 setDamage(10);
                 setHealth(150);
                 setSpeed(2);
-                this.setImage(new Image(getClass().getResource("enemy.png").toString()));
+                this.setImage(new Image(getClass().getResource("/fxml/enemy.png").toString()));
+                this.setFitHeight(55);
+                this.setFitWidth(42);
                 break;
             case 2:
                 setType("Weak");
                 setDamage(20);
                 setHealth(200);
                 setSpeed(5);
-                this.setImage(new Image(getClass().getResource("enemy.png").toString()));
+                this.setImage(new Image(getClass().getResource("/fxml/enemy.png").toString()));
+                this.setFitHeight(55);
+                this.setFitWidth(42);
                 break;
             case 3: 
                 setType("Strong-");
                 setDamage(50);
                 setHealth(250);
                 setSpeed(7);
-                this.setImage(new Image(getClass().getResource("enemy.png").toString()));
+                this.setImage(new Image(getClass().getResource("/fxml/enemy.png").toString()));
+                this.setFitHeight(55);
+                this.setFitWidth(42);
                 break;
             case 4:
                 setType("Boss");
                 setDamage(100);
                 setHealth(350);
                 setSpeed(20);
-                this.setImage(new Image(getClass().getResource("enemy.png").toString()));
+                this.setImage(new Image(getClass().getResource("/fxml/enemy.png").toString()));
+                this.setFitHeight(55);
+                this.setFitWidth(42);
                 break;
         }
 
