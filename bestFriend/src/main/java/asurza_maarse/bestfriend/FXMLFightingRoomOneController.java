@@ -36,7 +36,7 @@ import javafx.scene.shape.Polygon;
  * @author zacharym44
  */
 
-                        /*
+/*
                        ////////////////////////////////////////////////////////////////////////
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,12 @@ import javafx.scene.shape.Polygon;
     ////////////////////////////////////////////////////////////////////////
    ////                                                                ////
   ////////////////////////////////////////////////////////////////////////
-*/
+ */
 public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
     //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
-    
+   
     // Temporary player & area for the player to collide with to go to the next room
     @FXML private Circle cPlayer, cDoor;
 
@@ -90,7 +90,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     private Boolean up = false, down = false, left = false, right = false;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
-    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(2), ae -> enemyCreation()));
+    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
     Enemy enemy = new Enemy();
     Player player = new Player();
@@ -112,9 +112,13 @@ public class FXMLFightingRoomOneController implements Initializable {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
+                } else if (e.getHealth() == 0) {
+                    enemies.remove(e); // Don't know if this works yet
+                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
+                    e.setHealth(e.getHealth() - player.getAtk());
                 }
             }
-        }else{
+        } else {
             return;
         }
     }
@@ -169,7 +173,22 @@ public class FXMLFightingRoomOneController implements Initializable {
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
         enemies.add(enemy);
         anchorPane.getChildren().add(enemy); // Places the enemy
+        setNewEnemyPosition(enemy);
+    }
 
+    private void setNewEnemyPosition(Enemy enemy) {        
+        // Places the enemy somewhere on the screen 
+        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 730) + 1); // (Min x-val, (min x-val + width) + 1) 
+        enemy.setLayoutX(rand);
+        rand = ThreadLocalRandom.current().nextInt(241, (241 + 380) + 1); // (Min y-val, (min y-val + height) + 1) 
+        enemy.setLayoutY(rand);
+        // If the enemy lands out of bounds, place them somewhere else until they aren't
+        while ((collision(enemy, cPlayer)) || collision(enemy, wall)) {
+            rand = ThreadLocalRandom.current().nextInt(89, (89 + 730) + 1);
+            enemy.setLayoutX(rand);
+            rand = ThreadLocalRandom.current().nextInt(241, (241 + 380) + 1);
+            enemy.setLayoutY(rand);
+        }       
     }
 
     @FXML
@@ -198,31 +217,48 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
+    private Circle copy(Circle c) {
+        Circle temp = new Circle();
+        temp.setLayoutX(c.getLayoutX());
+        temp.setLayoutY(c.getLayoutY());
+        temp.
+    }
     private void move() {
-        if (collision(cPlayer, wall)) {
+        Circle tempPlayer = cPlayer;
+        tempPlayer.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 42);
+        tempPlayer.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY() + 42);
+        anchorPane.getChildren().add(tempPlayer);  
             if (up) {
-                gpUser.setTranslateY(gpUser.getTranslateY() - 7);
+                tempPlayer.setTranslateY(tempPlayer.getTranslateY() + 7);
+                //gpUser.setTranslateY(gpUser.getTranslateY() + 7);
+                //setDirFalse();
             } else if (down) {
-                gpUser.setTranslateY(gpUser.getTranslateY() + 7);
+                tempPlayer.setTranslateY(tempPlayer.getTranslateY() - 7);
+                //gpUser.setTranslateY(gpUser.getTranslateY() - 7);
+                //setDirFalse();
             } else if (left) {
-                gpUser.setTranslateX(gpUser.getTranslateX() - 7);
+                tempPlayer.setTranslateX(tempPlayer.getTranslateX() + 7);
+                //gpUser.setTranslateX(gpUser.getTranslateX() + 7);
+                //setDirFalse();
             } else if (right) {
-                gpUser.setTranslateX(gpUser.getTranslateX() + 7);
-            }
-        } else {
+                tempPlayer.setTranslateX(tempPlayer.getTranslateX() - 7);
+                //gpUser.setTranslateX(gpUser.getTranslateX() - 7);
+                //setDirFalse();
+            }        
+        if (!collision(tempPlayer, wall)) {
             direction();
         }
     }
 
     private void direction() {
         if (up) {
-            gpUser.setTranslateY(gpUser.getTranslateY() + 6);
-        } else if (down) {
             gpUser.setTranslateY(gpUser.getTranslateY() - 6);
+        } else if (down) {
+            gpUser.setTranslateY(gpUser.getTranslateY() + 6);
         } else if (left) {
-            gpUser.setTranslateX(gpUser.getTranslateX() + 6);
-        } else if (right) {
             gpUser.setTranslateX(gpUser.getTranslateX() - 6);
+        } else if (right) {
+            gpUser.setTranslateX(gpUser.getTranslateX() + 6);
         } else {
             setDirFalse();
         }
@@ -230,13 +266,13 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @FXML
     private void moveKeyReleased(KeyEvent e) {
-        if (e.getCode() == KeyCode.W || 
-            e.getCode() == KeyCode.A ||
-            e.getCode() == KeyCode.S || 
-            e.getCode() == KeyCode.D){
-            
+        if (e.getCode() == KeyCode.W
+                || e.getCode() == KeyCode.A
+                || e.getCode() == KeyCode.S
+                || e.getCode() == KeyCode.D) {
+
             setDirFalse();
-            
+
         }
     }
 
