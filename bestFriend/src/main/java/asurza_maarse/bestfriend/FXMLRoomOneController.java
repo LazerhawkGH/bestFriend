@@ -32,6 +32,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -67,6 +68,11 @@ public class FXMLRoomOneController implements Initializable {
     private Button btnOtherItem;
     @FXML
     private Button btnBack;
+    
+    @FXML
+    private GridPane gpPlayer;
+    @FXML
+    private ImageView imgUp, imgDown, imgLeft, imgRight;
 
     @FXML
     private Rectangle rSave, rBear, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
@@ -86,7 +92,25 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private Polygon wall;
 
-    private boolean r1, r2, r3;
+    private boolean r1 = false, r2 = false, r3 = false;
+    
+    //Interaction
+    @FXML
+    private Rectangle rInteract;
+    @FXML
+    private Label lblInteract;
+    
+    //Dialog
+    @FXML
+    private Rectangle rDialog;
+    @FXML
+    private Label lblDialog;
+    @FXML
+    private GridPane gpFace;
+    //MC expressions
+    @FXML
+    private ImageView iMAngry, iMNeutralC, iMNeutral, iMCrying, iMCryingC, iMSmiling, iMSmilingC, iMSurprised;
+    
 
     ArrayList<Shape> walls = new ArrayList();
     ArrayList<Rectangle> entrances = new ArrayList();
@@ -108,7 +132,20 @@ public class FXMLRoomOneController implements Initializable {
     }
 
     @FXML
-    private void btnMove(KeyEvent e) {
+    private void btnMove(KeyEvent e) throws IOException {
+        if (r1||r2||r3){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
+
+            Scene home_page_scene = new Scene(home_page_parent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); //puts the new scence in the stage
+
+            stage.setTitle("BestFriend"); //changes the title
+            stage.show(); //shows the new page
+        }
         if (e.getCode() == KeyCode.W) {
             setDirFalse();
             up = true;
@@ -141,28 +178,34 @@ public class FXMLRoomOneController implements Initializable {
                 }
             }
             if (up) {
+                gpPlayer.setTranslateY(gpPlayer.getTranslateY() + 3);
                 cPlayer.setTranslateY(cPlayer.getTranslateY() + 3);
                 setDirFalse();
             } else if (down) {
+                gpPlayer.setTranslateY(gpPlayer.getTranslateY() - 3);
                 cPlayer.setTranslateY(cPlayer.getTranslateY() - 3);
                 setDirFalse();
             } else if (left) {
+                gpPlayer.setTranslateX(gpPlayer.getTranslateX() + 3);
                 cPlayer.setTranslateX(cPlayer.getTranslateX() + 3);
                 setDirFalse();
             } else if (right) {
+                gpPlayer.setTranslateX(gpPlayer.getTranslateX() - 3);
                 cPlayer.setTranslateX(cPlayer.getTranslateX() - 3);
                 setDirFalse();
             }
         } else if (collision(cPlayer, rSwitch)) {
             if (up) {
                 pan.setTranslateY(412);
-                cPlayer.setTranslateY(150);
-                System.out.println(cPlayer.getTranslateY());
+                gpPlayer.setTranslateY(80);
+                cPlayer.setTranslateY(80);
+                //System.out.println(gpPlayer.getTranslateY());
 
             } else if (down) {
                 pan.setTranslateY(0);
-                cPlayer.setTranslateY(-193);
-                System.out.println(cPlayer.getTranslateY());
+                gpPlayer.setTranslateY(-250);
+                cPlayer.setTranslateY(-250);
+                //System.out.println(gpPlayer.getTranslateY());
             }
 
         } else {
@@ -171,33 +214,29 @@ public class FXMLRoomOneController implements Initializable {
         }
     }
 
-    private void changeRoom(KeyEvent evt) throws IOException {
-        if (r1 || r2 || r3) {
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
-
-            Scene home_page_scene = new Scene(home_page_parent);
-//get reference to the stage 
-            Stage stage = (Stage) ((Node) evt.getSource()).getScene().getWindow();
-
-            stage.hide(); //optional
-            stage.setScene(home_page_scene); //puts the new scence in the stage
-
-            stage.setTitle("BestFriend"); //changes the title
-            stage.show(); //shows the new page
-        }
-    }
-
     private void direction() {
         if (up) {
+            setImgVisibleFalse();
+            imgUp.setVisible(true);
+            gpPlayer.setTranslateY(gpPlayer.getTranslateY() - 2);
             cPlayer.setTranslateY(cPlayer.getTranslateY() - 2);
-
+            
         } else if (down) {
+            setImgVisibleFalse();
+            imgDown.setVisible(true);
+            gpPlayer.setTranslateY(gpPlayer.getTranslateY() + 2);
             cPlayer.setTranslateY(cPlayer.getTranslateY() + 2);
 
         } else if (left) {
+            setImgVisibleFalse();
+            imgLeft.setVisible(true);
+            gpPlayer.setTranslateX(gpPlayer.getTranslateX() - 2);
             cPlayer.setTranslateX(cPlayer.getTranslateX() - 2);
 
         } else if (right) {
+            setImgVisibleFalse();
+            imgRight.setVisible(true);
+            gpPlayer.setTranslateX(gpPlayer.getTranslateX() + 2);
             cPlayer.setTranslateX(cPlayer.getTranslateX() + 2);
 
         } else {
@@ -205,6 +244,7 @@ public class FXMLRoomOneController implements Initializable {
         }
 
     }
+    
 
     @FXML
     private void onRelease(KeyEvent e) {
@@ -212,7 +252,18 @@ public class FXMLRoomOneController implements Initializable {
             setDirFalse();
         }
     }
-
+    
+    private void setExpressionFalse(){
+        
+    }
+    
+    private void setImgVisibleFalse(){
+        imgUp.setVisible(false);
+        imgDown.setVisible(false);
+        imgLeft.setVisible(false);
+        imgRight.setVisible(false);
+    }
+    
     private void setDirFalse() {
         up = false;
         down = false;
@@ -237,6 +288,7 @@ public class FXMLRoomOneController implements Initializable {
         }
         return false;
     }
+    
 
     //public boolean coll(Circle block1, Rectangle block2) {
 //returns true if the areas intersect, false if they dont
@@ -290,6 +342,7 @@ public class FXMLRoomOneController implements Initializable {
         entrances.add(rEntrance4);
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
+        
     }
 
 }
