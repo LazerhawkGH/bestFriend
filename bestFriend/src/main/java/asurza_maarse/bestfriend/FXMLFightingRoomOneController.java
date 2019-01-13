@@ -64,21 +64,28 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
     //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
-   
-    // Temporary player & area for the player to collide with to go to the next room
-    @FXML private Circle cPlayer, cDoor;
 
-    @FXML private AnchorPane anchorPane;
+// Temporary player & area for the player to collide with to go to the next room
+    @FXML
+    private Circle cPlayer, cDoor;
 
-    @FXML private Label lblRoomNum, lblWeaponEquipped;
+    @FXML
+    private AnchorPane anchorPane;
 
-    @FXML private Button btnKey1, btnKey2, btnKey3, btnOtherItem;
+    @FXML
+    private Label lblRoomNum, lblWeaponEquipped;
 
-    @FXML private Polygon wall;
+    @FXML
+    private Button btnKey1, btnKey2, btnKey3, btnOtherItem;
 
-    @FXML private GridPane gpUser, gpMenuBar, gpInventory;
+    @FXML
+    private Polygon wall;
 
-    @FXML private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
+    @FXML
+    private GridPane gpUser, gpMenuBar, gpInventory;
+
+    @FXML
+    private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
 
     // Array of all the Rectangles, to simplify collision
     //Rectangle bounds[];
@@ -87,10 +94,10 @@ public class FXMLFightingRoomOneController implements Initializable {
     ArrayList<Enemy> enemies = new ArrayList();
 
     // The Booleans responsible for both moving the user, and for making collision work nicely
-    private Boolean up = false, down = false, left = false, right = false;
+    private Boolean up = false, down = false, left = false, right = false, userMoving = false;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
-    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
+    //Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
     Enemy enemy = new Enemy();
     Player player = new Player();
@@ -131,7 +138,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //        return false;
 //    }
-    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -172,25 +178,26 @@ public class FXMLFightingRoomOneController implements Initializable {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
         enemies.add(enemy);
-        anchorPane.getChildren().add(enemy); // Places the enemy
-        setNewEnemyPosition(enemy);
     }
 
-    private void setNewEnemyPosition(Enemy enemy) {        
-        // Places the enemy somewhere on the screen 
-        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 730) + 1); // (Min x-val, (min x-val + width) + 1) 
-        enemy.setLayoutX(rand);
-        rand = ThreadLocalRandom.current().nextInt(241, (241 + 380) + 1); // (Min y-val, (min y-val + height) + 1) 
-        enemy.setLayoutY(rand);
-        // If the enemy lands out of bounds, place them somewhere else until they aren't
-        while ((collision(enemy, cPlayer)) || collision(enemy, wall)) {
-            rand = ThreadLocalRandom.current().nextInt(89, (89 + 730) + 1);
-            enemy.setLayoutX(rand);
-            rand = ThreadLocalRandom.current().nextInt(241, (241 + 380) + 1);
-            enemy.setLayoutY(rand);
-        }       
-    }
-
+//        anchorPane.getChildren().add(enemy); // Places the enemy
+//        setNewEnemyPosition(enemy);
+//    }
+//    private void setNewEnemyPosition(Enemy enemy) {        
+//        // Places the enemy somewhere on the screen 
+//        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1); // (Min x-val, (min x-val + width) + 1) 
+//        enemy.setLayoutX(rand);
+//        rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1); // (Min y-val, (min y-val + height) + 1) 
+//        enemy.setLayoutY(rand);
+//        // If the enemy lands out of bounds, place them somewhere else until they aren't
+//        while ((collision(enemy, cPlayer)) || collision(enemy, wall)) {
+//            rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1);
+//            enemy.setLayoutX(rand);
+//            rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1);
+//            enemy.setLayoutY(rand);
+//        }       
+//    }
+    
     @FXML
     private void moveKeyPressed(KeyEvent e) {
         if (null != e.getCode()) {
@@ -215,55 +222,116 @@ public class FXMLFightingRoomOneController implements Initializable {
                     break;
             }
         }
+        if (!userMoving) {
+            userMoving = true;
+            tMove.setCycleCount(Timeline.INDEFINITE);
+            tMove.play();
+        }
     }
 
     private Circle copy(Circle c) {
         Circle temp = new Circle();
         temp.setLayoutX(c.getLayoutX());
         temp.setLayoutY(c.getLayoutY());
-        temp.
+        temp.setRadius(21);
+        return temp;
     }
+
     private void move() {
-        Circle tempPlayer = cPlayer;
-        tempPlayer.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 42);
-        tempPlayer.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY() + 42);
-        anchorPane.getChildren().add(tempPlayer);  
-            if (up) {
-                tempPlayer.setTranslateY(tempPlayer.getTranslateY() + 7);
-                //gpUser.setTranslateY(gpUser.getTranslateY() + 7);
-                //setDirFalse();
-            } else if (down) {
-                tempPlayer.setTranslateY(tempPlayer.getTranslateY() - 7);
-                //gpUser.setTranslateY(gpUser.getTranslateY() - 7);
-                //setDirFalse();
-            } else if (left) {
-                tempPlayer.setTranslateX(tempPlayer.getTranslateX() + 7);
-                //gpUser.setTranslateX(gpUser.getTranslateX() + 7);
-                //setDirFalse();
-            } else if (right) {
-                tempPlayer.setTranslateX(tempPlayer.getTranslateX() - 7);
-                //gpUser.setTranslateX(gpUser.getTranslateX() - 7);
-                //setDirFalse();
-            }        
-        if (!collision(tempPlayer, wall)) {
-            direction();
-        }
-    }
-
-    private void direction() {
+        Circle temp = copy(cPlayer);
         if (up) {
-            gpUser.setTranslateY(gpUser.getTranslateY() - 6);
+            temp.setTranslateY(temp.getTranslateY() - 5);
+            if (collision(temp, wall)) {
+                temp.setTranslateY(temp.getTranslateY() + 5);
+                anchorPane.getChildren().remove(temp);
+                tMove.stop();
+                setDirFalse();
+                userMoving = false;
+            }
         } else if (down) {
-            gpUser.setTranslateY(gpUser.getTranslateY() + 6);
+            temp.setTranslateY(temp.getTranslateY() + 5);
+            if (collision(temp, wall)) {
+                temp.setTranslateY(temp.getTranslateY() - 5);
+                anchorPane.getChildren().remove(temp);
+                tMove.stop();
+                setDirFalse();
+                userMoving = false;
+            }
         } else if (left) {
-            gpUser.setTranslateX(gpUser.getTranslateX() - 6);
+            temp.setTranslateX(temp.getTranslateX() - 5);
+            if (collision(temp, wall)) {
+                temp.setTranslateX(temp.getTranslateX() + 5);
+                anchorPane.getChildren().remove(temp);
+                tMove.stop();
+                setDirFalse();
+                userMoving = false;
+            }
         } else if (right) {
-            gpUser.setTranslateX(gpUser.getTranslateX() + 6);
-        } else {
-            setDirFalse();
+            temp.setTranslateX(temp.getTranslateX() + 5);
+            if (collision(temp, wall)) {
+                temp.setTranslateX(temp.getTranslateX() - 5);
+                anchorPane.getChildren().remove(temp);
+                tMove.stop();
+                setDirFalse();
+                userMoving = false;
+            }
         }
+
+        if (up && !collision(temp, wall)) {
+            gpUser.setTranslateY(gpUser.getTranslateY() - 5);
+        } else if (down && !collision(temp, wall)) {
+            gpUser.setTranslateY(gpUser.getTranslateY() + 5);
+        } else if (left && !collision(temp, wall)) {
+            gpUser.setTranslateX(gpUser.getTranslateX() - 5);
+        } else if (right && !collision(temp, wall)) {
+            gpUser.setTranslateX(gpUser.getTranslateX() + 5);
+        }
+
+        // If they are colliding with a wall, move them in the opposite direction and stop the movement
     }
 
+//   //<editor-fold defaultstate="collapsed" desc="comment">
+//    private void move() {
+//        Circle tempPlayer = cPlayer;
+//        tempPlayer.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 42);
+//        tempPlayer.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY() + 42);
+//        anchorPane.getChildren().add(tempPlayer);
+//            if (up) {
+//                cPlayer.setTranslateY(cPlayer.getTranslateY() + 7);
+//                gpUser.setTranslateY(gpUser.getTranslateY() + 7);
+//                setDirFalse();
+//            } else if (down) {
+//                cPlayer.setTranslateY(cPlayer.getTranslateY() - 7);
+//                gpUser.setTranslateY(gpUser.getTranslateY() - 7);
+//                setDirFalse();
+//            } else if (left) {
+//                cPlayer.setTranslateX(cPlayer.getTranslateX() + 7);
+//                gpUser.setTranslateX(gpUser.getTranslateX() + 7);
+//                setDirFalse();
+//            } else if (right) {
+//                cPlayer.setTranslateX(cPlayer.getTranslateX() - 7);
+//                gpUser.setTranslateX(gpUser.getTranslateX() - 7);
+//                setDirFalse();
+//            }
+//        if (!collision(cPlayer, wall)) {
+//            direction();
+//        }
+//    }
+//    private void direction() {
+//        if (up) {
+//            gpUser.setTranslateY(gpUser.getTranslateY() - 6);
+//        } else if (down) {
+//            gpUser.setTranslateY(gpUser.getTranslateY() + 6);
+//        } else if (left) {
+//            gpUser.setTranslateX(gpUser.getTranslateX() - 6);
+//        } else if (right) {
+//            gpUser.setTranslateX(gpUser.getTranslateX() + 6);
+//        } else {
+//            setDirFalse();
+//        }
+//    }
+//</editor-fold>
+    
     @FXML
     private void moveKeyReleased(KeyEvent e) {
         if (e.getCode() == KeyCode.W
@@ -272,7 +340,8 @@ public class FXMLFightingRoomOneController implements Initializable {
                 || e.getCode() == KeyCode.D) {
 
             setDirFalse();
-
+            tMove.stop();
+            userMoving=false;
         }
     }
 
@@ -287,8 +356,8 @@ public class FXMLFightingRoomOneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-        spawn.setCycleCount(6);
-        spawn.play();
+        //spawn.setCycleCount(6);
+        //spawn.play();
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
