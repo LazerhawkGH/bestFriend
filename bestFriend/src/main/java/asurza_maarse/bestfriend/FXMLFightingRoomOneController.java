@@ -88,15 +88,17 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Array of all the Rectangles, to simplify collision
     //Rectangle bounds[];
+    
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
 
     // The Booleans responsible for both moving the user, and for making collision work nicely
     /*private Boolean up = false, down = false, left = false, right = false, userMoving = false;*/
+    
     int xMove, yMove = 0;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
-    //Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
+    Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
     Enemy enemy = new Enemy();
     Player player = new Player();
@@ -172,33 +174,46 @@ public class FXMLFightingRoomOneController implements Initializable {
             return a.getBoundsInLocal().getWidth() != -1;
         }
     }
+    
+    public boolean collision(Object ob1, ArrayList array) {
+        for (Object ob2 : array) {
+            if (collision(ob2, ob1)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void enemyCreation() {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
-        enemy = new Enemy(rand); // Obtains the characteristics of the random enemy
+        enemy = new Enemy(rand); // Obtains the characteristics of the random enemy            
+        anchorPane.getChildren().add(enemy); // Places the enemy
+        
+        setNewEnemyPosition(enemy);
         enemies.add(enemy);
     }
-
-//        anchorPane.getChildren().add(enemy); // Places the enemy
-//        setNewEnemyPosition(enemy);
-//    }
-//    private void setNewEnemyPosition(Enemy enemy) {        
-//        // Places the enemy somewhere on the screen 
-//        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1); // (Min x-val, (min x-val + width) + 1) 
-//        enemy.setLayoutX(rand);
-//        rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1); // (Min y-val, (min y-val + height) + 1) 
-//        enemy.setLayoutY(rand);
-//        // If the enemy lands out of bounds, place them somewhere else until they aren't
-//        while ((collision(enemy, cPlayer)) || collision(enemy, wall)) {
-//            rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1);
-//            enemy.setLayoutX(rand);
-//            rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1);
-//            enemy.setLayoutY(rand);
-//        }       
-//    }
+    private void setNewEnemyPosition(Enemy enemy) {        
+        // Places the enemy somewhere on the screen 
+        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1); // (Min x-val, (min x-val + width) + 1) 
+        enemy.setLayoutX(rand);
+        rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1); // (Min y-val, (min y-val + height) + 1) 
+        enemy.setLayoutY(rand);
+        System.out.println("No");
+        if (collision(enemy, wall)){
+            System.out.println("Collision");
+        }
+        // If the enemy lands out of bounds, place them somewhere else until they aren't
+        while ((collision(enemy, cPlayer)) || collision(enemy, wall) || (collision(enemy,enemies))) {
+            System.out.println("Collision");
+            rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1);
+            enemy.setLayoutX(rand);
+            rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1);
+            enemy.setLayoutY(rand);
+        }       
+    }
+    
     @FXML
     private void moveKeyPressed(KeyEvent e) {
-        setDirFalse();
         if (null != e.getCode()) {
             switch (e.getCode()) {
                 case W:
@@ -320,19 +335,19 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
-    private void setDirFalse() {
-       /* up = false;
-        down = false;
-        left = false;
-        right = false;*/
-    }
+//    private void setDirFalse() {
+//       /* up = false;
+//        down = false;
+//        left = false;
+//        right = false;*/
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-        //spawn.setCycleCount(6);
-        //spawn.play();
+        spawn.setCycleCount(6);
+        spawn.play();
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
