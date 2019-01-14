@@ -64,7 +64,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
     //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
-
 // Temporary player & area for the player to collide with to go to the next room
     @FXML
     private Circle cPlayer, cDoor;
@@ -89,12 +88,12 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Array of all the Rectangles, to simplify collision
     //Rectangle bounds[];
-    
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
 
     // The Booleans responsible for both moving the user, and for making collision work nicely
-    private Boolean up = false, down = false, left = false, right = false, userMoving = false;
+    /*private Boolean up = false, down = false, left = false, right = false, userMoving = false;*/
+    int xMove, yMove = 0;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
     //Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
@@ -197,84 +196,54 @@ public class FXMLFightingRoomOneController implements Initializable {
 //            enemy.setLayoutY(rand);
 //        }       
 //    }
-    
     @FXML
     private void moveKeyPressed(KeyEvent e) {
+        setDirFalse();
         if (null != e.getCode()) {
             switch (e.getCode()) {
                 case W:
-                    setDirFalse();
-                    up = true;
+                    yMove = -5;
+                    xMove=0;
                     break;
                 case S:
-                    setDirFalse();
-                    down = true;
+                    yMove = 5;
+                    xMove=0;
                     break;
                 case A:
-                    setDirFalse();
-                    left = true;
+                    xMove = -5;
+                    yMove = 0;
                     break;
                 case D:
-                    setDirFalse();
-                    right = true;
+                    xMove = 5;
+                    yMove=0;
                     break;
                 default:
                     break;
             }
         }
-        if (!userMoving) {
-            userMoving = true;
-            tMove.setCycleCount(Timeline.INDEFINITE);
-            tMove.play();
-        }
+
     }
 
     private Circle copy(Circle c) {
         Circle temp = new Circle();
-        temp.setLayoutX(c.getLayoutX());
-        temp.setLayoutY(c.getLayoutY());
+        temp.setLayoutX(63+gpUser.getLayoutX()+gpUser.getTranslateX());
+        temp.setLayoutY(63+gpUser.getLayoutY()+gpUser.getTranslateY());
         temp.setRadius(21);
         return temp;
     }
 
     private void move() {
         Circle temp = copy(cPlayer);
-        if (up) {
+        anchorPane.getChildren().add(temp);
+
+        /*if (up) {
             temp.setTranslateY(temp.getTranslateY() - 5);
-            if (collision(temp, wall)) {
-                temp.setTranslateY(temp.getTranslateY() + 5);
-                anchorPane.getChildren().remove(temp);
-                tMove.stop();
-                setDirFalse();
-                userMoving = false;
-            }
         } else if (down) {
             temp.setTranslateY(temp.getTranslateY() + 5);
-            if (collision(temp, wall)) {
-                temp.setTranslateY(temp.getTranslateY() - 5);
-                anchorPane.getChildren().remove(temp);
-                tMove.stop();
-                setDirFalse();
-                userMoving = false;
-            }
         } else if (left) {
             temp.setTranslateX(temp.getTranslateX() - 5);
-            if (collision(temp, wall)) {
-                temp.setTranslateX(temp.getTranslateX() + 5);
-                anchorPane.getChildren().remove(temp);
-                tMove.stop();
-                setDirFalse();
-                userMoving = false;
-            }
         } else if (right) {
             temp.setTranslateX(temp.getTranslateX() + 5);
-            if (collision(temp, wall)) {
-                temp.setTranslateX(temp.getTranslateX() - 5);
-                anchorPane.getChildren().remove(temp);
-                tMove.stop();
-                setDirFalse();
-                userMoving = false;
-            }
         }
 
         if (up && !collision(temp, wall)) {
@@ -285,8 +254,17 @@ public class FXMLFightingRoomOneController implements Initializable {
             gpUser.setTranslateX(gpUser.getTranslateX() - 5);
         } else if (right && !collision(temp, wall)) {
             gpUser.setTranslateX(gpUser.getTranslateX() + 5);
+        }*/
+        temp.setTranslateX(temp.getTranslateX() + xMove);
+        temp.setTranslateY(temp.getTranslateY() + yMove);
+        if (!collision(temp, wall)) {
+            System.out.println("No");
+        gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
+        gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
+        } else {
+            System.out.println("Collide");
         }
-
+        anchorPane.getChildren().remove(temp);
         // If they are colliding with a wall, move them in the opposite direction and stop the movement
     }
 
@@ -331,25 +309,22 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //    }
 //</editor-fold>
-    
     @FXML
     private void moveKeyReleased(KeyEvent e) {
         if (e.getCode() == KeyCode.W
                 || e.getCode() == KeyCode.A
                 || e.getCode() == KeyCode.S
                 || e.getCode() == KeyCode.D) {
-
-            setDirFalse();
-            tMove.stop();
-            userMoving=false;
+            xMove = 0;
+            yMove = 0;
         }
     }
 
     private void setDirFalse() {
-        up = false;
+       /* up = false;
         down = false;
         left = false;
-        right = false;
+        right = false;*/
     }
 
     @Override
