@@ -5,26 +5,25 @@
  */
 package asurza_maarse.bestfriend;
 
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author zacharym44
  */
-public class Player {
+public class Player extends ImageView{
     
     public String name;
-    public Boolean hasKnife;
     public int health, atk;    
     
     public Player(){
         name = "Elliot";
-        hasKnife= false;
         health = 100;
         atk = 50;
     }
     
     public Player(String n, Boolean hk, int h, int a){
         this.name = n;
-        this.hasKnife = hk;
         this.health = h;
         this.atk = a;
     }
@@ -35,14 +34,7 @@ public class Player {
     public void setName(String n){
         this.name = n;
     }
-    
-    public Boolean getHasKnife(){
-        return hasKnife;
-    }
-        public void setHasKnife(Boolean hk){
-        this.hasKnife = hk;
-    }
-    
+       
     public int getAtk(){
         return atk;
     }
