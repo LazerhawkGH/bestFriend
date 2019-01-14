@@ -217,12 +217,12 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
-    private Circle copy(Circle c) {
+   /* private Circle copy(Circle c) {
         Circle temp = new Circle();
         temp.setLayoutX(c.getLayoutX());
         temp.setLayoutY(c.getLayoutY());
         temp.
-    }
+    }*/
     private void move() {
         Circle tempPlayer = cPlayer;
         tempPlayer.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 42);
