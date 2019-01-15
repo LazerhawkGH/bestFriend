@@ -102,7 +102,12 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label fx:id="lblHealth" alignment="CENTER" prefHeight="55.0" prefWidth="189.0" text="Health: 100" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <Label fx:id="lblHealth" alignment="CENTER" prefHeight="55.0" prefWidth="189.0" text="100" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="189.0" text="Health: " textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
