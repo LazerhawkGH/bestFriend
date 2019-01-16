@@ -64,7 +64,8 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
     //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
-// Temporary player & area for the player to collide with to go to the next room
+
+    // Temporary player & area for the player to collide with to go to the next room
     @FXML
     private Circle cPlayer, cDoor;
 
@@ -72,7 +73,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private Label lblRoomNum, lblWeaponEquipped;
+    private Label lblRoomNum, lblWeaponEquipped, lblHealth;
 
     @FXML
     private Button btnKey1, btnKey2, btnKey3, btnOtherItem;
@@ -95,9 +96,12 @@ public class FXMLFightingRoomOneController implements Initializable {
     // The Booleans responsible for both moving the user, and for making collision work nicely
     /*private Boolean up = false, down = false, left = false, right = false, userMoving = false;*/
     
-    int xMove, yMove = 0;
-
+    int xMove, yMove = 0; // Directional variables
+    
+    int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
+    
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
+    Timeline eMove = new Timeline(new KeyFrame(Duration.millis(100), ae -> enemyMovement()));
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
     Enemy enemy = new Enemy();
@@ -120,6 +124,7 @@ public class FXMLFightingRoomOneController implements Initializable {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
+                    lblHealth.setText("" + player.getHealth());
                 } else if (e.getHealth() == 0) {
                     enemies.remove(e); // Don't know if this works yet
                 } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
@@ -139,6 +144,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //        return false;
 //    }
+    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -174,10 +180,10 @@ public class FXMLFightingRoomOneController implements Initializable {
             return a.getBoundsInLocal().getWidth() != -1;
         }
     }
-    
+
     public boolean collision(Object ob1, ArrayList array) {
-        for (Object ob2 : array) {
-            if (collision(ob2, ob1)) {
+        for (Object ob2 : array) { // Runs through the specified array
+            if (collision(ob2, ob1)) { // Checks for collision between any of the objects in the array list
                 return true;
             }
         }
@@ -188,41 +194,71 @@ public class FXMLFightingRoomOneController implements Initializable {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy            
         anchorPane.getChildren().add(enemy); // Places the enemy
-        
-        setNewEnemyPosition(enemy);
-        enemies.add(enemy);
-    }
-    private void setNewEnemyPosition(Enemy enemy) {        
-        // Places the enemy somewhere on the screen 
-        int rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1); // (Min x-val, (min x-val + width) + 1) 
-        enemy.setLayoutX(rand);
-        rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1); // (Min y-val, (min y-val + height) + 1) 
-        enemy.setLayoutY(rand);
-        System.out.println("No");
-        if (collision(enemy, wall)){
-            System.out.println("Collision");
+
+        // Moves the enemy to a random spot on the screen        
+        rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+        enemy.setLayoutX(rand); // X-coordinate
+        System.out.println("x: " + rand);
+
+        rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+        enemy.setLayoutY(rand); // Y-coordinate
+        System.out.println("y: " + rand + "\n");
+
+        // If the enemy was placed out of bounds, run the function to relocate the enemy until they are no longer out of bounds
+        while ((collision(enemy, cPlayer)) || collision(enemy, wall) || (collision(enemy, enemies))) { // (collision(enemy, enemies)) is to prevent them from spawning on top of each other
+            setNewEnemyPosition(enemy); // Will continuously run this function until the enemy is in a spot that doesn't trigger any of the conditions
         }
-        // If the enemy lands out of bounds, place them somewhere else until they aren't
-        while ((collision(enemy, cPlayer)) || collision(enemy, wall) || (collision(enemy,enemies))) {
-            System.out.println("Collision");
-            rand = ThreadLocalRandom.current().nextInt(89, (89 + 700) + 1);
-            enemy.setLayoutX(rand);
-            rand = ThreadLocalRandom.current().nextInt(241, (241 + 350) + 1);
-            enemy.setLayoutY(rand);
-        }       
+        enemies.add(enemy); // Adds the enemy to the ArrayList after completion
     }
-    
+
+    private void enemyMovement() {
+        if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
+            for (Enemy e : enemies) { // Loop through each enemy
+                if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
+                    if ((e.getLayoutX() + e.getTranslateX()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is less than that of the player, increase it
+                        e.setTranslateX(e.getTranslateX() + 5);
+                    }
+                    if ((e.getLayoutX() + e.getTranslateX()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
+                        e.setTranslateX(e.getTranslateX() - 5);
+                    }
+                    if ((e.getLayoutY() + e.getTranslateY()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is less than that of the player, increase it
+                        e.setTranslateY(e.getTranslateY() + 5);
+                    }
+                    if ((e.getLayoutY() + e.getTranslateY()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
+                        e.setTranslateY(e.getTranslateY() - 5);
+                    }
+                }else{
+                    System.out.println("yeet");
+                }
+            }
+        }
+    }
+
+    private void setNewEnemyPosition(Enemy enemy) {
+        // Places the enemy somewhere else on the screen 
+        int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+        enemy.setLayoutX(rand);
+        System.out.println("New x: " + rand);
+
+        rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+        enemy.setLayoutY(rand);
+        System.out.println("New y: " + rand + "\n");
+
+        System.out.println("Yes" + "\n");
+
+    }
+
     @FXML
     private void moveKeyPressed(KeyEvent e) {
         if (null != e.getCode()) {
             switch (e.getCode()) {
                 case W:
                     yMove = -5;
-                    xMove=0;
+                    xMove = 0;
                     break;
                 case S:
                     yMove = 5;
-                    xMove=0;
+                    xMove = 0;
                     break;
                 case A:
                     xMove = -5;
@@ -230,7 +266,7 @@ public class FXMLFightingRoomOneController implements Initializable {
                     break;
                 case D:
                     xMove = 5;
-                    yMove=0;
+                    yMove = 0;
                     break;
                 default:
                     break;
@@ -239,10 +275,10 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     }
 
-    private Circle copy(Circle c) {
+    private Circle copy(Circle c) { // Handles the creation of the temporary player, used to check for collision before moving actual player
         Circle temp = new Circle();
-        temp.setLayoutX(63+gpUser.getLayoutX()+gpUser.getTranslateX());
-        temp.setLayoutY(63+gpUser.getLayoutY()+gpUser.getTranslateY());
+        temp.setLayoutX(63 + gpUser.getLayoutX() + gpUser.getTranslateX());
+        temp.setLayoutY(63 + gpUser.getLayoutY() + gpUser.getTranslateY());
         temp.setRadius(21);
         return temp;
     
@@ -250,20 +286,22 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
         
     private void move() {
-        Circle temp = copy(cPlayer);
-        anchorPane.getChildren().add(temp);
 
-        temp.setTranslateX(temp.getTranslateX() + xMove);
-        temp.setTranslateY(temp.getTranslateY() + yMove);
-        if (!collision(temp, wall)) {
-            System.out.println("No");
-        gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
-        gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
+        Circle temp = copy(cPlayer); // A temporary copy of the player is made
+        anchorPane.getChildren().add(temp); // The copy is placed on the anchorpane
+
+        temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
+
+
+        if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
+            gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
+            gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
+
+            //System.out.println("Not colliding"); // For debugging purposes
         } else {
-            System.out.println("Collide");
+            //System.out.println("Colliding"); // For debugging purposes
         }
-        anchorPane.getChildren().remove(temp);
-        // If they are colliding with a wall, move them in the opposite direction and stop the movement
+        anchorPane.getChildren().remove(temp); // After going through once, the temporary player is removed, and garbage collector throws it out
     }
 
 //   //<editor-fold defaultstate="collapsed" desc="comment">
@@ -306,13 +344,12 @@ public class FXMLFightingRoomOneController implements Initializable {
 //            setDirFalse();
 //        }
 //    }
-//</editor-fold>
+//</editor-fold> // Former movement code
+    
     @FXML
     private void moveKeyReleased(KeyEvent e) {
-        if (e.getCode() == KeyCode.W
-                || e.getCode() == KeyCode.A
-                || e.getCode() == KeyCode.S
-                || e.getCode() == KeyCode.D) {
+        // If the user stops pressing a movement key, stop the movement
+        if (e.getCode() == KeyCode.W || e.getCode() == KeyCode.A || e.getCode() == KeyCode.S || e.getCode() == KeyCode.D) {
             xMove = 0;
             yMove = 0;
         }
@@ -324,13 +361,16 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        left = false;
 //        right = false;*/
 //    }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
+        eMove.setCycleCount(Timeline.INDEFINITE);
+        eMove.play();
         spawn.setCycleCount(6);
         spawn.play();
+        
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
