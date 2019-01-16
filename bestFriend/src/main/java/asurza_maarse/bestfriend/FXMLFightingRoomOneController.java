@@ -101,7 +101,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
     
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
-    //Timeline eMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> enemyMovement()));
+    Timeline eMove = new Timeline(new KeyFrame(Duration.millis(100), ae -> enemyMovement()));
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
     Enemy enemy = new Enemy();
@@ -211,26 +211,28 @@ public class FXMLFightingRoomOneController implements Initializable {
         enemies.add(enemy); // Adds the enemy to the ArrayList after completion
     }
 
-//    private void enemyMovement() {
-//        while (!enemies.isEmpty()) { // While there are enemies in the ArrayList
-//            for (Enemy e : enemies) { // Loop through each enemy
-//                if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
-//                    if (e.getLayoutX() < gpUser.getLayoutX()) { // If the x-val of the enemy is less than that of the player, increase it
-//                        e.setTranslateX(e.getTranslateX() + 5);
-//                    }
-//                    if (e.getLayoutX() > gpUser.getLayoutX()) { // If the x-val of the enemy is greater than that of the player, decrease it
-//                        e.setTranslateX(e.getTranslateX() - 5);
-//                    }
-//                    if (e.getLayoutY() < gpUser.getLayoutY()) { // If the y-val of the enemy is less than that of the player, increase it
-//                        e.setTranslateY(e.getTranslateY() + 5);
-//                    }
-//                    if (e.getLayoutY() > gpUser.getLayoutY()) { // If the y-val of the enemy is greater than that of the player, decrease it
-//                        e.setTranslateY(e.getTranslateY() - 5);
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private void enemyMovement() {
+        if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
+            for (Enemy e : enemies) { // Loop through each enemy
+                if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
+                    if ((e.getLayoutX() + e.getTranslateX()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is less than that of the player, increase it
+                        e.setTranslateX(e.getTranslateX() + 5);
+                    }
+                    if ((e.getLayoutX() + e.getTranslateX()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
+                        e.setTranslateX(e.getTranslateX() - 5);
+                    }
+                    if ((e.getLayoutY() + e.getTranslateY()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is less than that of the player, increase it
+                        e.setTranslateY(e.getTranslateY() + 5);
+                    }
+                    if ((e.getLayoutY() + e.getTranslateY()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
+                        e.setTranslateY(e.getTranslateY() - 5);
+                    }
+                }else{
+                    System.out.println("yeet");
+                }
+            }
+        }
+    }
 
     private void setNewEnemyPosition(Enemy enemy) {
         // Places the enemy somewhere else on the screen 
@@ -361,8 +363,8 @@ public class FXMLFightingRoomOneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-//        eMove.setCycleCount(Timeline.INDEFINITE);
-//        eMove.play();
+        eMove.setCycleCount(Timeline.INDEFINITE);
+        eMove.play();
         spawn.setCycleCount(6);
         spawn.play();
         
