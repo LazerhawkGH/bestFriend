@@ -33,6 +33,22 @@
             <Rectangle fx:id="rEntrance4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" layoutX="530.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="17.0" />
          </children>
       </Pane>
+      <Rectangle fx:id="rSaveW" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="206.0" layoutX="170.0" layoutY="261.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="348.0" />
+      <Label fx:id="lblSave" alignment="CENTER" layoutX="218.0" layoutY="277.0" prefHeight="65.0" prefWidth="253.0" text="Would you like to save?" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnYes" focusTraversable="false" layoutX="209.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnSYes" prefHeight="55.0" prefWidth="115.0" text="Yes">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnNo" focusTraversable="false" layoutX="361.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnSNo" prefHeight="55.0" prefWidth="115.0" text="No">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
       <GridPane fx:id="gpPlayer" layoutX="338.0" layoutY="520.0" prefHeight="44.0" prefWidth="51.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -94,11 +110,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnKey1" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnKey2" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="btnKey3" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="btnOtherItem" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Other Item" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnGoBack" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4">
+            <Button fx:id="btnKey1" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey2" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey3" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="btnOtherItem" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Other Item" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="btnBack" focusTraversable="false" mnemonicParsing="false" onAction="#btnGoBack" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -120,7 +136,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnInventory" mnemonicParsing="false" onAction="#btnShowInvent" prefHeight="55.0" prefWidth="204.0" text="Inventoy" GridPane.columnIndex="1">
+            <Button fx:id="btnInventory" focusTraversable="false" mnemonicParsing="false" onAction="#btnShowInvent" prefHeight="55.0" prefWidth="204.0" text="Inventoy" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -141,7 +157,7 @@
       <Rectangle fx:id="rDialog" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="151.0" layoutY="557.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="683.0" />
       <Label fx:id="lblDialog" alignment="TOP_LEFT" layoutX="175.0" layoutY="574.0" prefHeight="117.0" prefWidth="488.0" text="[Name]" textFill="WHITE">
          <font>
-            <Font name="Comic Sans MS" size="14.0" />
+            <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
       <GridPane fx:id="gpFace" layoutX="14.0" layoutY="557.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="151.0" prefWidth="155.0">
@@ -177,7 +193,7 @@
                   <Image url="@../MC/Face%20-%20Smiling%20talking.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="iMSmillingC" visible="false">
+            <ImageView fx:id="iMSmilingC" visible="false">
                <image>
                   <Image url="@../MC/Face%20-%20Smiling.png" />
                </image>

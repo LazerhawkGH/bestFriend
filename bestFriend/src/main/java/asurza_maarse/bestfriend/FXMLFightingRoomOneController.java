@@ -281,14 +281,17 @@ public class FXMLFightingRoomOneController implements Initializable {
         temp.setLayoutY(63 + gpUser.getLayoutY() + gpUser.getTranslateY());
         temp.setRadius(21);
         return temp;
-    }
+    
 
+    }
+        
     private void move() {
+
         Circle temp = copy(cPlayer); // A temporary copy of the player is made
         anchorPane.getChildren().add(temp); // The copy is placed on the anchorpane
 
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
-        temp.setTranslateY(temp.getTranslateY() + yMove);
+
 
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
