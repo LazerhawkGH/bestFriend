@@ -127,7 +127,7 @@ public class FXMLRoomOneController implements Initializable {
 
     private Boolean up = false, down = false, left = false, right = false;
 
-    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(20), ae -> move()));
+    Timeline tMove = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
 
     @FXML
     private void btnShowInvent(ActionEvent evt) {
@@ -215,6 +215,8 @@ public class FXMLRoomOneController implements Initializable {
         }
 
     }
+    
+    
 
     private void move() {
         if (collisionT()) {
