@@ -1,3 +1,4 @@
+
 package asurza_maarse.bestfriend;
 
 /*
@@ -41,7 +42,7 @@ import javafx.scene.shape.Polygon;
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
                     ////                                                                ////
-                   ////   Key(s)                                                       ////
+                   ////   Key(s) x 3                                                   ////
                   ////   Weapons                                                      ////
                  ////       - Wooden Knife                                           ////
                 ////       - Plastic Knife                                          ////
@@ -126,7 +127,9 @@ public class FXMLFightingRoomOneController implements Initializable {
                     player.setHealth(player.getHealth() - e.getDamage());
                     lblHealth.setText("" + player.getHealth());
                 } else if (e.getHealth() == 0) {
+                    
                     enemies.remove(e); // Don't know if this works yet
+                    anchorPane.getChildren().remove(e);
                 } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
                     e.setHealth(e.getHealth() - player.getAtk());
                 }
@@ -190,6 +193,27 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
 
+    private void items(int i){
+       switch(i){
+           case 1:
+               anchorPane.getChildren().add(new ImageView(""));
+               break;
+           case 2:
+               
+       }
+    }    
+    
+    private void rdmItemGen(){
+        int rand = ThreadLocalRandom.current().nextInt(1, 120 + 1);
+        
+        if (rand >= 1 && rand < 20){
+            items(1);
+        }else if (rand >=20 && rand < 30){
+            
+        }
+        
+    }
+    
     private void enemyCreation() {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy            
@@ -281,17 +305,14 @@ public class FXMLFightingRoomOneController implements Initializable {
         temp.setLayoutY(63 + gpUser.getLayoutY() + gpUser.getTranslateY());
         temp.setRadius(21);
         return temp;
-    
-
     }
-        
-    private void move() {
 
+    private void move() {
         Circle temp = copy(cPlayer); // A temporary copy of the player is made
         anchorPane.getChildren().add(temp); // The copy is placed on the anchorpane
 
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
-
+        temp.setTranslateY(temp.getTranslateY() + yMove);
 
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
@@ -375,3 +396,4 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
 }
+
