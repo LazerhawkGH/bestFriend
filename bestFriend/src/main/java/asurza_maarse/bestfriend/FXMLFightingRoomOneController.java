@@ -126,7 +126,9 @@ public class FXMLFightingRoomOneController implements Initializable {
                     player.setHealth(player.getHealth() - e.getDamage());
                     lblHealth.setText("" + player.getHealth());
                 } else if (e.getHealth() == 0) {
+                    
                     enemies.remove(e); // Don't know if this works yet
+                    anchorPane.getChildren().remove(e);
                 } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
                     e.setHealth(e.getHealth() - player.getAtk());
                 }
@@ -190,6 +192,14 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
 
+    private void rdmItemGen(){
+        int rand = ThreadLocalRandom.current().nextInt(1,101);
+        
+        if (rand >= 1 && rand <= 20){
+            
+        }
+    }
+    
     private void enemyCreation() {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy            
