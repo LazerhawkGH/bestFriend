@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller=".FXMLRoomTwoController">
+   <children>
+      <ImageView fitHeight="514.0" fitWidth="693.0" layoutX="-4.0" layoutY="126.0" preserveRatio="true">
+         <image>
+            <Image url="@../Room%202%20.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="wall" arcHeight="1.0" arcWidth="1.0" height="120.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="3.0" width="677.0" />
+      <GridPane fx:id="gp2" layoutX="15.0" layoutY="7.0" prefHeight="99.0" prefWidth="640.0" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="157.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="124.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="123.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="123.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="120.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="55.0" prefWidth="159.0" text="Weapon Equiped:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblWeaponEquiped" prefHeight="53.0" prefWidth="136.0" text="None" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="55.0" prefWidth="159.0" text="Items:" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnKey1" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey2" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey3" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="btnOtherItem" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Other Item" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="btnBack" focusTraversable="false" mnemonicParsing="false" onAction="#btnGoBack" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gp1" layoutX="54.0" layoutY="26.0" prefHeight="74.0" prefWidth="576.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="lblRoomNum" contentDisplay="CENTER" prefHeight="55.0" prefWidth="189.0" text="Room # 1" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnInventory" focusTraversable="false" mnemonicParsing="false" onAction="#btnShowInvent" prefHeight="55.0" prefWidth="204.0" text="Inventoy" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblHealth" alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="189.0" text="Health: 100" textFill="WHITE" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Polygon fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

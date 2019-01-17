@@ -32,8 +32,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * FXML Controller class
@@ -122,6 +123,8 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private Button btnYes, btnNo;
 
+    MediaPlayer player;
+
     ArrayList<Shape> walls = new ArrayList();
     ArrayList<Rectangle> entrances = new ArrayList();
 
@@ -140,14 +143,14 @@ public class FXMLRoomOneController implements Initializable {
         gp2.setVisible(false);
         gp1.setVisible(true);
     }
-    
+
     @FXML
-    private void btnSYes(ActionEvent evt){
+    private void btnSYes(ActionEvent evt) {
         saveWVisibleFalse();
     }
-    
+
     @FXML
-    private void btnSNo(ActionEvent evt){
+    private void btnSNo(ActionEvent evt) {
         saveWVisibleFalse();
     }
 
@@ -215,8 +218,6 @@ public class FXMLRoomOneController implements Initializable {
         }
 
     }
-    
-    
 
     private void move() {
         if (collisionT()) {
@@ -274,21 +275,21 @@ public class FXMLRoomOneController implements Initializable {
 
         }
     }
-    
-    private void saveWVisibleTrue(){
+
+    private void saveWVisibleTrue() {
         rSaveW.setVisible(true);
         lblSave.setVisible(true);
         btnYes.setVisible(true);
         btnNo.setVisible(true);
     }
-    
-    private void saveWVisibleFalse(){
+
+    private void saveWVisibleFalse() {
         rSaveW.setVisible(false);
         lblSave.setVisible(false);
         btnYes.setVisible(false);
         btnNo.setVisible(false);
     }
-    
+
     private void direction() {
         if (up) {
             setImgVisibleFalse();
@@ -450,6 +451,8 @@ public class FXMLRoomOneController implements Initializable {
         lblDialog.setText("[MC]\nWhere am I?...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
+        player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
+        player.play();
 
     }
 
