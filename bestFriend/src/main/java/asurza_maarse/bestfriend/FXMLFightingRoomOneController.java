@@ -41,7 +41,7 @@ import javafx.scene.shape.Polygon;
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
                     ////                                                                ////
-                   ////   Key(s)                                                       ////
+                   ////   Key(s) x 3                                                   ////
                   ////   Weapons                                                      ////
                  ////       - Wooden Knife                                           ////
                 ////       - Plastic Knife                                          ////
@@ -192,12 +192,25 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
 
+    private void items(int i){
+       switch(i){
+           case 1:
+               anchorPane.getChildren().add(new ImageView(""));
+               break;
+           case 2:
+               
+       }
+    }    
+    
     private void rdmItemGen(){
-        int rand = ThreadLocalRandom.current().nextInt(1,101);
+        int rand = ThreadLocalRandom.current().nextInt(1, 120 + 1);
         
-        if (rand >= 1 && rand <= 20){
+        if (rand >= 1 && rand < 20){
+            items(1);
+        }else if (rand >=20 && rand < 30){
             
         }
+        
     }
     
     private void enemyCreation() {
