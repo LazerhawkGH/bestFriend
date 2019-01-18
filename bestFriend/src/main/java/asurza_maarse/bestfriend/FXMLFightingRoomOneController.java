@@ -1,3 +1,4 @@
+
 package asurza_maarse.bestfriend;
 
 /*
@@ -471,3 +472,4 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
 }
+
