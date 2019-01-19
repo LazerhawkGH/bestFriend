@@ -442,7 +442,6 @@ public class FXMLRoomOneController implements Initializable {
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
-        entrances.add(rEntrance3);
         entrances.add(rEntrance4);
         dialogVisibleTrue();
         setExpressionFalse();

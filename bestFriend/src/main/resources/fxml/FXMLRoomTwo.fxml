@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller=".FXMLRoomTwoController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".FXMLRoomTwoController">
    <children>
       <ImageView fitHeight="514.0" fitWidth="693.0" layoutX="-4.0" layoutY="126.0" preserveRatio="true">
          <image>
@@ -87,6 +87,123 @@
             </Label>
          </children>
       </GridPane>
-      <Polygon fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Polygon fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
+      <Rectangle fx:id="rPiano" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="312.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+      <Rectangle fx:id="rSave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="447.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
+      <Rectangle fx:id="rBook" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="54.0" layoutY="338.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
+      <Rectangle fx:id="rBasket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" layoutX="599.0" layoutY="427.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
+      <Rectangle fx:id="rEntrance1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="182.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
+      <Rectangle fx:id="rEntrance2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="272.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
+      <Rectangle fx:id="rEntrance3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="393.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
+      <Rectangle fx:id="rEntrance4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="483.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
+      <GridPane fx:id="gpPlayer" layoutX="310.0" layoutY="454.0" prefHeight="44.0" prefWidth="42.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="imgDown" fitHeight="41.0" fitWidth="41.0" preserveRatio="true">
+               <image>
+                  <Image url="@../MC/MC%20-%20Down.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgLeft" fitHeight="41.0" fitWidth="41.0">
+               <image>
+                  <Image url="@../MC/MC%20-%20Left.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgRight" fitHeight="41.0" fitWidth="41.0">
+               <image>
+                  <Image url="@../MC/MC%20-%20Right.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgUp" fitHeight="41.0" fitWidth="41.0">
+               <image>
+                  <Image url="@../MC/MC%20-%20Up.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="331.0" layoutY="484.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Rectangle fx:id="rSaveW" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="206.0" layoutX="169.0" layoutY="245.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="348.0" />
+      <Label fx:id="lblSave" alignment="CENTER" layoutX="217.0" layoutY="261.0" prefHeight="65.0" prefWidth="253.0" text="Would you like to save?" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnYes" focusTraversable="false" layoutX="208.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnSYes" prefHeight="55.0" prefWidth="115.0" text="Yes" visible="false">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnNo" focusTraversable="false" layoutX="360.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnSNo" prefHeight="55.0" prefWidth="115.0" text="No" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="rDialog" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="151.0" layoutY="488.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="681.0" />
+      <Label fx:id="lblDialog" alignment="TOP_LEFT" layoutX="175.0" layoutY="505.0" prefHeight="117.0" prefWidth="488.0" text="[Name]" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <GridPane fx:id="gpFace" layoutX="14.0" layoutY="488.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="151.0" prefWidth="155.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="142.0" minWidth="10.0" prefWidth="138.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="iMAngry" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Angry.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMNeutralC" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Neutral.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMCrying" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Sad%20talking.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMCryingC" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Sad.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMSmiling" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Smiling%20talking.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMSmilingC" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Smiling.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMSurprised" visible="false">
+               <image>
+                  <Image url="@../MC/Face%20-%20Surprised.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iMNeutral">
+               <image>
+                  <Image url="@../MC/Face%20-%20Talking.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Rectangle fx:id="rInteract" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="84.0" layoutY="554.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="681.0" />
+      <Label fx:id="lblInteract" alignment="CENTER" layoutX="108.0" layoutY="574.0" prefHeight="44.0" prefWidth="472.0" text="Label" textFill="WHITE" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
