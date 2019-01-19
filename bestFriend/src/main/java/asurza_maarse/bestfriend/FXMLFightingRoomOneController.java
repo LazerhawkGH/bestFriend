@@ -1,3 +1,4 @@
+
 package asurza_maarse.bestfriend;
 
 /*
@@ -41,7 +42,7 @@ import javafx.scene.shape.Polygon;
                       ////                      Interaction Plan                          ////
                      ////////////////////////////////////////////////////////////////////////
                     ////                                                                ////
-                   ////   Key(s)                                                       ////
+                   ////   Key(s) x 3                                                   ////
                   ////   Weapons                                                      ////
                  ////       - Wooden Knife                                           ////
                 ////       - Plastic Knife                                          ////
@@ -64,7 +65,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Declaration of all of the boundss, so they may be used in the collision loop
     //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
-
     // Temporary player & area for the player to collide with to go to the next room
     @FXML
     private Circle cPlayer, cDoor;
@@ -89,23 +89,23 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     // Array of all the Rectangles, to simplify collision
     //Rectangle bounds[];
-    
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
 
+    ArrayList<ImageView> item = new ArrayList();
+
     // The Booleans responsible for both moving the user, and for making collision work nicely
     /*private Boolean up = false, down = false, left = false, right = false, userMoving = false;*/
-    
     int xMove, yMove = 0; // Directional variables
-    
+
     int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
-    
+
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
     Timeline eMove = new Timeline(new KeyFrame(Duration.millis(100), ae -> enemyMovement()));
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
 
-    Enemy enemy = new Enemy();
-    Player player = new Player();
+    Enemy enemy = new Enemy(); // Handles the Enemy.java class
+    Player player = new Player(); // Handles the Player.java class
 
     @FXML
     private void showInventory(ActionEvent evt) {
@@ -126,7 +126,9 @@ public class FXMLFightingRoomOneController implements Initializable {
                     player.setHealth(player.getHealth() - e.getDamage());
                     lblHealth.setText("" + player.getHealth());
                 } else if (e.getHealth() == 0) {
+
                     enemies.remove(e); // Don't know if this works yet
+                    anchorPane.getChildren().remove(e);
                 } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
                     e.setHealth(e.getHealth() - player.getAtk());
                 }
@@ -144,7 +146,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //        return false;
 //    }
-    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -190,6 +191,107 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
 
+    private void items(int i) {
+        ImageView img = new ImageView("");
+        switch (i) {
+            case 1:
+                img = new ImageView("/key.png");
+                anchorPane.getChildren().add(img);
+                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+
+                break;
+            case 2:
+                anchorPane.getChildren().add(new ImageView("/key2.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 3:
+                anchorPane.getChildren().add(new ImageView("/key3.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 4:
+                anchorPane.getChildren().add(new ImageView("/wooden knife.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 5:
+                anchorPane.getChildren().add(new ImageView("/pKnife.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 6:
+                anchorPane.getChildren().add(new ImageView("/kKnife.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 7:
+                anchorPane.getChildren().add(new ImageView("/dagger.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;
+            case 8:
+                anchorPane.getChildren().add(new ImageView("/pDagger.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;    
+            case 9:
+                anchorPane.getChildren().add(new ImageView("/health.png"));
+                anchorPane.getChildren().add(img);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                img.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                img.setLayoutY(rand); // Y-coordinate
+                break;    
+        }
+    }
+
+    private void rdmItemGen(int rand) {
+        rand = ThreadLocalRandom.current().nextInt(1, 120 + 1);
+
+        if (rand >= 1 && rand <= 10) {
+            items(1);
+        } else if (rand >= 11 && rand <= 20) {
+            items(2);
+        } else if (rand >= 21 && rand <= 30) {
+            items(3);
+        }
+
+    }
+
     private void enemyCreation() {
         int rand = ThreadLocalRandom.current().nextInt(1, 4 + 1); // Determines the type of enemy to spawn
         enemy = new Enemy(rand); // Obtains the characteristics of the random enemy            
@@ -227,7 +329,7 @@ public class FXMLFightingRoomOneController implements Initializable {
                     if ((e.getLayoutY() + e.getTranslateY()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateY(e.getTranslateY() - 5);
                     }
-                }else{
+                } else {
                     System.out.println("yeet");
                 }
             }
@@ -281,17 +383,14 @@ public class FXMLFightingRoomOneController implements Initializable {
         temp.setLayoutY(63 + gpUser.getLayoutY() + gpUser.getTranslateY());
         temp.setRadius(21);
         return temp;
-    
-
     }
-        
-    private void move() {
 
+    private void move() {
         Circle temp = copy(cPlayer); // A temporary copy of the player is made
         anchorPane.getChildren().add(temp); // The copy is placed on the anchorpane
 
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
-
+        temp.setTranslateY(temp.getTranslateY() + yMove);
 
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
@@ -345,7 +444,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //    }
 //</editor-fold> // Former movement code
-    
     @FXML
     private void moveKeyReleased(KeyEvent e) {
         // If the user stops pressing a movement key, stop the movement
@@ -361,7 +459,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        left = false;
 //        right = false;*/
 //    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
@@ -370,8 +467,9 @@ public class FXMLFightingRoomOneController implements Initializable {
         eMove.play();
         spawn.setCycleCount(6);
         spawn.play();
-        
+
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
 }
+
