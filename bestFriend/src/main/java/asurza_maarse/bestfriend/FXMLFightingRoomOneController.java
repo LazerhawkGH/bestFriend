@@ -86,6 +86,8 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @FXML
     private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
+    
+    ImageView img = new ImageView();
 
     // Array of all the Rectangles, to simplify collision
     //Rectangle bounds[];
@@ -101,8 +103,9 @@ public class FXMLFightingRoomOneController implements Initializable {
     int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
-    Timeline eMove = new Timeline(new KeyFrame(Duration.millis(100), ae -> enemyMovement()));
+    Timeline eMove = new Timeline(new KeyFrame(Duration.millis(150), ae -> enemyMovement()));
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
+    Timeline itemGen = new Timeline(new KeyFrame(Duration.seconds(1), ae -> rdmItemGen()));
 
     Enemy enemy = new Enemy(); // Handles the Enemy.java class
     Player player = new Player(); // Handles the Player.java class
@@ -146,6 +149,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //        return false;
 //    }
+    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -192,21 +196,25 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
     private void items(int i) {
-        ImageView img = new ImageView("");
+        
         switch (i) {
             case 1:
                 img = new ImageView("/key.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(58);
+                img.setFitHeight(58);
                 int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
                 img.setLayoutY(rand); // Y-coordinate
-
+               
                 break;
             case 2:
-                anchorPane.getChildren().add(new ImageView("/key2.png"));
+                img = new ImageView("/key2.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(58);
+                img.setFitHeight(58);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -214,8 +222,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 3:
-                anchorPane.getChildren().add(new ImageView("/key3.png"));
+                img = new ImageView("/key3.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(58);
+                img.setFitHeight(58);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -223,8 +233,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 4:
-                anchorPane.getChildren().add(new ImageView("/wooden knife.png"));
+                img = new ImageView("/wooden knife.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(54);
+                img.setFitHeight(62);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -232,8 +244,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 5:
-                anchorPane.getChildren().add(new ImageView("/pKnife.png"));
+                img = new ImageView("/pKnife.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(56);
+                img.setFitHeight(40);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -241,8 +255,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 6:
-                anchorPane.getChildren().add(new ImageView("/kKnife.png"));
+                img = new ImageView("/kKnife.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(74);
+                img.setFitHeight(35);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -250,8 +266,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 7:
-                anchorPane.getChildren().add(new ImageView("/dagger.png"));
+                img = new ImageView("/dagger.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(52);
+                img.setFitHeight(52);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -259,8 +277,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;
             case 8:
-                anchorPane.getChildren().add(new ImageView("/pDagger.png"));
+                img = new ImageView("/pDagger.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(52);
+                img.setFitHeight(52);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -268,8 +288,10 @@ public class FXMLFightingRoomOneController implements Initializable {
                 img.setLayoutY(rand); // Y-coordinate
                 break;    
             case 9:
-                anchorPane.getChildren().add(new ImageView("/health.png"));
+                img = new ImageView("/health.png");
                 anchorPane.getChildren().add(img);
+                img.setFitWidth(51);
+                img.setFitHeight(51);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 img.setLayoutX(rand); // X-coordinate
 
@@ -279,8 +301,8 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
-    private void rdmItemGen(int rand) {
-        rand = ThreadLocalRandom.current().nextInt(1, 120 + 1);
+    private void rdmItemGen() {
+        int rand = ThreadLocalRandom.current().nextInt(1, 90 + 1);
 
         if (rand >= 1 && rand <= 10) {
             items(1);
@@ -288,6 +310,18 @@ public class FXMLFightingRoomOneController implements Initializable {
             items(2);
         } else if (rand >= 21 && rand <= 30) {
             items(3);
+        } else if (rand >= 31 && rand <= 40){
+            items(4);
+        } else if (rand >= 41 && rand <= 50){
+            items(5);
+        }else if (rand >= 51 && rand <= 60){
+            items(6);
+        }else if (rand >= 61 && rand <= 70){
+            items(7);
+        }else if (rand >= 71 && rand <= 80){
+            items(8);
+        }else if (rand >= 81 && rand <= 90){
+            items(9);
         }
 
     }
@@ -299,11 +333,13 @@ public class FXMLFightingRoomOneController implements Initializable {
 
         // Moves the enemy to a random spot on the screen        
         rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-        enemy.setLayoutX(rand); // X-coordinate
+        enemy.setLayoutX(0); // X-coordinate
+        enemy.setTranslateX(rand);
         System.out.println("x: " + rand);
 
         rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-        enemy.setLayoutY(rand); // Y-coordinate
+        enemy.setLayoutY(0); // Y-coordinate
+        enemy.setTranslateY(rand);
         System.out.println("y: " + rand + "\n");
 
         // If the enemy was placed out of bounds, run the function to relocate the enemy until they are no longer out of bounds
@@ -317,36 +353,42 @@ public class FXMLFightingRoomOneController implements Initializable {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
                 if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
-                    if ((e.getLayoutX() + e.getTranslateX()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is less than that of the player, increase it
+                    if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                     }
-                    if ((e.getLayoutX() + e.getTranslateX()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
+                    if (e.getTranslateX() > (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateX(e.getTranslateX() - 5);
                     }
-                    if ((e.getLayoutY() + e.getTranslateY()) < ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is less than that of the player, increase it
+                    if (e.getTranslateY() < (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is less than that of the player, increase it
                         e.setTranslateY(e.getTranslateY() + 5);
                     }
-                    if ((e.getLayoutY() + e.getTranslateY()) > ((gpUser.getLayoutX() + gpUser.getTranslateX()) + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
+                    if (e.getTranslateY() > (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateY(e.getTranslateY() - 5);
                     }
                 } else {
-                    System.out.println("yeet");
+                    System.out.println("Colliding");
                 }
             }
+            collisionEnemy();
         }
     }
 
     private void setNewEnemyPosition(Enemy enemy) {
-        // Places the enemy somewhere else on the screen 
+        // Places the enemy somewhere else on the screen
+        
+        System.out.println("Yes" + "\n"); 
+        
         int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-        enemy.setLayoutX(rand);
-        System.out.println("New x: " + rand);
+        enemy.setLayoutX(0); // X-coordinate
+        enemy.setTranslateX(rand);
+        System.out.println("x: " + rand);
 
         rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-        enemy.setLayoutY(rand);
-        System.out.println("New y: " + rand + "\n");
+        enemy.setLayoutY(0); // Y-coordinate
+        enemy.setTranslateY(rand);
+        System.out.println("y: " + rand + "\n");
 
-        System.out.println("Yes" + "\n");
+        
 
     }
 
@@ -465,8 +507,10 @@ public class FXMLFightingRoomOneController implements Initializable {
         tMove.play();
         eMove.setCycleCount(Timeline.INDEFINITE);
         eMove.play();
-        spawn.setCycleCount(6);
+        spawn.setCycleCount(5);
         spawn.play();
+        itemGen.setCycleCount(1);
+        itemGen.play();
 
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
