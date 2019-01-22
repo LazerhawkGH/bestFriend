@@ -1,4 +1,3 @@
-
 package asurza_maarse.bestfriend;
 
 /*
@@ -24,6 +23,7 @@ import javafx.util.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.image.Image;
 import java.util.ArrayList;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,9 +84,8 @@ public class FXMLFightingRoomOneController implements Initializable {
     @FXML
     private GridPane gpUser, gpMenuBar, gpInventory;
 
-    @FXML
-    private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
-    
+//    @FXML
+//    private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
     ImageView img = new ImageView();
 
     // Array of all the Rectangles, to simplify collision
@@ -101,6 +100,8 @@ public class FXMLFightingRoomOneController implements Initializable {
     int xMove, yMove = 0; // Directional variables
 
     int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
+
+    Random rand = new Random();
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(40), ae -> move()));
     Timeline eMove = new Timeline(new KeyFrame(Duration.millis(150), ae -> enemyMovement()));
@@ -126,14 +127,14 @@ public class FXMLFightingRoomOneController implements Initializable {
         if (enemies.size() != 0) {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
-                    player.setHealth(player.getHealth() - e.getDamage());
-                    lblHealth.setText("" + player.getHealth());
+                    //player.setHealth(player.getHealth() - e.getDamage());
+                    //lblHealth.setText("" + player.getHealth());
                 } else if (e.getHealth() == 0) {
 
                     enemies.remove(e); // Don't know if this works yet
                     anchorPane.getChildren().remove(e);
-                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
-                    e.setHealth(e.getHealth() - player.getAtk());
+//                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
+//                    e.setHealth(e.getHealth() - player.getAtk());
                 }
             }
         } else {
@@ -149,7 +150,6 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //        return false;
 //    }
-    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -196,7 +196,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
     private void items(int i) {
-        
+
         switch (i) {
             case 1:
                 img = new ImageView("/key.png");
@@ -208,7 +208,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
                 img.setLayoutY(rand); // Y-coordinate
-               
+
                 break;
             case 2:
                 img = new ImageView("/key2.png");
@@ -286,7 +286,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
                 img.setLayoutY(rand); // Y-coordinate
-                break;    
+                break;
             case 9:
                 img = new ImageView("/health.png");
                 anchorPane.getChildren().add(img);
@@ -297,7 +297,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
                 img.setLayoutY(rand); // Y-coordinate
-                break;    
+                break;
         }
     }
 
@@ -310,17 +310,17 @@ public class FXMLFightingRoomOneController implements Initializable {
             items(2);
         } else if (rand >= 21 && rand <= 30) {
             items(3);
-        } else if (rand >= 31 && rand <= 40){
+        } else if (rand >= 31 && rand <= 40) {
             items(4);
-        } else if (rand >= 41 && rand <= 50){
+        } else if (rand >= 41 && rand <= 50) {
             items(5);
-        }else if (rand >= 51 && rand <= 60){
+        } else if (rand >= 51 && rand <= 60) {
             items(6);
-        }else if (rand >= 61 && rand <= 70){
+        } else if (rand >= 61 && rand <= 70) {
             items(7);
-        }else if (rand >= 71 && rand <= 80){
+        } else if (rand >= 71 && rand <= 80) {
             items(8);
-        }else if (rand >= 81 && rand <= 90){
+        } else if (rand >= 81 && rand <= 90) {
             items(9);
         }
 
@@ -349,35 +349,96 @@ public class FXMLFightingRoomOneController implements Initializable {
         enemies.add(enemy); // Adds the enemy to the ArrayList after completion
     }
 
+    private int eDirX = -1; // Enemy direction on the x-axis
+    private int eDirY = -1; // Enemy direction on the y-axis
+
     private void enemyMovement() {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
                 if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
+                        directions1[0] = false;
+                        directions1[1] = false;
+                        directions1[2] = true;
+                        directions1[3] = false;
                     }
                     if (e.getTranslateX() > (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateX(e.getTranslateX() - 5);
+                        directions1[0] = false;
+                        directions1[1] = true;
+                        directions1[2] = false;
+                        directions1[3] = false;
                     }
                     if (e.getTranslateY() < (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is less than that of the player, increase it
                         e.setTranslateY(e.getTranslateY() + 5);
+                        directions1[0] = false;
+                        directions1[1] = false;
+                        directions1[2] = false;
+                        directions1[3] = true;
                     }
                     if (e.getTranslateY() > (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateY(e.getTranslateY() - 5);
+                        directions1[0] = true;
+                        directions1[1] = false;
+                        directions1[2] = false;
+                        directions1[3] = false;
                     }
                 } else {
+                    rdmEnemyMovement(e);
                     System.out.println("Colliding");
                 }
             }
             collisionEnemy();
         }
     }
+                                              //Up(0), Left(1), Right(2), Down(3) // 
+    private boolean[] directions1 = new boolean[]{false, false, false, false};
+
+    private void rdmEnemyMovement(Enemy e) {
+        if (collision(e, wall)) {
+            if (directions1[1]) {
+                directions1[1] = false;
+                e.setTranslateX(e.getTranslateX() - 1);
+
+            } else if (directions1[2]) {
+                directions1[2] = false;
+                e.setTranslateX(e.getTranslateX() + 1);
+
+            } else if (directions1[0]) {
+                directions1[0] = false;
+                e.setTranslateY(e.getTranslateY() - 1);
+
+            } else if (directions1[3]) {
+                directions1[3] = false;
+                e.setTranslateY(e.getTranslateY() + 1);
+
+            }
+            //Generates a random number, deciding which direction the enemy will move in.
+            //This is done upon colliding with a wall,
+            int choice1 = rand.nextInt(4);
+            directions1[choice1] = true;
+        } 
+        if (directions1[1]) {
+            e.setTranslateX(e.getTranslateX() + 1);
+            return;
+        } else if (directions1[2]) {
+            e.setTranslateX(e.getTranslateX() - 1);
+            return;
+        } else if (directions1[0]) {
+            e.setTranslateY(e.getTranslateY() + 1);
+            return;
+        } else if (directions1[3]) {
+            e.setTranslateY(e.getTranslateY() - 1);
+            return;
+        }
+    }
 
     private void setNewEnemyPosition(Enemy enemy) {
         // Places the enemy somewhere else on the screen
-        
-        System.out.println("Yes" + "\n"); 
-        
+
+        System.out.println("Yes" + "\n");
+
         int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
         enemy.setLayoutX(0); // X-coordinate
         enemy.setTranslateX(rand);
@@ -387,8 +448,6 @@ public class FXMLFightingRoomOneController implements Initializable {
         enemy.setLayoutY(0); // Y-coordinate
         enemy.setTranslateY(rand);
         System.out.println("y: " + rand + "\n");
-
-        
 
     }
 
@@ -516,4 +575,3 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
 }
-
