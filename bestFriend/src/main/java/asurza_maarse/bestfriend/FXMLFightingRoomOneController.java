@@ -29,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 /**
@@ -355,7 +356,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     private void enemyMovement() {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
-                if (!collision(e, wall)) { // Make sure they aren't colliding with any walls
+                if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                         directions1[0] = false;
@@ -451,11 +452,18 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     }
 
+    
+    
     @FXML
     private void moveKeyPressed(KeyEvent e) {
         if (null != e.getCode()) {
             switch (e.getCode()) {
                 case W:
+                    if (e.getCode() == KeyCode.ENTER){
+                        Rectangle obj = new Rectangle();
+                        obj.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/enemy.png").toString())));
+                        gpUser.add(obj, 1, 0);
+                    }
                     yMove = -5;
                     xMove = 0;
                     break;

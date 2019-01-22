@@ -33,21 +33,6 @@
         </rowConstraints>
          <children>
             <Circle fx:id="cPlayer" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <ImageView fx:id="imgAtkUp" fitHeight="33.0" fitWidth="35.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-               <image>
-                  <Image url="@../../../../../../../Pictures/stick.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgAtkLeft" fitHeight="41.0" fitWidth="41.0" visible="false" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../../../../../../../Pictures/stick.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgAtkRight" fitHeight="41.0" fitWidth="41.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../../../../../../../Pictures/stick.png" />
-               </image>
-            </ImageView>
          </children>
       </GridPane>
       <Polygon fx:id="wall" fill="DODGERBLUE" layoutX="263.0" layoutY="580.0" opacity="0.0" points="-80.4705810546875, 70.0, 503.5294189453125, 70.0, 503.5294189453125, 25.0, 549.5294189453125, 25.0, 549.5294189453125, -109.0, 593.5294189453125, -109.0, 593.5294189453125, -159.0, 549.5294189453125, -159.0, 549.5294189453125, -207.0, 503.5294189453125, -207.0, 503.5294189453125, -250.0, 479.5, -246.0, 466.5, -250.0, 462.5, -260.0, 462.5, -275.0, 466.5, -286.0, 479.5, -290.0, 503.5294189453125, -295.0, 549.5294189453125, -295.0, 503.5294189453125, -295.0, 503.5294189453125, -337.0, 323.5294189453125, -337.0, 323.5294189453125, -387.0, 278.0294189453125, -387.0, 278.0294189453125, -467.0, 503.5294189453125, -467.0, 661.5294189453125, -467.0, 661.5294189453125, 162.0, -250.4705810546875, 162.0, -250.4705810546875, -467.0, -80.4705810546875, -467.0, 278.0294189453125, -467.0, 278.0294189453125, -455.5, 278.0294189453125, -387.0, 278.0294189453125, -387.0, 278.0294189453125, -337.0, -80.4705810546875, -337.0, -80.4705810546875, -295.0, -128.4705810546875, -295.0, -128.4705810546875, -159.0, -174.4705810546875, -159.0, -174.4705810546875, -109.0, -128.4705810546875, -109.0, -128.4705810546875, 25.0, -80.4705810546875, 25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
