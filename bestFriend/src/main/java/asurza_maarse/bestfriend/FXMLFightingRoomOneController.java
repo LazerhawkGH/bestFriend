@@ -64,8 +64,6 @@ import javafx.scene.shape.Polygon;
  */
 public class FXMLFightingRoomOneController implements Initializable {
 
-    // Declaration of all of the boundss, so they may be used in the collision loop
-    //@FXML Rectangle bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15;
     // Temporary player & area for the player to collide with to go to the next room
     @FXML
     private Circle cPlayer, cDoor;
@@ -84,20 +82,17 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @FXML
     private GridPane gpUser, gpMenuBar, gpInventory;
+    
+    @FXML
+    private ImageView imgUp, imgDown, imgLeft, imgRight, imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
 
-//    @FXML
-//    private ImageView imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
     ImageView img = new ImageView();
 
-    // Array of all the Rectangles, to simplify collision
-    //Rectangle bounds[];
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
 
     ArrayList<ImageView> item = new ArrayList();
 
-    // The Booleans responsible for both moving the user, and for making collision work nicely
-    /*private Boolean up = false, down = false, left = false, right = false, userMoving = false;*/
     int xMove, yMove = 0; // Directional variables
 
     int enemiesDefeated = 0; // Necessary to check if all enemies have been defeated, which opens up the door
@@ -134,23 +129,15 @@ public class FXMLFightingRoomOneController implements Initializable {
 
                     enemies.remove(e); // Don't know if this works yet
                     anchorPane.getChildren().remove(e);
-//                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
-//                    e.setHealth(e.getHealth() - player.getAtk());
+                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
+                    e.setHealth(e.getHealth() - player.getAtk());
                 }
             }
         } else {
             return;
         }
     }
-
-//    private boolean collisionLoop() {
-//        for (Rectangle i : bounds) {      // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
-//            if (collision(cPlayer, i)) { // Checks for collision between the user and any of the bounds
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -350,13 +337,10 @@ public class FXMLFightingRoomOneController implements Initializable {
         enemies.add(enemy); // Adds the enemy to the ArrayList after completion
     }
 
-    private int eDirX = -1; // Enemy direction on the x-axis
-    private int eDirY = -1; // Enemy direction on the y-axis
-
     private void enemyMovement() {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
-                if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls
+                if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                         directions1[0] = false;
@@ -452,30 +436,46 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     }
 
-    
+    private void setImgVisibleFalse() {
+        imgUp.setVisible(false);
+        imgDown.setVisible(false);
+        imgLeft.setVisible(false);
+        imgRight.setVisible(false);
+        imgAtkUp.setVisible(false);
+        imgAtkDown.setVisible(false);
+        imgAtkLeft.setVisible(false);
+        imgAtkRight.setVisible(false);
+    }
     
     @FXML
     private void moveKeyPressed(KeyEvent e) {
         if (null != e.getCode()) {
             switch (e.getCode()) {
                 case W:
-                    if (e.getCode() == KeyCode.ENTER){
-                        Rectangle obj = new Rectangle();
-                        obj.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/enemy.png").toString())));
-                        gpUser.add(obj, 1, 0);
-                    }
+                    setImgVisibleFalse();
+                    imgUp.setVisible(true);
+                    imgAtkUp.setVisible(true);
                     yMove = -5;
                     xMove = 0;
                     break;
                 case S:
+                    setImgVisibleFalse();
+                    imgDown.setVisible(true);
+                    imgAtkDown.setVisible(true);
                     yMove = 5;
                     xMove = 0;
                     break;
                 case A:
+                    setImgVisibleFalse();
+                    imgLeft.setVisible(true);
+                    imgAtkLeft.setVisible(true);
                     xMove = -5;
                     yMove = 0;
                     break;
                 case D:
+                    setImgVisibleFalse();
+                    imgRight.setVisible(true);
+                    imgAtkRight.setVisible(true);
                     xMove = 5;
                     yMove = 0;
                     break;

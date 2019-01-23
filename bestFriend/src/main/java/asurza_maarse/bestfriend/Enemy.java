@@ -15,8 +15,10 @@ import javafx.scene.shape.Rectangle;
  * @author zacharym44
  *
  *
- * Type: | Deformed | Weak | Strong | Boss | Damage: | 10 | 20 | 50 | 100 |
- * Health: | 150 | 200 | 250 | 350 | Speed: | 2 | 5 | 7 | 20 |
+ * Type:   | Deformed | Weak | Strong | Boss | 
+ * Damage: | 10       | 20   | 50     | 100  |
+ * Health: | 150      | 200  | 250    | 350  | 
+ * Speed:  | 2        | 5    | 7      | 20   |
  *
  */
 public class Enemy extends Rectangle {
@@ -31,8 +33,7 @@ public class Enemy extends Rectangle {
         health = 150;
 
     }
-    // int type, Image img
-
+   
     public Enemy(int type) {
         super();
         switch (type) {
@@ -55,7 +56,7 @@ public class Enemy extends Rectangle {
                 this.setWidth(42);
                 break;
             case 3:
-                setType("Strong-");
+                setType("Strong");
                 setDamage(50);
                 setHealth(250);
                 setSpeed(7);
