@@ -1,3 +1,5 @@
+package asurza_maarse.bestfriend;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -224,7 +226,14 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was gone\"");
+                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was gone.\nI think he knows now...\nFor anyone who will pick this up.\nSTAY AWAY FROM\"");
+                i = 4;
+            case 4:
+                interactVisibleFalse();
+                dialogVisibleTrue();
+                setExpressionFalse();
+                iMNeutral.setVisible(true);
+                lblDialog.setText("[MC]\n(The rest is illegible)\nI wonder who HE is...");
                 i = 0;
                 diary = false;
             default:
