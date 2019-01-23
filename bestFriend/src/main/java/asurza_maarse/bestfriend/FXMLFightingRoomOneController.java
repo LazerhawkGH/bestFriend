@@ -5,6 +5,7 @@ package asurza_maarse.bestfriend;
  * Date: Dec 12, 2018
  * Purpose: One of the rooms the player can encounter
  */
+import static asurza_maarse.bestfriend.MainApp.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -86,7 +87,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     @FXML
     private ImageView imgUp, imgDown, imgLeft, imgRight, imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
 
-    ImageView img = new ImageView();
+    
 
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
@@ -187,104 +188,113 @@ public class FXMLFightingRoomOneController implements Initializable {
 
         switch (i) {
             case 1:
-                img = new ImageView("/key.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(58);
-                img.setFitHeight(58);
+                ImageView imgKey = new ImageView("/key.png");
+                item.add(0, imgKey);
+                anchorPane.getChildren().add(imgKey);
+                imgKey.setFitWidth(58);
+                imgKey.setFitHeight(58);
                 int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgKey.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgKey.setLayoutY(rand); // Y-coordinate
 
                 break;
             case 2:
-                img = new ImageView("/key2.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(58);
-                img.setFitHeight(58);
+                ImageView imgKey2 = new ImageView("/key2.png");
+                item.add(1, imgKey2);
+                anchorPane.getChildren().add(imgKey2);
+                imgKey2.setFitWidth(58);
+                imgKey2.setFitHeight(58);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgKey2.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgKey2.setLayoutY(rand); // Y-coordinate
                 break;
             case 3:
-                img = new ImageView("/key3.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(58);
-                img.setFitHeight(58);
+                ImageView imgKey3 = new ImageView("/key3.png");
+                item.add(2, imgKey3);
+                anchorPane.getChildren().add(imgKey3);
+                imgKey3.setFitWidth(58);
+                imgKey3.setFitHeight(58);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgKey3.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgKey3.setLayoutY(rand); // Y-coordinate
                 break;
             case 4:
-                img = new ImageView("/wooden knife.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(54);
-                img.setFitHeight(62);
+                ImageView imgWKnife = new ImageView("/wooden knife.png");
+                item.add(3, imgWKnife);
+                anchorPane.getChildren().add(imgWKnife);
+                imgWKnife.setFitWidth(54);
+                imgWKnife.setFitHeight(62);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgWKnife.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgWKnife.setLayoutY(rand); // Y-coordinate
                 break;
             case 5:
-                img = new ImageView("/pKnife.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(56);
-                img.setFitHeight(40);
+                ImageView imgPKnife = new ImageView("/pKnife.png");
+                item.add(4, imgPKnife);
+                anchorPane.getChildren().add(imgPKnife);
+                imgPKnife.setFitWidth(56);
+                imgPKnife.setFitHeight(40);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgPKnife.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgPKnife.setLayoutY(rand); // Y-coordinate
                 break;
             case 6:
-                img = new ImageView("/kKnife.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(74);
-                img.setFitHeight(35);
+                ImageView imgKKnife = new ImageView("/kKnife.png");
+                item.add(5, imgKKnife);
+                anchorPane.getChildren().add(imgKKnife);
+                imgKKnife.setFitWidth(74);
+                imgKKnife.setFitHeight(35);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgKKnife.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgKKnife.setLayoutY(rand); // Y-coordinate
                 break;
             case 7:
-                img = new ImageView("/dagger.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(52);
-                img.setFitHeight(52);
+                ImageView imgDagger = new ImageView("/dagger.png");
+                item.add(6, imgDagger);
+                anchorPane.getChildren().add(imgDagger);
+                imgDagger.setFitWidth(52);
+                imgDagger.setFitHeight(52);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgDagger.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgDagger.setLayoutY(rand); // Y-coordinate
                 break;
             case 8:
-                img = new ImageView("/pDagger.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(52);
-                img.setFitHeight(52);
+                ImageView imgPDagger = new ImageView("/pDagger.png");
+                item.add(7, imgPDagger);
+                anchorPane.getChildren().add(imgPDagger);
+                imgPDagger.setFitWidth(52);
+                imgPDagger.setFitHeight(52);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgPDagger.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgPDagger.setLayoutY(rand); // Y-coordinate
                 break;
             case 9:
-                img = new ImageView("/health.png");
-                anchorPane.getChildren().add(img);
-                img.setFitWidth(51);
-                img.setFitHeight(51);
+                ImageView imgHealth = new ImageView("/health.png");
+                item.add(8, imgHealth);
+                anchorPane.getChildren().add(imgHealth);
+                imgHealth.setFitWidth(51);
+                imgHealth.setFitHeight(51);
                 rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                img.setLayoutX(rand); // X-coordinate
+                imgHealth.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                img.setLayoutY(rand); // Y-coordinate
+                imgHealth.setLayoutY(rand); // Y-coordinate
                 break;
         }
     }
@@ -479,6 +489,45 @@ public class FXMLFightingRoomOneController implements Initializable {
                     xMove = 5;
                     yMove = 0;
                     break;
+                case ENTER:
+                    if (!item.isEmpty()) { // While the item array list has something in it
+                        for (ImageView i : item) { // Loop through the array list of items
+                            if (collision(cPlayer, i)) { // Check if the player collides with any item 
+                                if (i.equals(item.get(0))) { // If the player is colliding with a certain item, make the global variable true
+                                    setKey1(true);
+                                    item.remove(0);
+                                } else if (i.equals(item.get(1))) {
+                                    setKey2(true);
+                                    item.remove(1);
+                                } else if (i.equals(item.get(2))) {
+                                    setKey3(true);
+                                    item.remove(2);
+                                } else if (i.equals(item.get(3))) {
+                                    setWoodKnife(true);
+                                    item.remove(3);
+                                } else if (i.equals(item.get(4))) {
+                                    setPlasticKnife(true);
+                                    item.remove(4);
+                                } else if (i.equals(item.get(5))) {
+                                    setKitchenKnife(true);
+                                    item.remove(5);
+                                } else if (i.equals(item.get(6))) {
+                                    setDagger(true);
+                                    item.remove(6);
+                                } else if (i.equals(item.get(7))) {
+                                    setPoisonDagger(true);
+                                    item.remove(7);
+                                } else if (i.equals(item.get(8))) {
+                                    if (player.getHealth() <= 75) {
+                                        player.setHealth(player.getHealth() + 25);
+                                    } else if (player.getHealth() > 75) {
+                                        player.setHealth(100);
+                                    }
+                                    item.remove(8);
+                                }
+                            }
+                        }
+                    }
                 default:
                     break;
             }
@@ -553,6 +602,7 @@ public class FXMLFightingRoomOneController implements Initializable {
 //        }
 //    }
 //</editor-fold> // Former movement code
+    
     @FXML
     private void moveKeyReleased(KeyEvent e) {
         // If the user stops pressing a movement key, stop the movement
@@ -562,23 +612,18 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
 
-//    private void setDirFalse() {
-//       /* up = false;
-//        down = false;
-//        left = false;
-//        right = false;*/
-//    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
         eMove.setCycleCount(Timeline.INDEFINITE);
         eMove.play();
-        spawn.setCycleCount(5);
+        spawn.setCycleCount(rand.nextInt(6));
         spawn.play();
         itemGen.setCycleCount(1);
         itemGen.play();
-
+        player.setHealth(player.getHealth());
+        lblHealth.setText("" + player.getHealth());
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
