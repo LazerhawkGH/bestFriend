@@ -106,11 +106,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnKey1" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnKey2" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="btnKey3" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="btnOtherItem" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Other Item" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4">
+            <Button fx:id="btnKey1" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey2" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnKey3" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="btnOtherItem" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Other Item" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -132,7 +132,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#showInventory" prefHeight="55.0" prefWidth="204.0" text="Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#showInventory" prefHeight="55.0" prefWidth="204.0" text="Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
