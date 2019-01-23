@@ -608,20 +608,7 @@ public class FXMLFightingRoomOneController implements Initializable {
             }
         }
     }
-
-    private void itemConfirmation(){
-       Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                
-            }
-    }
-    
+   
     private Circle copy(Circle c) { // Handles the creation of the temporary player, used to check for collision before moving actual player
         Circle temp = new Circle();
         temp.setLayoutX(63 + gpUser.getLayoutX() + gpUser.getTranslateX());
