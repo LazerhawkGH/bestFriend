@@ -13,14 +13,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller=".FXMLRoomTwoController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMove" onKeyReleased="#onRelease" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomTwoController">
    <children>
       <ImageView fitHeight="514.0" fitWidth="693.0" layoutX="-4.0" layoutY="126.0" preserveRatio="true">
          <image>
             <Image url="@../Room%202%20.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="wall" arcHeight="1.0" arcWidth="1.0" height="120.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="3.0" width="677.0" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="120.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="3.0" width="677.0" />
       <GridPane fx:id="gp2" layoutX="15.0" layoutY="7.0" prefHeight="99.0" prefWidth="640.0" visible="false">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="157.0" />
@@ -87,7 +87,7 @@
             </Label>
          </children>
       </GridPane>
-      <Polygon fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
+      <Polygon fx:id="wall" fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
       <Rectangle fx:id="rPiano" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="312.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
       <Rectangle fx:id="rSave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="447.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
       <Rectangle fx:id="rBook" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="54.0" layoutY="338.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
