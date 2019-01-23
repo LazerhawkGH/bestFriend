@@ -159,10 +159,10 @@ public class FXMLRoomOneController implements Initializable {
         if (!rDialog.isVisible() || !rInteract.isVisible()) {
 
             if (r1 || r2 || r3) {
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
-//get reference to the stage 
+
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
                 stage.hide(); //optional
@@ -170,6 +170,18 @@ public class FXMLRoomOneController implements Initializable {
 
                 stage.setTitle("BestFriend"); //changes the title
                 stage.show(); //shows the new page
+                
+                /*Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
+
+                Scene home_page_scene = new Scene(home_page_parent);
+
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+                stage.hide(); //optional
+                stage.setScene(home_page_scene); //puts the new scence in the stage
+
+                stage.setTitle("BestFriend"); //changes the title
+                stage.show(); //shows the new page*/
             }
             if (e.getCode() == KeyCode.W) {
                 setDirFalse();
