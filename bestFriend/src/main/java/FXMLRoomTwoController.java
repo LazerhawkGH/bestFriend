@@ -1,10 +1,9 @@
-package asurza_maarse.bestfriend;
-
 /*
- * Author: Zachary Maarse and Celine Asurza
- * Date: Dec 7, 2018
- * Purpose: Initial starting room
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,13 +38,13 @@ import javafx.scene.media.MediaPlayer;
 /**
  * FXML Controller class
  *
- * @author zacharym44
+ * @author user
  */
-public class FXMLRoomOneController implements Initializable {
+public class FXMLRoomTwoController implements Initializable {
 
-    @FXML
-    private Pane pan;
-
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     private GridPane gp1;
     @FXML
@@ -76,7 +75,7 @@ public class FXMLRoomOneController implements Initializable {
     private ImageView imgUp, imgDown, imgLeft, imgRight;
 
     @FXML
-    private Rectangle rSave, rBear, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
+    private Rectangle rSave, rPiano, rBook, rBasket, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
 
     @FXML
     private ImageView imgUser;
@@ -112,7 +111,7 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private ImageView iMAngry, iMNeutralC, iMNeutral, iMCrying, iMCryingC, iMSmiling, iMSmilingC, iMSurprised;
 
-    private boolean teddyB = false;
+    private boolean diary = false;
     private int i = 0;
 
     //Saving Window
@@ -190,9 +189,9 @@ public class FXMLRoomOneController implements Initializable {
             //interactVisibleFalse();
             //dialogVisibleFalse();
             //}
-            if (teddyB) {
+            if (diary) {
                 i = 1;
-                teddyBear();
+                diary();
             } else {
                 interactVisibleFalse();
                 dialogVisibleFalse();
@@ -201,17 +200,33 @@ public class FXMLRoomOneController implements Initializable {
         }
     }
 
-    private void teddyBear() {
+    private void diary() {
         switch (i) {
             case 1:
                 interactVisibleFalse();
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI gave that to BF as a present when we were\nin kindergarden!\nI wonder what it's doing down here...");
-                i = 0;
-                teddyB = false;
+                lblDialog.setText("[MC]\nA Book?\nWhy is there a book down here?");
+                i = 2;
                 break;
+
+            case 2:
+                interactVisibleFalse();
+                dialogVisibleTrue();
+                setExpressionFalse();
+                iMNeutral.setVisible(true);
+                lblDialog.setText("[MC]\nOh, it seems to be a diary...\n*Flips to last entry*");
+                i = 3;
+
+            case 3:
+                interactVisibleFalse();
+                dialogVisibleTrue();
+                setExpressionFalse();
+                iMNeutral.setVisible(true);
+                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was gone\"");
+                i = 0;
+                diary = false;
             default:
                 break;
 
@@ -223,10 +238,10 @@ public class FXMLRoomOneController implements Initializable {
         if (collisionT()) {
             if (collision(cPlayer, rSave)) {
                 saveWVisibleTrue();
-            } else if (collision(cPlayer, rBear)) {
+            } else if (collision(cPlayer, rBook)) {
                 interactVisibleTrue();
-                lblInteract.setText("A Teddy Bear");
-                teddyB = true;
+                lblInteract.setText("A Diary");
+                diary = true;
                 //lblInteract.setText("A Teddy Bear");
 
             } else if (collisonE()) {
@@ -256,20 +271,6 @@ public class FXMLRoomOneController implements Initializable {
                 cPlayer.setTranslateX(cPlayer.getTranslateX() - 3);
                 setDirFalse();
             }
-        } else if (collision(cPlayer, rSwitch)) {
-            if (up) {
-                pan.setTranslateY(412);
-                gpPlayer.setTranslateY(80);
-                cPlayer.setTranslateY(80);
-                //System.out.println(gpPlayer.getTranslateY());
-
-            } else if (down) {
-                pan.setTranslateY(0);
-                gpPlayer.setTranslateY(-250);
-                cPlayer.setTranslateY(-250);
-                //System.out.println(gpPlayer.getTranslateY());
-            }
-
         } else {
             direction();
 
@@ -438,7 +439,9 @@ public class FXMLRoomOneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         walls.add(wall);
         walls.add(rSave);
-        walls.add(rBear);
+        walls.add(rPiano);
+        walls.add(rBasket);
+        walls.add(rBook);
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
@@ -447,12 +450,11 @@ public class FXMLRoomOneController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\nWhere am I?...");
+        lblDialog.setText("[MC]\n...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
         player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
         player.play();
-
     }
 
 }
