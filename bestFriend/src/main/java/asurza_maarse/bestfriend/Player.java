@@ -5,21 +5,24 @@
  */
 package asurza_maarse.bestfriend;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
  * @author zacharym44
  */
-public class Player extends ImageView{
+public class Player extends Rectangle{
     
     public String name;
     public int health, atk;    
-    
+       
     public Player(){
         name = "Elliot";
         health = 100;
         atk = 50;
+        
     }
     
     public Player(String n, Boolean hk, int h, int a){
@@ -27,7 +30,7 @@ public class Player extends ImageView{
         this.health = h;
         this.atk = a;
     }
-    
+     
     public String getName(){
         return name;
     }
