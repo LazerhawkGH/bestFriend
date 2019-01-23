@@ -24,9 +24,14 @@ import javafx.util.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.image.Image;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -353,31 +358,31 @@ public class FXMLFightingRoomOneController implements Initializable {
                 if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
-                        directions1[0] = false;
-                        directions1[1] = false;
-                        directions1[2] = true;
-                        directions1[3] = false;
+                        directions[0] = false;
+                        directions[1] = false;
+                        directions[2] = true;
+                        directions[3] = false;
                     }
                     if (e.getTranslateX() > (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateX(e.getTranslateX() - 5);
-                        directions1[0] = false;
-                        directions1[1] = true;
-                        directions1[2] = false;
-                        directions1[3] = false;
+                        directions[0] = false;
+                        directions[1] = true;
+                        directions[2] = false;
+                        directions[3] = false;
                     }
                     if (e.getTranslateY() < (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is less than that of the player, increase it
                         e.setTranslateY(e.getTranslateY() + 5);
-                        directions1[0] = false;
-                        directions1[1] = false;
-                        directions1[2] = false;
-                        directions1[3] = true;
+                        directions[0] = false;
+                        directions[1] = false;
+                        directions[2] = false;
+                        directions[3] = true;
                     }
                     if (e.getTranslateY() > (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateY(e.getTranslateY() - 5);
-                        directions1[0] = true;
-                        directions1[1] = false;
-                        directions1[2] = false;
-                        directions1[3] = false;
+                        directions[0] = true;
+                        directions[1] = false;
+                        directions[2] = false;
+                        directions[3] = false;
                     }
                 } else {
                     rdmEnemyMovement(e);
@@ -388,42 +393,42 @@ public class FXMLFightingRoomOneController implements Initializable {
         }
     }
                                               //Up(0), Left(1), Right(2), Down(3) // 
-    private boolean[] directions1 = new boolean[]{false, false, false, false};
+    private boolean[] directions = new boolean[]{false, false, false, false};
 
     private void rdmEnemyMovement(Enemy e) {
         if (collision(e, wall)) {
-            if (directions1[1]) {
-                directions1[1] = false;
+            if (directions[1]) {
+                directions[1] = false;
                 e.setTranslateX(e.getTranslateX() - 1);
 
-            } else if (directions1[2]) {
-                directions1[2] = false;
+            } else if (directions[2]) {
+                directions[2] = false;
                 e.setTranslateX(e.getTranslateX() + 1);
 
-            } else if (directions1[0]) {
-                directions1[0] = false;
+            } else if (directions[0]) {
+                directions[0] = false;
                 e.setTranslateY(e.getTranslateY() - 1);
 
-            } else if (directions1[3]) {
-                directions1[3] = false;
+            } else if (directions[3]) {
+                directions[3] = false;
                 e.setTranslateY(e.getTranslateY() + 1);
 
             }
             //Generates a random number, deciding which direction the enemy will move in.
             //This is done upon colliding with a wall,
             int choice1 = rand.nextInt(4);
-            directions1[choice1] = true;
+            directions[choice1] = true;
         } 
-        if (directions1[1]) {
+        if (directions[1]) {
             e.setTranslateX(e.getTranslateX() + 1);
             return;
-        } else if (directions1[2]) {
+        } else if (directions[2]) {
             e.setTranslateX(e.getTranslateX() - 1);
             return;
-        } else if (directions1[0]) {
+        } else if (directions[0]) {
             e.setTranslateY(e.getTranslateY() + 1);
             return;
-        } else if (directions1[3]) {
+        } else if (directions[3]) {
             e.setTranslateY(e.getTranslateY() - 1);
             return;
         }
@@ -494,26 +499,96 @@ public class FXMLFightingRoomOneController implements Initializable {
                         for (ImageView i : item) { // Loop through the array list of items
                             if (collision(cPlayer, i)) { // Check if the player collides with any item 
                                 if (i.equals(item.get(0))) { // If the player is colliding with a certain item, make the global variable true
-                                    setKey1(true);
-                                    item.remove(0);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey1(true);
+                                        item.remove(0);
+                                    }
+
                                 } else if (i.equals(item.get(1))) {
-                                    setKey2(true);
-                                    item.remove(1);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey2(true);
+                                        item.remove(1);
+                                    }
+                                    
                                 } else if (i.equals(item.get(2))) {
-                                    setKey3(true);
-                                    item.remove(2);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey3(true);
+                                        item.remove(2);
+                                    }
+                                    
                                 } else if (i.equals(item.get(3))) {
-                                    setWoodKnife(true);
-                                    item.remove(3);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setWoodKnife(true);
+                                        item.remove(3);
+                                    }
+                                    
                                 } else if (i.equals(item.get(4))) {
-                                    setPlasticKnife(true);
-                                    item.remove(4);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setPlasticKnife(true);
+                                        item.remove(4);
+                                    }
+                                    
                                 } else if (i.equals(item.get(5))) {
-                                    setKitchenKnife(true);
-                                    item.remove(5);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKitchenKnife(true);
+                                        item.remove(5);
+                                    }
+                                    
                                 } else if (i.equals(item.get(6))) {
-                                    setDagger(true);
-                                    item.remove(6);
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setDagger(true);
+                                        item.remove(6);
+                                    }
+                                    
                                 } else if (i.equals(item.get(7))) {
                                     setPoisonDagger(true);
                                     item.remove(7);
@@ -532,9 +607,21 @@ public class FXMLFightingRoomOneController implements Initializable {
                     break;
             }
         }
-
     }
 
+    private void itemConfirmation(){
+       Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+            alert.setTitle("Item Confirmation");
+            alert.setHeaderText("Do you wish to pick up this item?");
+            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+            alert.getButtonTypes().setAll(yes, no);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == yes) {
+                
+            }
+    }
+    
     private Circle copy(Circle c) { // Handles the creation of the temporary player, used to check for collision before moving actual player
         Circle temp = new Circle();
         temp.setLayoutX(63 + gpUser.getLayoutX() + gpUser.getTranslateX());
