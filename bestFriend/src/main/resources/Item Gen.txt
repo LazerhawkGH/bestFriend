@@ -1,0 +1,114 @@
+    private void items(int i) {
+
+        switch (i) {
+            case 1:
+                ImageView imgKey = new ImageView("/key.png");
+                item.add(0, imgKey);
+                anchorPane.getChildren().add(imgKey);
+                imgKey.setFitWidth(58);
+                imgKey.setFitHeight(58);
+                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey.setLayoutY(rand); // Y-coordinate
+
+                break;
+            case 2:
+                ImageView imgKey2 = new ImageView("/key2.png");
+                item.add(1, imgKey2);
+                anchorPane.getChildren().add(imgKey2);
+                imgKey2.setFitWidth(58);
+                imgKey2.setFitHeight(58);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey2.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey2.setLayoutY(rand); // Y-coordinate
+                break;
+            case 3:
+                ImageView imgKey3 = new ImageView("/key3.png");
+                item.add(2, imgKey3);
+                anchorPane.getChildren().add(imgKey3);
+                imgKey3.setFitWidth(58);
+                imgKey3.setFitHeight(58);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey3.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey3.setLayoutY(rand); // Y-coordinate
+                break;
+            case 4:
+                ImageView imgWKnife = new ImageView("/wooden knife.png");
+                item.add(3, imgWKnife);
+                anchorPane.getChildren().add(imgWKnife);
+                imgWKnife.setFitWidth(54);
+                imgWKnife.setFitHeight(62);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgWKnife.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgWKnife.setLayoutY(rand); // Y-coordinate
+                break;
+            case 5:
+                ImageView imgPKnife = new ImageView("/pKnife.png");
+                item.add(4, imgPKnife);
+                anchorPane.getChildren().add(imgPKnife);
+                imgPKnife.setFitWidth(56);
+                imgPKnife.setFitHeight(40);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgPKnife.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgPKnife.setLayoutY(rand); // Y-coordinate
+                break;
+            case 6:
+                ImageView imgKKnife = new ImageView("/kKnife.png");
+                item.add(5, imgKKnife);
+                anchorPane.getChildren().add(imgKKnife);
+                imgKKnife.setFitWidth(74);
+                imgKKnife.setFitHeight(35);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKKnife.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKKnife.setLayoutY(rand); // Y-coordinate
+                break;
+            case 7:
+                ImageView imgDagger = new ImageView("/dagger.png");
+                item.add(6, imgDagger);
+                anchorPane.getChildren().add(imgDagger);
+                imgDagger.setFitWidth(52);
+                imgDagger.setFitHeight(52);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgDagger.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgDagger.setLayoutY(rand); // Y-coordinate
+                break;
+            case 8:
+                ImageView imgPDagger = new ImageView("/pDagger.png");
+                item.add(7, imgPDagger);
+                anchorPane.getChildren().add(imgPDagger);
+                imgPDagger.setFitWidth(52);
+                imgPDagger.setFitHeight(52);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgPDagger.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgPDagger.setLayoutY(rand); // Y-coordinate
+                break;
+            case 9:
+                ImageView imgHealth = new ImageView("/health.png");
+                item.add(8, imgHealth);
+                anchorPane.getChildren().add(imgHealth);
+                imgHealth.setFitWidth(51);
+                imgHealth.setFitHeight(51);
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgHealth.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgHealth.setLayoutY(rand); // Y-coordinate
+                break;
+        }
+    }
