@@ -1,0 +1,120 @@
+      // 'item' is the array list of items 
+                    if (!item.isEmpty()) { // While the item array list has something in it
+                        for (ImageView i : item) { // Loop through the array list of items
+                            if (collision(cPlayer, i)) { // Check if the player collides with any item 
+                                System.out.println(i);
+                                if (i.equals(item.get(0))) { // If the player is colliding with a certain item, make the global variable true
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey1(true);
+                                        item.remove(0);
+                                    }
+
+                                } else if (i.equals(item.get(1))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey2(true);
+                                        item.remove(1);
+                                    }
+                                    
+                                } else if (i.equals(item.get(2))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKey3(true);
+                                        item.remove(2);
+                                    }
+                                    
+                                } else if (i.equals(item.get(3))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setWoodKnife(true);
+                                        item.remove(3);
+                                    }
+                                    
+                                } else if (i.equals(item.get(4))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setPlasticKnife(true);
+                                        item.remove(4);
+                                    }
+                                    
+                                } else if (i.equals(item.get(5))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setKitchenKnife(true);
+                                        item.remove(5);
+                                    }
+                                    
+                                } else if (i.equals(item.get(6))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setDagger(true);
+                                        item.remove(6);
+                                    }
+                                    
+                                } else if (i.equals(item.get(7))) {
+                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                                    alert.setTitle("Item Confirmation");
+                                    alert.setHeaderText("Do you wish to pick up this item?");
+                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                                    alert.getButtonTypes().setAll(yes, no);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == yes) {
+                                        setPoisonDagger(true);
+                                        item.remove(7);
+                                    }
+                                    
+                                } else if (i.equals(item.get(8))) {
+                                    if (player.getHealth() <= 75) {
+                                        player.setHealth(player.getHealth() + 25);
+                                    } else if (player.getHealth() > 75) {
+                                        player.setHealth(100);
+                                    }
+                                    item.remove(8);
+                                }
+                            }
+                        }
+                    }

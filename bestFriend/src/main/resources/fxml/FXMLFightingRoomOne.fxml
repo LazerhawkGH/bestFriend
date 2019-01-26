@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -52,7 +53,7 @@
                   <Image url="@../MC/MC%20-%20Right.png" />
                </image>
             </ImageView>
-            <Circle fx:id="cPlayer" fill="#1f93ff62" radius="19.0" stroke="BLACK" strokeType="INSIDE" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Ellipse fx:id="cPlayer" fill="#1f93ff27" radiusX="21.0" radiusY="24.0" stroke="BLACK" strokeType="INSIDE" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <ImageView fx:id="imgAtkUp" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../stick.png" />
@@ -149,5 +150,10 @@
             </Label>
          </children>
       </GridPane>
+      <ImageView fx:id="blank" fitHeight="1.0" fitWidth="1.0" layoutX="13.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../key2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
