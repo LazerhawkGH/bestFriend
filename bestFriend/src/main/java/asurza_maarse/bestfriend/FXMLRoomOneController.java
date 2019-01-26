@@ -159,7 +159,7 @@ public class FXMLRoomOneController implements Initializable {
         if (!rDialog.isVisible() || !rInteract.isVisible()) {
 
             if (r1 || r2 || r3) {
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); //where FXMLPage2 is the name of the scene
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
 

@@ -90,14 +90,17 @@ public class FXMLFightingRoomOneController implements Initializable {
     private GridPane gpUser, gpMenuBar, gpInventory;
     
     @FXML
-    private ImageView imgUp, imgDown, imgLeft, imgRight, imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight;
+    private ImageView imgUp, imgDown, imgLeft, imgRight, imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight,
+            imgItem;
+    
+    
 
     
 
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
 
-    ArrayList<ImageView> item = new ArrayList();
+   // ArrayList<ImageView> item = new ArrayList();
 
     int xMove, yMove = 0; // Directional variables
 
@@ -135,8 +138,8 @@ public class FXMLFightingRoomOneController implements Initializable {
 
                     enemies.remove(e); // Don't know if this works yet
                     anchorPane.getChildren().remove(e);
-                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
-                    e.setHealth(e.getHealth() - player.getAtk());
+//                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
+//                    e.setHealth(e.getHealth() - player.getAtk());
                 }
             }
         } else {
@@ -189,118 +192,26 @@ public class FXMLFightingRoomOneController implements Initializable {
         return false;
     }
 
-    private void items(int i) {
-
-        switch (i) {
+    private void items(int i){
+        switch (i){
             case 1:
-                ImageView imgKey = new ImageView("/key.png");
-                item.add(0, imgKey);
-                anchorPane.getChildren().add(imgKey);
-                imgKey.setFitWidth(58);
-                imgKey.setFitHeight(58);
-                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey.setLayoutY(rand); // Y-coordinate
-
-                break;
+                
             case 2:
-                ImageView imgKey2 = new ImageView("/key2.png");
-                item.add(1, imgKey2);
-                anchorPane.getChildren().add(imgKey2);
-                imgKey2.setFitWidth(58);
-                imgKey2.setFitHeight(58);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey2.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey2.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 3:
-                ImageView imgKey3 = new ImageView("/key3.png");
-                item.add(2, imgKey3);
-                anchorPane.getChildren().add(imgKey3);
-                imgKey3.setFitWidth(58);
-                imgKey3.setFitHeight(58);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey3.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey3.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 4:
-                ImageView imgWKnife = new ImageView("/wooden knife.png");
-                item.add(3, imgWKnife);
-                anchorPane.getChildren().add(imgWKnife);
-                imgWKnife.setFitWidth(54);
-                imgWKnife.setFitHeight(62);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgWKnife.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgWKnife.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 5:
-                ImageView imgPKnife = new ImageView("/pKnife.png");
-                item.add(4, imgPKnife);
-                anchorPane.getChildren().add(imgPKnife);
-                imgPKnife.setFitWidth(56);
-                imgPKnife.setFitHeight(40);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgPKnife.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgPKnife.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 6:
-                ImageView imgKKnife = new ImageView("/kKnife.png");
-                item.add(5, imgKKnife);
-                anchorPane.getChildren().add(imgKKnife);
-                imgKKnife.setFitWidth(74);
-                imgKKnife.setFitHeight(35);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKKnife.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKKnife.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 7:
-                ImageView imgDagger = new ImageView("/dagger.png");
-                item.add(6, imgDagger);
-                anchorPane.getChildren().add(imgDagger);
-                imgDagger.setFitWidth(52);
-                imgDagger.setFitHeight(52);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgDagger.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgDagger.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 8:
-                ImageView imgPDagger = new ImageView("/pDagger.png");
-                item.add(7, imgPDagger);
-                anchorPane.getChildren().add(imgPDagger);
-                imgPDagger.setFitWidth(52);
-                imgPDagger.setFitHeight(52);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgPDagger.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgPDagger.setLayoutY(rand); // Y-coordinate
-                break;
+                
             case 9:
-                ImageView imgHealth = new ImageView("/health.png");
-                item.add(8, imgHealth);
-                anchorPane.getChildren().add(imgHealth);
-                imgHealth.setFitWidth(51);
-                imgHealth.setFitHeight(51);
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgHealth.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgHealth.setLayoutY(rand); // Y-coordinate
-                break;
+                
         }
     }
 
@@ -495,111 +406,54 @@ public class FXMLFightingRoomOneController implements Initializable {
                     yMove = 0;
                     break;
                 case ENTER:
-                    if (!item.isEmpty()) { // While the item array list has something in it
-                        for (ImageView i : item) { // Loop through the array list of items
-                            if (collision(cPlayer, i)) { // Check if the player collides with any item 
-                                if (i.equals(item.get(0))) { // If the player is colliding with a certain item, make the global variable true
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setKey1(true);
-                                        item.remove(0);
-                                    }
-
-                                } else if (i.equals(item.get(1))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setKey2(true);
-                                        item.remove(1);
-                                    }
-                                    
-                                } else if (i.equals(item.get(2))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setKey3(true);
-                                        item.remove(2);
-                                    }
-                                    
-                                } else if (i.equals(item.get(3))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setWoodKnife(true);
-                                        item.remove(3);
-                                    }
-                                    
-                                } else if (i.equals(item.get(4))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setPlasticKnife(true);
-                                        item.remove(4);
-                                    }
-                                    
-                                } else if (i.equals(item.get(5))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setKitchenKnife(true);
-                                        item.remove(5);
-                                    }
-                                    
-                                } else if (i.equals(item.get(6))) {
-                                    Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                                    alert.setTitle("Item Confirmation");
-                                    alert.setHeaderText("Do you wish to pick up this item?");
-                                    ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                                    ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                                    alert.getButtonTypes().setAll(yes, no);
-                                    Optional<ButtonType> result = alert.showAndWait();
-                                    if (result.get() == yes) {
-                                        setDagger(true);
-                                        item.remove(6);
-                                    }
-                                    
-                                } else if (i.equals(item.get(7))) {
-                                    setPoisonDagger(true);
-                                    item.remove(7);
-                                } else if (i.equals(item.get(8))) {
-                                    if (player.getHealth() <= 75) {
-                                        player.setHealth(player.getHealth() + 25);
-                                    } else if (player.getHealth() > 75) {
-                                        player.setHealth(100);
-                                    }
-                                    item.remove(8);
-                                }
+                    if (collision(cPlayer, imgItem)) {
+                        if (imgItem.getImage().getUrl().equals("/key.png")) {
+                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                            alert.setTitle("Item Confirmation");
+                            alert.setHeaderText("Do you wish to pick up this item?");
+                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                            alert.getButtonTypes().setAll(yes, no);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == yes) {
+                                setKey1(true);
+                                anchorPane.getChildren().remove(imgItem);
+                            }
+                        }else if (imgItem.getImage().getUrl().equals("/key2.png")){
+                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                            alert.setTitle("Item Confirmation");
+                            alert.setHeaderText("Do you wish to pick up this item?");
+                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                            alert.getButtonTypes().setAll(yes, no);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == yes) {
+                                setKey2(true);
+                                anchorPane.getChildren().remove(imgItem);
+                            }
+                        }else if (imgItem.getImage().getUrl().equals("/key3.png")){
+                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                            alert.setTitle("Item Confirmation");
+                            alert.setHeaderText("Do you wish to pick up this item?");
+                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                            alert.getButtonTypes().setAll(yes, no);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == yes) {
+                                setKey3(true);
+                                anchorPane.getChildren().remove(imgItem);
+                            }
+                        }else if (imgItem.getImage().getUrl().equals("/wooden knife.png")){
+                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
+                            alert.setTitle("Item Confirmation");
+                            alert.setHeaderText("Do you wish to pick up this item?");
+                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+                            alert.getButtonTypes().setAll(yes, no);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == yes) {
+                                setWoodKnife(true);
+                                anchorPane.getChildren().remove(imgItem);
                             }
                         }
                     }
@@ -608,20 +462,7 @@ public class FXMLFightingRoomOneController implements Initializable {
             }
         }
     }
-
-    private void itemConfirmation(){
-       Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                
-            }
-    }
-    
+   
     private Circle copy(Circle c) { // Handles the creation of the temporary player, used to check for collision before moving actual player
         Circle temp = new Circle();
         temp.setLayoutX(63 + gpUser.getLayoutX() + gpUser.getTranslateX());
@@ -711,6 +552,16 @@ public class FXMLFightingRoomOneController implements Initializable {
         itemGen.play();
         player.setHealth(player.getHealth());
         lblHealth.setText("" + player.getHealth());
+        
+//        item.add(0,blank);
+//        item.add(1,blank);
+//        item.add(2,blank);
+//        item.add(3,blank);
+//        item.add(4,blank);
+//        item.add(5,blank);
+//        item.add(6,blank);
+//        item.add(7,blank);
+        
         //bounds = new Rectangle[]{bounds1, bounds2, bounds3, bounds4, bounds5, bounds6, bounds7, bounds8, bounds9, bounds10, bounds11, bounds12, bounds13, bounds14, bounds15};
     }
 
