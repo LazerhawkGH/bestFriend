@@ -79,9 +79,6 @@ public class FXMLRoomOneController implements Initializable {
     private Rectangle rSave, rBear, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
 
     @FXML
-    private ImageView imgUser;
-
-    @FXML
     private Rectangle rSwitch;
 
     @FXML
@@ -123,14 +120,14 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private Button btnYes, btnNo;
 
-    MediaPlayer player;
-
     ArrayList<Shape> walls = new ArrayList();
     ArrayList<Rectangle> entrances = new ArrayList();
 
     private Boolean up = false, down = false, left = false, right = false;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
+    
+    MediaPlayer player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
 
     @FXML
     private void btnShowInvent(ActionEvent evt) {
@@ -159,6 +156,10 @@ public class FXMLRoomOneController implements Initializable {
         if (!rDialog.isVisible() || !rInteract.isVisible()) {
 
             if (r1 || r2 || r3) {
+                player.stop();               
+                
+                
+                
                 Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
@@ -166,10 +167,12 @@ public class FXMLRoomOneController implements Initializable {
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
                 stage.hide(); //optional
+
                 stage.setScene(home_page_scene); //puts the new scence in the stage
 
                 stage.setTitle("BestFriend"); //changes the title
                 stage.show(); //shows the new page
+                home_page_scene.getRoot().requestFocus();
                 
                 /*Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
 
@@ -462,7 +465,6 @@ public class FXMLRoomOneController implements Initializable {
         lblDialog.setText("[MC]\nWhere am I?...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-        player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
         player.play();
 
     }

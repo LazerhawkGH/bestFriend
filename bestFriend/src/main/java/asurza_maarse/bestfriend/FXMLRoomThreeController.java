@@ -5,6 +5,7 @@ package asurza_maarse.bestfriend;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,17 +36,15 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+
 /**
  * FXML Controller class
  *
  * @author user
  */
-public class FXMLRoomTwoController implements Initializable {
+public class FXMLRoomThreeController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
+ @FXML
     private GridPane gp1;
     @FXML
     private Label lblRoomNum;
@@ -75,7 +74,7 @@ public class FXMLRoomTwoController implements Initializable {
     private ImageView imgUp, imgDown, imgLeft, imgRight;
 
     @FXML
-    private Rectangle rSave, rPiano, rBook, rBasket, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
+    private Rectangle rSave, rToilet, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
 
     @FXML
     private Circle cPlayer;
@@ -84,7 +83,7 @@ public class FXMLRoomTwoController implements Initializable {
     private Rectangle recTop, recBottom, recLeft, recRight;
 
     @FXML
-    private Polygon wall;
+    private Polygon wall, wall2;
 
     private boolean r1 = false, r2 = false, r3 = false;
 
@@ -105,7 +104,7 @@ public class FXMLRoomTwoController implements Initializable {
     @FXML
     private ImageView iMAngry, iMNeutralC, iMNeutral, iMCrying, iMCryingC, iMSmiling, iMSmilingC, iMSurprised;
 
-    private boolean diary = false, piano = false;
+    private boolean toilet = false;
     private int i = 0;
 
     //Saving Window
@@ -154,7 +153,7 @@ public class FXMLRoomTwoController implements Initializable {
             if (r1 || r2 || r3) {
                 player.stop();
 
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml")); //where FXMLPage2 is the name of the scene
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
 //get reference to the stage 
@@ -188,10 +187,8 @@ public class FXMLRoomTwoController implements Initializable {
             //interactVisibleFalse();
             //dialogVisibleFalse();
             //}
-            if (diary) {
-                diary();
-            } else if (piano){
-                piano();
+            if (toilet) {
+                toilet();
             } else {
                 interactVisibleFalse();
                 dialogVisibleFalse();
@@ -200,14 +197,14 @@ public class FXMLRoomTwoController implements Initializable {
         }
     }
 
-    private void piano() {
+    private void toilet() {
         switch (i) {
             case 1:
                 interactVisibleFalse();
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI remember BF used to play piano all the time...");
+                lblDialog.setText("[MC]\nHmm...");
                 i = 2;
                 break;
                 
@@ -216,86 +213,23 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nThe music sheets are all on the floor.");
+                lblDialog.setText("[MC]\nThere something strange in there...");
                 i = 0;
-                piano = false;
+                toilet = false;
                 break;
         }
     }
 
-    private void diary() {
-        switch (i) {
-            case 1:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nA Book?\nWhy is there a book down here?");
-                i = 2;
-                break;
-
-            case 2:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nOh, it seems to be a diary...\n*Flips to last entry*");
-                i = 3;
-                break;
-            case 3:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was\ngone. I think he knows now...\"");
-                i = 4;
-                break;
-
-            case 4:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n\"For anyone who might read this.\nSTAY AWAY FROM---\"");
-                i = 5;
-                break;
-            case 5:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n(The rest is illegible)\nI wonder who HE is...");
-                i = 0;
-                diary = false;
-                break;
-            default:
-                break;
-
-        }
-
-    }
 
     private void move() {
         if (collisionT()) {
             if (collision(cPlayer, rSave)) {
                 saveWVisibleTrue();
-            } else if (collision(cPlayer, rBook)) {
+            } else if (collision(cPlayer, rToilet)) {
                 interactVisibleTrue();
-                lblInteract.setText("A Book");
-                diary = true;
+                lblInteract.setText("Toilet");
+                toilet = true;
                 i = 1;
-                //lblInteract.setText("A Teddy Bear");
-
-            } else if (collision(cPlayer, rPiano)) {
-                interactVisibleTrue();
-                lblInteract.setText("A Piano");
-                piano = true;
-                i = 1;
-                //lblInteract.setText("A Teddy Bear");
-
-            } else if (collision(cPlayer, rBasket)) {
-                interactVisibleTrue();
-                lblInteract.setText("A Basket");
                 //lblInteract.setText("A Teddy Bear");
 
             } else if (collisonE()) {
@@ -494,10 +428,9 @@ public class FXMLRoomTwoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         walls.add(wall);
+        walls.add(wall2);
         walls.add(rSave);
-        walls.add(rPiano);
-        walls.add(rBasket);
-        walls.add(rBook);
+        walls.add(rToilet);
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
@@ -506,7 +439,7 @@ public class FXMLRoomTwoController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\n...");
+        lblDialog.setText("[MC]\nThis room...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
 
@@ -514,3 +447,4 @@ public class FXMLRoomTwoController implements Initializable {
     }
 
 }
+

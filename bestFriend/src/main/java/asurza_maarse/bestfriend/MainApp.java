@@ -30,7 +30,7 @@ public class MainApp extends Application {
         
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomOne.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("BestFriend");
