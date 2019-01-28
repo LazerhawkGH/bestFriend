@@ -485,10 +485,8 @@ public class FXMLEscapeRoomOneController implements Initializable {
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
             gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
-
-            //System.out.println("Not colliding"); // For debugging purposes
         } else {
-            //System.out.println("Colliding"); // For debugging purposes
+            return;
         }
         anchorPane.getChildren().remove(temp); // After going through once, the temporary player is removed, and garbage collector throws it out
     }
