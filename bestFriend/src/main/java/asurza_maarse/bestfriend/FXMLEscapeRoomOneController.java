@@ -60,7 +60,7 @@ import javafx.scene.shape.Polygon;
 ////                                                                ////
 ////////////////////////////////////////////////////////////////////////
  */
-public class FXMLFightingRoomOneController implements Initializable {
+public class FXMLEscapeRoomOneController implements Initializable {
 
     // area for the player to collide with to go to the next room
     @FXML
@@ -126,13 +126,6 @@ public class FXMLFightingRoomOneController implements Initializable {
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
                     lblHealth.setText("" + player.getHealth());
-//                } else if (e.getHealth() == 0) {
-//
-//                    enemies.remove(e); // Don't know if this works yet
-//                    anchorPane.getChildren().remove(e);
-////                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
-////                    e.setHealth(e.getHealth() - player.getAtk());
-//                }
                 }
             }
         }else {
@@ -345,8 +338,8 @@ public class FXMLFightingRoomOneController implements Initializable {
             }
             //Generates a random number, deciding which direction the enemy will move in.
             //This is done upon colliding with a wall,
-            int choice1 = rand.nextInt(4);
-            directions[choice1] = true;
+            int choice = rand.nextInt(4);
+            directions[choice] = true;
         } 
         if (directions[1]) {
             e.setTranslateX(e.getTranslateX() + 1);
@@ -492,10 +485,8 @@ public class FXMLFightingRoomOneController implements Initializable {
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
             gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
-
-            //System.out.println("Not colliding"); // For debugging purposes
         } else {
-            //System.out.println("Colliding"); // For debugging purposes
+            return;
         }
         anchorPane.getChildren().remove(temp); // After going through once, the temporary player is removed, and garbage collector throws it out
     }
