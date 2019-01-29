@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="860.0" prefWidth="877.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="asurza_maarse.bestfriend.FXMLEscapeRoomTwoController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="860.0" prefWidth="877.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="asurza_maarse.bestfriend.FXMLEscapeRoomTwoController">
    <children>
       <ImageView fitHeight="900.0" fitWidth="900.0" pickOnBounds="true">
          <image>
@@ -86,6 +86,11 @@
       <Polygon fx:id="polyExperiment" fill="#0084ff28" layoutX="131.0" layoutY="403.0" points="-8.5, 23.0, 31.999984741210938, 23.0, 32.0, -62.5, -8.5, -62.5" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Polygon fx:id="polyRock" fill="#0084ff28" layoutX="418.0" layoutY="534.0" points="-8.5, 23.0, 31.999984741210938, 23.0, 32.0, -20.0, -8.5, -20.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
       <Polygon fx:id="polySkeleton" fill="#0084ff28" layoutX="742.0" layoutY="353.0" points="-1.33331298828125, 23.0, 36.66668701171875, 23.0, 36.66668701171875, -10.333343505859375, -6.0, -10.333343505859375" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <ImageView fitHeight="31.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../health.png" />
+         </image>
+      </ImageView>
       <GridPane fx:id="gpUser" layoutX="427.0" layoutY="590.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="45.0" />
