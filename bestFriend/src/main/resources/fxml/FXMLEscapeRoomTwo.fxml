@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="860.0" prefWidth="877.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="asurza_maarse.bestfriend.FXMLEscapeRoomTwoController">
+   <children>
+      <ImageView fitHeight="858.0" fitWidth="900.0" layoutY="46.0" pickOnBounds="true">
+         <image>
+            <Image url="@../escaperoom.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="wall" fill="#1f93ff21" layoutX="439.0" layoutY="703.0" points="-275.66668701171875, -106.0, -315.6666564941406, -106.0, -315.6666564941406, -377.0, -275.66668701171875, -377.0, -275.66668701171875, -465.0, -30.5, -465.0, -30.5, -550.3333129882812, 51.75, -550.3333129882812, 51.75, -465.0, 337.66668701171875, -465.0, 337.66668701171875, -616.25, -30.5, -616.25, -315.66668701171875, -616.25, -315.66668701171875, -573.75, -357.0, -573.75, -357.0, 68.33331298828125, -315.6666564941406, 68.33331298828125, -315.6666564941406, 109.66668701171875, 337.0, 109.66668701171875, 337.66668701171875, 68.33331298828125, 379.0, 68.33331298828125, 379.0, -571.6666870117188, 337.66668701171875, -571.6666870117188, 297.66668701171875, -465.0, 297.66668701171875, -370.3333435058594, 337.66668701171875, -370.3333435058594, 337.66668701171875, -106.0, 297.66668701171875, -106.0, 297.66668701171875, -59.66668701171875, -275.66668701171875, -59.66668701171875" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Polygon fx:id="wall2" fill="#1f93ff17" layoutX="252.0" layoutY="445.0" points="-47.25, 62.0, 442.75, 62.0, 442.75, -71.0, -47.25, -71.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="113.0" layoutX="2.0" layoutY="2.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="OUTSIDE" strokeWidth="2.0" width="895.0" />
+      <GridPane fx:id="gpInventory" prefHeight="103.0" prefWidth="878.0" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="135.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="124.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="123.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="123.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="120.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="159.0" text="Items:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnKey1" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnKey2" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnKey3" disable="true" focusTraversable="false" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Use Key 3" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="115.0" text="Back" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane fx:id="gpMenuBar" layoutX="31.0" layoutY="13.0" prefHeight="88.0" prefWidth="839.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="lblRoomNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="189.0" text="Escape Room # 2" textFill="WHITE" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#showInventory" prefHeight="55.0" prefWidth="204.0" text="Inventory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblHealth" alignment="CENTER" prefHeight="55.0" prefWidth="189.0" text="100" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="189.0" text="Health: " textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Polygon fx:id="polyExperiment" fill="#0084ff28" layoutX="131.0" layoutY="394.0" points="-8.5, 23.0, 31.999984741210938, 23.0, 32.0, -62.5, -8.5, -62.5" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Polygon fx:id="polyRock" fill="#0084ff28" layoutX="418.0" layoutY="528.0" points="-8.5, 23.0, 31.999984741210938, 23.0, 32.0, -20.0, -8.5, -20.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Polygon fx:id="polySkeleton" fill="#0084ff28" layoutX="742.0" layoutY="340.0" points="-1.33331298828125, 23.0, 36.66668701171875, 23.0, 36.66668701171875, -10.333343505859375, -6.0, -10.333343505859375" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <ImageView fx:id="imgHealth" fitHeight="31.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../health.png" />
+         </image>
+      </ImageView>
+      <GridPane fx:id="gpUser" layoutX="427.0" layoutY="590.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="45.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="imgDown" fitHeight="76.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../MC/MC%20-%20Down.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgLeft" fitHeight="64.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../MC/MC%20-%20Left.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgUp" fitHeight="64.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../MC/MC%20-%20Up.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgRight" fitHeight="122.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../MC/MC%20-%20Right.png" />
+               </image>
+            </ImageView>
+            <Ellipse fx:id="cPlayer" fill="#ffffff00" radiusX="21.0" radiusY="24.0" stroke="TRANSPARENT" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <Circle fx:id="cDoor" fill="#1f93ff29" layoutX="451.0" layoutY="209.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

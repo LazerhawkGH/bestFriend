@@ -5,6 +5,7 @@ package asurza_maarse.bestfriend;
  * Date: Dec 7, 2018
  * Purpose: Initial starting room
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -157,7 +158,6 @@ public class FXMLRoomOneController implements Initializable {
 
             if (r1 || r2 || r3) {
                 player.stop();               
-                
                 
                 
                 Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); //where FXMLPage2 is the name of the scene
