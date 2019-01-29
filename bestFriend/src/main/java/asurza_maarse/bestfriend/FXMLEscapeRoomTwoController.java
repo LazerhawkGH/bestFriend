@@ -36,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
 
 /**
@@ -45,60 +46,52 @@ import javafx.scene.shape.Polygon;
  */
 
 /*
-                       ////////////////////////////////////////////////////////////////////////
-                      ////                      Interaction Plan                          ////
-                     ////////////////////////////////////////////////////////////////////////
-                    ////                                                                ////
-                   ////   Key(s) x 3                                                   ////
-                  ////   Weapons                                                      ////
-                 ////       - Wooden Knife                                           ////
-                ////       - Plastic Knife                                          ////
-               ////       - Kitchen Knife                                          ////
-              ////       - Dagger                                                 ////
-             ////       - Poison Dagger                                          ////
-            ////   Health packs/First aid                                       ////
-           ////   Lore                                                         ////
-          ////       - Notes                                                  ////
-         ////       - Flashbacks                                             ////
-        ////   Health debuffs                                               ////
-       ////       - Rotten food                                            ////
-      ////       - Poison                                                 ////
-     ////                                                                ////
-    ////////////////////////////////////////////////////////////////////////
-   ////                                                                ////
-  ////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////                      Interaction Plan                          ////
+////////////////////////////////////////////////////////////////////////
+////                                                                ////
+////   Key(s) x 3   ✓                                               ////
+////   Health packs/First aid ✓                                     ////
+////   Lore                                                         ////
+////       - Notes ✓                                                ////
+////       - Flashbacks                                             ////
+////                                                                ////
+////////////////////////////////////////////////////////////////////////
+////                                                                ////
+////////////////////////////////////////////////////////////////////////
  */
-public class FXMLFightingRoomOneController implements Initializable {
+public class FXMLEscapeRoomTwoController implements Initializable {
 
-    // Temporary player & area for the player to collide with to go to the next room
+    // area for the player to collide with to go to the next room
     @FXML
-    private Circle cPlayer, cDoor;
-
+    private Circle cDoor;
+     
+    @FXML 
+    private Ellipse cPlayer;
+    
     @FXML
     private AnchorPane anchorPane;
 
     @FXML
-    private Label lblRoomNum, lblWeaponEquipped, lblHealth;
+    private Label lblRoomNum, lblHealth;
 
     @FXML
-    private Button btnKey1, btnKey2, btnKey3, btnOtherItem;
+    private Button btnKey1, btnKey2, btnKey3;
 
     @FXML
-    private Polygon wall;
+    private Polygon wall, wall2, polyExperiment, polyRock, polySkeleton;
 
     @FXML
     private GridPane gpUser, gpMenuBar, gpInventory;
     
     @FXML
-    private ImageView imgUp, imgDown, imgLeft, imgRight, imgAtkUp, imgAtkDown, imgAtkLeft, imgAtkRight,
-            imgItem;
+    private ImageView imgUp, imgDown, imgLeft, imgRight, 
+            imgKey1, imgKey2, imgKey3, imgHealth;
     
-    
-
-    
-
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
+    
+    Polygon walls[];
 
    // ArrayList<ImageView> item = new ArrayList();
 
@@ -112,6 +105,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     Timeline eMove = new Timeline(new KeyFrame(Duration.millis(150), ae -> enemyMovement()));
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
     Timeline itemGen = new Timeline(new KeyFrame(Duration.seconds(1), ae -> rdmItemGen()));
+    Timeline enemyAtk = new Timeline(new KeyFrame(Duration.seconds(1), ae -> collisionEnemy()));
 
     Enemy enemy = new Enemy(); // Handles the Enemy.java class
     Player player = new Player(); // Handles the Player.java class
@@ -129,24 +123,43 @@ public class FXMLFightingRoomOneController implements Initializable {
     }
 
     private void collisionEnemy() {
-        if (enemies.size() != 0) {
+        if (!enemies.isEmpty()) {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
-                    //player.setHealth(player.getHealth() - e.getDamage());
-                    //lblHealth.setText("" + player.getHealth());
-                } else if (e.getHealth() == 0) {
-
-                    enemies.remove(e); // Don't know if this works yet
-                    anchorPane.getChildren().remove(e);
-//                } else if ((collision(e, imgAtkUp)) || (collision(e, imgAtkDown)) || (collision(e, imgAtkLeft)) || (collision(e, imgAtkRight))) {
-//                    e.setHealth(e.getHealth() - player.getAtk());
+                    player.setHealth(player.getHealth() - e.getDamage());
+                    lblHealth.setText("" + player.getHealth());
                 }
             }
-        } else {
+        }else {
             return;
         }
     }
     
+    private boolean wallCollisionPlayer(Object obj1){
+        for (Polygon p: walls){
+            if (collision(obj1, p)){
+                return true;
+            }
+        }
+        return false;
+            
+    }
+    
+    private boolean wallCollisionEnemy(Object obj1){
+        for (Polygon p: walls){
+            if (collision(obj1, p)){
+                return true;
+            }
+        }
+        return false;
+            
+    }
+    
+    public boolean itemCollision(Ellipse block1, ImageView block2) {
+        //returns true if the areas intersect, false if they dont
+        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+    }
+
     public boolean collision(Object block1, Object block2) {
         try {
             //If the objects can be changed to shapes just see if they intersect
@@ -195,28 +208,59 @@ public class FXMLFightingRoomOneController implements Initializable {
     private void items(int i){
         switch (i){
             case 1:
+                imgKey1.setFitWidth(42);
+                imgKey1.setFitHeight(26);
                 
+                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey1.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey1.setLayoutY(rand); // Y-coordinate
+
+                imgKey1.setVisible(true);
+                break;
             case 2:
+                imgKey2.setFitWidth(42);
+                imgKey2.setFitHeight(26);
                 
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey2.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey2.setLayoutY(rand); // Y-coordinate
+                
+                imgKey2.setVisible(true);
+                break;
             case 3:
+                imgKey3.setFitWidth(42);
+                imgKey3.setFitHeight(26);
                 
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgKey3.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgKey3.setLayoutY(rand); // Y-coordinate
+                
+                imgKey3.setVisible(true);
+                break;
+            
             case 4:
+                imgHealth.setFitWidth(42);
+                imgHealth.setFitHeight(31);
                 
-            case 5:
+                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                imgHealth.setLayoutX(rand); // X-coordinate
+
+                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                imgHealth.setLayoutY(rand); // Y-coordinate
                 
-            case 6:
-                
-            case 7:
-                
-            case 8:
-                
-            case 9:
-                
+                imgHealth.setVisible(true);
+                break;
         }
     }
 
     private void rdmItemGen() {
-        int rand = ThreadLocalRandom.current().nextInt(1, 90 + 1);
+        int rand = ThreadLocalRandom.current().nextInt(1, 40 + 1);
 
         if (rand >= 1 && rand <= 10) {
             items(1);
@@ -226,16 +270,6 @@ public class FXMLFightingRoomOneController implements Initializable {
             items(3);
         } else if (rand >= 31 && rand <= 40) {
             items(4);
-        } else if (rand >= 41 && rand <= 50) {
-            items(5);
-        } else if (rand >= 51 && rand <= 60) {
-            items(6);
-        } else if (rand >= 61 && rand <= 70) {
-            items(7);
-        } else if (rand >= 71 && rand <= 80) {
-            items(8);
-        } else if (rand >= 81 && rand <= 90) {
-            items(9);
         }
 
     }
@@ -257,7 +291,7 @@ public class FXMLFightingRoomOneController implements Initializable {
         System.out.println("y: " + rand + "\n");
 
         // If the enemy was placed out of bounds, run the function to relocate the enemy until they are no longer out of bounds
-        while ((collision(enemy, cPlayer)) || collision(enemy, wall) || (collision(enemy, enemies))) { // (collision(enemy, enemies)) is to prevent them from spawning on top of each other
+        while ((collision(enemy, cPlayer)) || (collision(enemy, enemies)) || wallCollisionEnemy(enemy)) {                                               // (collision(enemy, enemies)) is to prevent them from spawning on top of each other
             setNewEnemyPosition(enemy); // Will continuously run this function until the enemy is in a spot that doesn't trigger any of the conditions
         }
         enemies.add(enemy); // Adds the enemy to the ArrayList after completion
@@ -266,7 +300,7 @@ public class FXMLFightingRoomOneController implements Initializable {
     private void enemyMovement() {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
-                if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
+                if (!wallCollisionEnemy(enemy) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                         directions[0] = false;
@@ -300,14 +334,14 @@ public class FXMLFightingRoomOneController implements Initializable {
                     System.out.println("Colliding");
                 }
             }
-            collisionEnemy();
+            
         }
     }
                                               //Up(0), Left(1), Right(2), Down(3) // 
     private boolean[] directions = new boolean[]{false, false, false, false};
 
     private void rdmEnemyMovement(Enemy e) {
-        if (collision(e, wall)) {
+        if (wallCollisionEnemy(e)) {
             if (directions[1]) {
                 directions[1] = false;
                 e.setTranslateX(e.getTranslateX() - 1);
@@ -327,8 +361,8 @@ public class FXMLFightingRoomOneController implements Initializable {
             }
             //Generates a random number, deciding which direction the enemy will move in.
             //This is done upon colliding with a wall,
-            int choice1 = rand.nextInt(4);
-            directions[choice1] = true;
+            int choice = rand.nextInt(4);
+            directions[choice] = true;
         } 
         if (directions[1]) {
             e.setTranslateX(e.getTranslateX() + 1);
@@ -367,10 +401,6 @@ public class FXMLFightingRoomOneController implements Initializable {
         imgDown.setVisible(false);
         imgLeft.setVisible(false);
         imgRight.setVisible(false);
-        imgAtkUp.setVisible(false);
-        imgAtkDown.setVisible(false);
-        imgAtkLeft.setVisible(false);
-        imgAtkRight.setVisible(false);
     }
     
     @FXML
@@ -380,111 +410,106 @@ public class FXMLFightingRoomOneController implements Initializable {
                 case W:
                     setImgVisibleFalse();
                     imgUp.setVisible(true);
-                    imgAtkUp.setVisible(true);
                     yMove = -5;
                     xMove = 0;
                     break;
                 case S:
                     setImgVisibleFalse();
                     imgDown.setVisible(true);
-                    imgAtkDown.setVisible(true);
                     yMove = 5;
                     xMove = 0;
                     break;
                 case A:
                     setImgVisibleFalse();
                     imgLeft.setVisible(true);
-                    imgAtkLeft.setVisible(true);
                     xMove = -5;
                     yMove = 0;
                     break;
                 case D:
                     setImgVisibleFalse();
                     imgRight.setVisible(true);
-                    imgAtkRight.setVisible(true);
                     xMove = 5;
                     yMove = 0;
                     break;
                 case ENTER:
-                    if (collision(cPlayer, imgItem)) {
-                        if (imgItem.getImage().getUrl().equals("/key.png")) {
-                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                            alert.setTitle("Item Confirmation");
-                            alert.setHeaderText("Do you wish to pick up this item?");
-                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                            alert.getButtonTypes().setAll(yes, no);
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == yes) {
-                                setKey1(true);
-                                anchorPane.getChildren().remove(imgItem);
-                            }
-                        }else if (imgItem.getImage().getUrl().equals("/key2.png")){
-                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                            alert.setTitle("Item Confirmation");
-                            alert.setHeaderText("Do you wish to pick up this item?");
-                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                            alert.getButtonTypes().setAll(yes, no);
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == yes) {
-                                setKey2(true);
-                                anchorPane.getChildren().remove(imgItem);
-                            }
-                        }else if (imgItem.getImage().getUrl().equals("/key3.png")){
-                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                            alert.setTitle("Item Confirmation");
-                            alert.setHeaderText("Do you wish to pick up this item?");
-                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                            alert.getButtonTypes().setAll(yes, no);
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == yes) {
-                                setKey3(true);
-                                anchorPane.getChildren().remove(imgItem);
-                            }
-                        }else if (imgItem.getImage().getUrl().equals("/wooden knife.png")){
-                            Alert alert = new Alert(AlertType.CONFIRMATION); // opens up dialog box asking user if they want to exit to the main menu
-                            alert.setTitle("Item Confirmation");
-                            alert.setHeaderText("Do you wish to pick up this item?");
-                            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-                            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-                            alert.getButtonTypes().setAll(yes, no);
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.get() == yes) {
-                                setWoodKnife(true);
-                                anchorPane.getChildren().remove(imgItem);
-                            }
-                        }
-                    }
+                    itemPickup();
                 default:
                     break;
             }
         }
     }
+    
+    private void itemPickup() {
+        if (itemCollision(cPlayer, imgKey1)) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Item Confirmation");
+            alert.setHeaderText("Do you wish to pick up this item?");
+            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+            alert.getButtonTypes().setAll(yes, no);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == yes) {
+                setKey1(true);
+                anchorPane.getChildren().remove(imgKey1);
+            }
+        } else if (itemCollision(cPlayer, imgKey2)) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Item Confirmation");
+            alert.setHeaderText("Do you wish to pick up this item?");
+            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+            alert.getButtonTypes().setAll(yes, no);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == yes) {
+                setKey2(true);
+                anchorPane.getChildren().remove(imgKey2);
+            }
+        } else if (itemCollision(cPlayer, imgKey3)) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Item Confirmation");
+            alert.setHeaderText("Do you wish to pick up this item?");
+            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
+            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
+            alert.getButtonTypes().setAll(yes, no);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == yes) {
+                setKey3(true);
+                anchorPane.getChildren().remove(imgKey2);
+            }
+        } else if (itemCollision(cPlayer, imgHealth)) {
+            if (player.getHealth() <= 75) {
+                player.setHealth(player.getHealth() + 25);
+                anchorPane.getChildren().remove(imgHealth);
+            } else if (player.getHealth() > 75) {
+                player.setHealth(100);
+                anchorPane.getChildren().remove(imgHealth);
+            }
+        } else {
+            return;
+        }
+    }
    
-    private Circle copy(Circle c) { // Handles the creation of the temporary player, used to check for collision before moving actual player
-        Circle temp = new Circle();
-        temp.setLayoutX(63 + gpUser.getLayoutX() + gpUser.getTranslateX());
-        temp.setLayoutY(63 + gpUser.getLayoutY() + gpUser.getTranslateY());
-        temp.setRadius(21);
+    private Ellipse copy(Ellipse e) { // Handles the creation of the temporary player, used to check for collision before moving actual player
+        Ellipse temp = new Ellipse();
+        temp.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX());
+        temp.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY());
+        temp.setRadiusX(21);
+        temp.setRadiusY(24);
         return temp;
     }
 
     private void move() {
-        Circle temp = copy(cPlayer); // A temporary copy of the player is made
+        Ellipse temp = copy(cPlayer); // A temporary copy of the player is made
         anchorPane.getChildren().add(temp); // The copy is placed on the anchorpane
 
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
         temp.setTranslateY(temp.getTranslateY() + yMove);
 
-        if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
+        if (!wallCollisionPlayer(temp)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
             gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
-
-            //System.out.println("Not colliding"); // For debugging purposes
         } else {
-            //System.out.println("Colliding"); // For debugging purposes
+            return;
         }
         anchorPane.getChildren().remove(temp); // After going through once, the temporary player is removed, and garbage collector throws it out
     }
@@ -542,16 +567,23 @@ public class FXMLFightingRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        walls = new Polygon[]{wall, wall2, polyExperiment, polyRock, polySkeleton};
+        
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
         eMove.setCycleCount(Timeline.INDEFINITE);
         eMove.play();
+        enemyAtk.setCycleCount(Timeline.INDEFINITE);
+        enemyAtk.play();
         spawn.setCycleCount(rand.nextInt(6));
         spawn.play();
         itemGen.setCycleCount(1);
         itemGen.play();
         player.setHealth(player.getHealth());
         lblHealth.setText("" + player.getHealth());
+        
+        
         
 //        item.add(0,blank);
 //        item.add(1,blank);
