@@ -85,8 +85,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private GridPane gpUser, gpMenuBar, gpInventory;
     
     @FXML
-    private ImageView imgUp, imgDown, imgLeft, imgRight, 
-            imgKey1, imgKey2, imgKey3, imgHealth;
+    private ImageView imgUp, imgDown, imgLeft, imgRight, imgHealth;
     
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
@@ -185,50 +184,14 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private void items(int i){
         switch (i){
             case 1:
-                imgKey1.setFitWidth(42);
-                imgKey1.setFitHeight(26);
                 
-                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey1.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey1.setLayoutY(rand); // Y-coordinate
-
-                imgKey1.setVisible(true);
-                break;
-            case 2:
-                imgKey2.setFitWidth(42);
-                imgKey2.setFitHeight(26);
-                
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey2.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey2.setLayoutY(rand); // Y-coordinate
-                
-                imgKey2.setVisible(true);
-                break;
-            case 3:
-                imgKey3.setFitWidth(42);
-                imgKey3.setFitHeight(26);
-                
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey3.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey3.setLayoutY(rand); // Y-coordinate
-                
-                imgKey3.setVisible(true);
-                break;
-            
-            case 4:
                 imgHealth.setFitWidth(42);
                 imgHealth.setFitHeight(31);
                 
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                int rand = ThreadLocalRandom.current().nextInt(170, (170 + 562) + 1); // (Min x-val, (min x-val + width) + 1) 
                 imgHealth.setLayoutX(rand); // X-coordinate
 
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
+                rand = ThreadLocalRandom.current().nextInt(257, (257 + 129) + 1); // (Min y-val, (min y-val + height) + 1) 
                 imgHealth.setLayoutY(rand); // Y-coordinate
                 
                 imgHealth.setVisible(true);
@@ -417,43 +380,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     }
     
     private void itemPickup() {
-        if (itemCollision(cPlayer, imgKey1)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey1(true);
-                anchorPane.getChildren().remove(imgKey1);
-            }
-        } else if (itemCollision(cPlayer, imgKey2)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey2(true);
-                anchorPane.getChildren().remove(imgKey2);
-            }
-        } else if (itemCollision(cPlayer, imgKey3)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey3(true);
-                anchorPane.getChildren().remove(imgKey2);
-            }
-        } else if (itemCollision(cPlayer, imgHealth)) {
+        if (itemCollision(cPlayer, imgHealth)) {
             if (player.getHealth() <= 75) {
                 player.setHealth(player.getHealth() + 25);
                 anchorPane.getChildren().remove(imgHealth);
