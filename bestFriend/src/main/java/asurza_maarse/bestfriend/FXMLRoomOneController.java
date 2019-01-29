@@ -391,7 +391,7 @@ public class FXMLRoomOneController implements Initializable {
         right = false;
     }
 
-    private boolean collisionT() {
+    private boolean collisionT() { //Collision with walls in array list
         for (int i = 0; i < walls.size(); i++) {
             if (collision(cPlayer, walls.get(i))) {
                 return true;
@@ -400,7 +400,7 @@ public class FXMLRoomOneController implements Initializable {
         return false;
     }
 
-    private boolean collisonE() {
+    private boolean collisonE() { // Collision with Entrances in arraylist
         for (int i = 0; i < entrances.size(); i++) {
             if (collision(cPlayer, entrances.get(i))) {
                 return true;
@@ -451,20 +451,27 @@ public class FXMLRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //walls and objects the player can't walk through added to walls ArryList of Shapes 
         walls.add(wall);
         walls.add(rSave);
         walls.add(rBear);
+        //Entrances added to ArrayList of Rectangles
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
         entrances.add(rEntrance4);
+        //Set the visibility of the Dialog Box, Character Expression to False, and Save Window to false
         dialogVisibleTrue();
         setExpressionFalse();
         saveWVisibleFalse();
+        //Sets expresion of character in dialog box
         iMNeutral.setVisible(true);
+        //set label to desired text
         lblDialog.setText("[MC]\nWhere am I?...");
+        //plays timer
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
+        //playes bg music
         player.play();
 
     }

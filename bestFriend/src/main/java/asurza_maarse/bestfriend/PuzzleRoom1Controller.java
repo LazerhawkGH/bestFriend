@@ -43,6 +43,14 @@ import javafx.scene.media.MediaPlayer;
 public class PuzzleRoom1Controller implements Initializable {
 
     @FXML
+    private ImageView imgWon;
+    
+    @FXML
+    private Button btnContinue, btnExit;
+    @FXML
+    private Label lblYouDied;
+
+    @FXML
     private GridPane gp1;
     @FXML
     private Label lblRoomNum;
@@ -72,7 +80,10 @@ public class PuzzleRoom1Controller implements Initializable {
     private ImageView imgUp, imgDown, imgLeft, imgRight;
 
     @FXML
-    private Rectangle rSave, rPiano, rBook, rBasket, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
+    private Rectangle rSave, rVase, rFall, rOof, rDeath, rEntrance;
+
+    @FXML
+    private ImageView imgBox;
 
     @FXML
     private Circle cPlayer;
@@ -84,41 +95,32 @@ public class PuzzleRoom1Controller implements Initializable {
     private Polygon wall;
 
     private boolean r1 = false, r2 = false, r3 = false;
-
-    //Interaction
-    @FXML
-    private Rectangle rInteract;
-    @FXML
-    private Label lblInteract;
-
-    //Dialog
-    @FXML
-    private Rectangle rDialog;
-    @FXML
-    private Label lblDialog;
-    @FXML
-    private GridPane gpFace;
-    //MC expressions
-    @FXML
-    private ImageView iMAngry, iMNeutralC, iMNeutral, iMCrying, iMCryingC, iMSmiling, iMSmilingC, iMSurprised;
-
-    private boolean diary = false, piano = false;
     private int i = 0;
 
-    //Saving Window
-    @FXML
-    private Rectangle rSaveW;
-    @FXML
-    private Label lblSave;
-    @FXML
-    private Button btnYes, btnNo;
+    private boolean fall = false, won = false, loss = false;
 
+    //Saving Window
+//    @FXML
+//    private Rectangle rSaveW;
+//    @FXML
+//    private Label lblSave;
+//    @FXML
+//    private Button btnYes, btnNo;
     MediaPlayer player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
+    MediaPlayer scream = new MediaPlayer((new Media(getClass().getResource("/Scream.mp3").toString())));
 
     ArrayList<Shape> walls = new ArrayList();
     ArrayList<Rectangle> entrances = new ArrayList();
 
     private Boolean up = false, down = false, left = false, right = false;
+
+    @FXML
+    private GridPane gpEnemy;
+
+    @FXML
+    private ImageView imgELeft, imgERight, imgEDown;
+
+    private int eDir = 0;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
 
@@ -134,214 +136,229 @@ public class PuzzleRoom1Controller implements Initializable {
         gp1.setVisible(true);
     }
 
+//    @FXML
+//    private void btnSYes(ActionEvent evt) {
+//        saveWVisibleFalse();
+//    }
+//
+//    @FXML
+//    private void btnSNo(ActionEvent evt) {
+//        saveWVisibleFalse();
+//    }
+    
     @FXML
-    private void btnSYes(ActionEvent evt) {
-        saveWVisibleFalse();
-    }
+    private void btnContinue(ActionEvent e) throws IOException{
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/PuzzleRoom1.fxml")); //where FXMLPage2 is the name of the scene
 
+            Scene home_page_scene = new Scene(home_page_parent);
+//get reference to the stage 
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); //puts the new scence in the stage
+
+            stage.setTitle("BestFriend"); //changes the title
+            stage.show(); //shows the new page
+
+            home_page_scene.getRoot().requestFocus();
+    }
+    
     @FXML
-    private void btnSNo(ActionEvent evt) {
-        saveWVisibleFalse();
+    private void btnExit(ActionEvent e){
+        System.exit(0);
     }
-
+    
     @FXML
     private void btnMov(KeyEvent e) throws IOException {
-        if (!rDialog.isVisible() || !rInteract.isVisible()) {
 
-            if (r1 || r2 || r3) {
-                player.stop();
+        if (r1 || r2 || r3) {
+            player.stop();
 
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml")); //where FXMLPage2 is the name of the scene
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml")); //where FXMLPage2 is the name of the scene
 
-                Scene home_page_scene = new Scene(home_page_parent);
+            Scene home_page_scene = new Scene(home_page_parent);
 //get reference to the stage 
-                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
-                stage.hide(); //optional
-                stage.setScene(home_page_scene); //puts the new scence in the stage
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); //puts the new scence in the stage
 
-                stage.setTitle("BestFriend"); //changes the title
-                stage.show(); //shows the new page
+            stage.setTitle("BestFriend"); //changes the title
+            stage.show(); //shows the new page
 
-                home_page_scene.getRoot().requestFocus();
+            home_page_scene.getRoot().requestFocus();
 
-            }
-            if (e.getCode() == KeyCode.W) {
-                setDirFalse();
-                up = true;
-            } else if (e.getCode() == KeyCode.S) {
-                setDirFalse();
-                down = true;
-            } else if (e.getCode() == KeyCode.A) {
-                setDirFalse();
-                left = true;
-            } else if (e.getCode() == KeyCode.D) {
-                setDirFalse();
-                right = true;
-            }
         }
-        if (e.getCode() == KeyCode.SPACE || e.getCode() == KeyCode.ENTER) {
-            //if(){
-            //interactVisibleFalse();
-            //dialogVisibleFalse();
-            //}
-            if (diary) {
-                diary();
-            } else if (piano){
-                piano();
-            } else {
-                interactVisibleFalse();
-                dialogVisibleFalse();
-            }
-
+        if (e.getCode() == KeyCode.W) {
+            setDirFalse();
+            up = true;
+        } else if (e.getCode() == KeyCode.S) {
+            setDirFalse();
+            down = true;
+        } else if (e.getCode() == KeyCode.A) {
+            setDirFalse();
+            left = true;
+        } else if (e.getCode() == KeyCode.D) {
+            setDirFalse();
+            right = true;
         }
     }
 
-    private void piano() {
-        switch (i) {
-            case 1:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI remember BF used to play piano all the time...");
-                i = 2;
-                break;
-                
-            case 2:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nThe music sheets are all on the floor.");
-                i = 0;
-                piano = false;
-                break;
+  
+
+    private void enemyMove() {
+
+        if (gpEnemy.getTranslateX() <= -50) { //Limit on left
+            eDir = 3;
+            enemyDirection();
+        } else if (gpEnemy.getTranslateX() == 620) {// Limit on Right
+            eDir = 2;
+            enemyDirection();
+        } else if (eDir == 2 && collision(cPlayer, rOof)) {
+            // If The Enemy's Direction is Left and the Player on the rOof
+            //Ememy Speed Increases
+            eDir = 4;
+            enemyDirection();
+        } else {
+            enemyDirection();
         }
     }
 
-    private void diary() {
-        switch (i) {
-            case 1:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nA Book?\nWhy is there a book down here?");
-                i = 2;
-                break;
+    private void enemyDirection() {
+        if (eDir == 1) { //Down
+            setImgEVisibleFalse();
+            imgEDown.setVisible(true);
+            gpEnemy.setTranslateY(gpEnemy.getTranslateY() + 2);
 
-            case 2:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nOh, it seems to be a diary...\n*Flips to last entry*");
-                i = 3;
-                break;
-            case 3:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was\ngone. I think he knows now...\"");
-                i = 4;
-                break;
+        } else if (eDir == 2) { //Left
+            setImgEVisibleFalse();
+            imgELeft.setVisible(true);
+            gpEnemy.setTranslateX(gpEnemy.getTranslateX() - 2);
 
-            case 4:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n\"For anyone who might read this.\nSTAY AWAY FROM---\"");
-                i = 5;
-                break;
-            case 5:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n(The rest is illegible)\nI wonder who HE is...");
-                i = 0;
-                diary = false;
-                break;
-            default:
-                break;
+        } else if (eDir == 3) { //Right
+            setImgEVisibleFalse();
+            imgERight.setVisible(true);
+            gpEnemy.setTranslateX(gpEnemy.getTranslateX() + 2);
 
+        } else if (eDir == 4) { //Left Super Speed
+            setImgEVisibleFalse();
+            imgELeft.setVisible(true);
+            gpEnemy.setTranslateX(gpEnemy.getTranslateX() - 7);
+
+        } else if (eDir == 0) {
+            gpEnemy.setTranslateX(gpEnemy.getTranslateX() + 0);
+            gpEnemy.setTranslateY(gpEnemy.getTranslateY() + 0);
         }
-
     }
 
     private void move() {
-        if (collisionT()) {
-            if (collision(cPlayer, rSave)) {
-                saveWVisibleTrue();
-            } else if (collision(cPlayer, rBook)) {
-                interactVisibleTrue();
-                lblInteract.setText("A Book");
-                diary = true;
-                i = 1;
-                //lblInteract.setText("A Teddy Bear");
-
-            } else if (collision(cPlayer, rPiano)) {
-                interactVisibleTrue();
-                lblInteract.setText("A Piano");
-                piano = true;
-                i = 1;
-                //lblInteract.setText("A Teddy Bear");
-
-            } else if (collision(cPlayer, rBasket)) {
-                interactVisibleTrue();
-                lblInteract.setText("A Basket");
-                //lblInteract.setText("A Teddy Bear");
-
-            } else if (collisonE()) {
-                int rand = ThreadLocalRandom.current().nextInt(1, (1 + 3) + 1);
-                if (rand == 1) {
-                    r1 = true;
-                } else if (rand == 2) {
-                    r2 = true;
-                } else if (rand == 3) {
-                    r3 = true;
+        if (!loss) {
+            if (collisionT()) {
+                if (collisonE()) {
+                    int rand = ThreadLocalRandom.current().nextInt(1, (1 + 3) + 1);
+                    if (rand == 1) {
+                        r1 = true;
+                    } else if (rand == 2) {
+                        r2 = true;
+                    } else if (rand == 3) {
+                        r3 = true;
+                    }
                 }
-            }
-            if (up) {
-                gpPlayer.setTranslateY(gpPlayer.getTranslateY() + 3);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() + 3);
-                setDirFalse();
-            } else if (down) {
-                gpPlayer.setTranslateY(gpPlayer.getTranslateY() - 3);
-                cPlayer.setTranslateY(cPlayer.getTranslateY() - 3);
-                setDirFalse();
-            } else if (left) {
-                gpPlayer.setTranslateX(gpPlayer.getTranslateX() + 3);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() + 3);
-                setDirFalse();
-            } else if (right) {
-                gpPlayer.setTranslateX(gpPlayer.getTranslateX() - 3);
-                cPlayer.setTranslateX(cPlayer.getTranslateX() - 3);
-                setDirFalse();
-            }
-        } else {
-            direction();
+                if (up) {
+                    gpPlayer.setTranslateY(gpPlayer.getTranslateY() + 3);
+                    cPlayer.setTranslateY(cPlayer.getTranslateY() + 3);
+                    setDirFalse();
+                } else if (down) {
+                    gpPlayer.setTranslateY(gpPlayer.getTranslateY() - 3);
+                    cPlayer.setTranslateY(cPlayer.getTranslateY() - 3);
+                    setDirFalse();
+                } else if (left) {
+                    gpPlayer.setTranslateX(gpPlayer.getTranslateX() + 3);
+                    cPlayer.setTranslateX(cPlayer.getTranslateX() + 3);
+                    setDirFalse();
+                } else if (right) {
+                    gpPlayer.setTranslateX(gpPlayer.getTranslateX() - 3);
+                    cPlayer.setTranslateX(cPlayer.getTranslateX() - 3);
+                    setDirFalse();
+                }
+            } else if (collision(cPlayer, imgBox)) {
+                moveBox();
+            } else if (collision(imgBox, rFall)) {
+                fall = true;
+            } else if(collision(cPlayer, gpEnemy)){
+                loss = true;
+            } else {
+                direction();
 
+            }
+            enemyMove();
+            boxFall();
+            win();
+            lose();
         }
     }
 
-    private void saveWVisibleTrue() {
-        rSaveW.setVisible(true);
-        lblSave.setVisible(true);
-        btnYes.setVisible(true);
-        btnNo.setVisible(true);
+    private void moveBox() {
+        if (up) {
+            imgBox.setTranslateY(imgBox.getTranslateY() - 2);
+        } else if (left) {
+            imgBox.setTranslateX(imgBox.getTranslateX() - 2);
+        } else if (right) {
+            imgBox.setTranslateX(imgBox.getTranslateX() + 2);
+        } else if (down) {
+            imgBox.setTranslateY(imgBox.getTranslateY() + 2);
+        }
     }
 
-    private void saveWVisibleFalse() {
-        rSaveW.setVisible(false);
-        lblSave.setVisible(false);
-        btnYes.setVisible(false);
-        btnNo.setVisible(false);
+    private void boxFall() {
+        if (!won && !loss) {
+            if (fall) {
+                imgBox.setTranslateY(imgBox.getTranslateY() + 4);
+            }
+            if (imgBox.getTranslateY() == 170 && collision(gpEnemy, imgBox)) {
+                won = true;
+            } else if (imgBox.getTranslateY() == 170 && !collision(gpEnemy, imgBox)) {
+                loss = true;
+            }
+        }
     }
 
+    private void win() {
+        if (won) {
+            imgWon.setVisible(true);
+            gpEnemy.setTranslateY(-470);
+            imgBox.setTranslateY(-400);
+            imgBox.setVisible(false);
+        }
+    }
+
+    private void lose() {
+        if (loss) {
+            rDeath.setVisible(true);
+            player.stop();
+            scream.play();
+            tMove.stop();
+            tMove.setDelay(Duration.seconds(5));
+            tMove.play();
+            lblYouDied.setVisible(true);
+            btnContinue.setVisible(true);
+            btnExit.setVisible(true);
+        }
+    }
+
+//    private void saveWVisibleTrue() {
+//        rSaveW.setVisible(true);
+//        lblSave.setVisible(true);
+//        btnYes.setVisible(true);
+//        btnNo.setVisible(true);
+//    }
+//
+//    private void saveWVisibleFalse() {
+//        rSaveW.setVisible(false);
+//        lblSave.setVisible(false);
+//        btnYes.setVisible(false);
+//        btnNo.setVisible(false);
+//    }
     private void direction() {
         if (up) {
             setImgVisibleFalse();
@@ -380,38 +397,10 @@ public class PuzzleRoom1Controller implements Initializable {
         }
     }
 
-    private void interactVisibleTrue() {
-        rInteract.setVisible(true);
-        lblInteract.setVisible(true);
-        //lblInteract.setText("");
-    }
-
-    private void interactVisibleFalse() {
-        rInteract.setVisible(false);
-        lblInteract.setVisible(false);
-    }
-
-    private void dialogVisibleTrue() {
-        rDialog.setVisible(true);
-        lblDialog.setVisible(true);
-        gpFace.setVisible(true);
-    }
-
-    private void dialogVisibleFalse() {
-        rDialog.setVisible(false);
-        lblDialog.setVisible(false);
-        gpFace.setVisible(false);
-    }
-
-    private void setExpressionFalse() {
-        iMAngry.setVisible(false);
-        iMNeutralC.setVisible(false);
-        iMNeutral.setVisible(false);
-        iMCrying.setVisible(false);
-        iMCryingC.setVisible(false);
-        iMSmiling.setVisible(false);
-        iMSmilingC.setVisible(false);
-        iMSurprised.setVisible(false);
+    private void setImgEVisibleFalse() {
+        imgELeft.setVisible(false);
+        imgERight.setVisible(false);
+        imgEDown.setVisible(false);
     }
 
     private void setImgVisibleFalse() {
@@ -491,22 +480,13 @@ public class PuzzleRoom1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         walls.add(wall);
-        walls.add(rSave);
-        walls.add(rPiano);
-        walls.add(rBasket);
-        walls.add(rBook);
-        entrances.add(rEntrance1);
-        entrances.add(rEntrance2);
-        entrances.add(rEntrance3);
-        entrances.add(rEntrance4);
-        dialogVisibleTrue();
-        setExpressionFalse();
-        saveWVisibleFalse();
-        iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\n...");
+        walls.add(rVase);
+        entrances.add(rEntrance);
+
+        //saveWVisibleFalse();
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-
+        eDir = 3;
         player.play();
     }
 
