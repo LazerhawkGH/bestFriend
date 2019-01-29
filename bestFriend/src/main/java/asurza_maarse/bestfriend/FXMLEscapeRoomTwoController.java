@@ -229,11 +229,11 @@ public class FXMLEscapeRoomTwoController implements Initializable {
         if (rand >= 1 && rand <= 10) {
             items(1);
         } else if (rand >= 11 && rand <= 20) {
-            items(2);
+            items(1);
         } else if (rand >= 21 && rand <= 30) {
-            items(3);
+            items(2);
         } else if (rand >= 31 && rand <= 40) {
-            items(4);
+            items(3);
         }
 
     }
