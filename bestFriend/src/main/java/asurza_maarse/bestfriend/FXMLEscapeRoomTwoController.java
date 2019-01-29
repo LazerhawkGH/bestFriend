@@ -85,8 +85,7 @@ public class FXMLEscapeRoomTwoController implements Initializable {
     private GridPane gpUser, gpMenuBar, gpInventory;
     
     @FXML
-    private ImageView imgUp, imgDown, imgLeft, imgRight, 
-            imgKey1, imgKey2, imgKey3, imgHealth;
+    private ImageView imgUp, imgDown, imgLeft, imgRight, imgHealth;
     
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
@@ -208,53 +207,18 @@ public class FXMLEscapeRoomTwoController implements Initializable {
     private void items(int i){
         switch (i){
             case 1:
-                imgKey1.setFitWidth(42);
-                imgKey1.setFitHeight(26);
-                
-                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey1.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey1.setLayoutY(rand); // Y-coordinate
-
-                imgKey1.setVisible(true);
-                break;
-            case 2:
-                imgKey2.setFitWidth(42);
-                imgKey2.setFitHeight(26);
-                
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey2.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey2.setLayoutY(rand); // Y-coordinate
-                
-                imgKey2.setVisible(true);
-                break;
-            case 3:
-                imgKey3.setFitWidth(42);
-                imgKey3.setFitHeight(26);
-                
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgKey3.setLayoutX(rand); // X-coordinate
-
-                rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgKey3.setLayoutY(rand); // Y-coordinate
-                
-                imgKey3.setVisible(true);
-                break;
-            
-            case 4:
                 imgHealth.setFitWidth(42);
                 imgHealth.setFitHeight(31);
                 
-                rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
+                int rand = ThreadLocalRandom.current().nextInt(182, (182 + 544) + 1); // (Min x-val, (min x-val + width) + 1) 
                 imgHealth.setLayoutX(rand); // X-coordinate
 
                 rand = ThreadLocalRandom.current().nextInt(242, (242 + 351) + 1); // (Min y-val, (min y-val + height) + 1) 
                 imgHealth.setLayoutY(rand); // Y-coordinate
                 
                 imgHealth.setVisible(true);
+                break;
+            default: 
                 break;
         }
     }
@@ -301,28 +265,28 @@ public class FXMLEscapeRoomTwoController implements Initializable {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
                 if (!wallCollisionEnemy(enemy) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
-                    if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
+                    if (e.getTranslateX() < (gpUser.getTranslateX())) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                         directions[0] = false;
                         directions[1] = false;
                         directions[2] = true;
                         directions[3] = false;
                     }
-                    if (e.getTranslateX() > (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is greater than that of the player, decrease it
+                    if (e.getTranslateX() > (gpUser.getTranslateX())) { // If the x-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateX(e.getTranslateX() - 5);
                         directions[0] = false;
                         directions[1] = true;
                         directions[2] = false;
                         directions[3] = false;
                     }
-                    if (e.getTranslateY() < (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is less than that of the player, increase it
+                    if (e.getTranslateY() < (gpUser.getTranslateY())) { // If the y-val of the enemy is less than that of the player, increase it
                         e.setTranslateY(e.getTranslateY() + 5);
                         directions[0] = false;
                         directions[1] = false;
                         directions[2] = false;
                         directions[3] = true;
                     }
-                    if (e.getTranslateY() > (gpUser.getTranslateY() + 42)) { // If the y-val of the enemy is greater than that of the player, decrease it
+                    if (e.getTranslateY() > (gpUser.getTranslateY())) { // If the y-val of the enemy is greater than that of the player, decrease it
                         e.setTranslateY(e.getTranslateY() - 5);
                         directions[0] = true;
                         directions[1] = false;
@@ -440,43 +404,7 @@ public class FXMLEscapeRoomTwoController implements Initializable {
     }
     
     private void itemPickup() {
-        if (itemCollision(cPlayer, imgKey1)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey1(true);
-                anchorPane.getChildren().remove(imgKey1);
-            }
-        } else if (itemCollision(cPlayer, imgKey2)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey2(true);
-                anchorPane.getChildren().remove(imgKey2);
-            }
-        } else if (itemCollision(cPlayer, imgKey3)) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Item Confirmation");
-            alert.setHeaderText("Do you wish to pick up this item?");
-            ButtonType yes = new ButtonType("YES"); // pressing yes will put this button into a variable called "result"
-            ButtonType no = new ButtonType("No", ButtonData.CANCEL_CLOSE); // if escape is pressed again, or they press this, it will close the alert
-            alert.getButtonTypes().setAll(yes, no);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == yes) {
-                setKey3(true);
-                anchorPane.getChildren().remove(imgKey2);
-            }
-        } else if (itemCollision(cPlayer, imgHealth)) {
+        if (itemCollision(cPlayer, imgHealth)) {
             if (player.getHealth() <= 75) {
                 player.setHealth(player.getHealth() + 25);
                 anchorPane.getChildren().remove(imgHealth);
