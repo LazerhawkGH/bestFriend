@@ -131,6 +131,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
             return;
         }
     }
+    
     public boolean itemCollision(Ellipse block1, ImageView block2) {
         //returns true if the areas intersect, false if they dont
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
@@ -205,11 +206,11 @@ public class FXMLEscapeRoomOneController implements Initializable {
         if (rand >= 1 && rand <= 10) {
             items(1);
         } else if (rand >= 11 && rand <= 20) {
-            items(2);
+            items(1);
         } else if (rand >= 21 && rand <= 30) {
-            items(3);
+            items(2);
         } else if (rand >= 31 && rand <= 40) {
-            items(4);
+            items(3);
         }
 
     }
