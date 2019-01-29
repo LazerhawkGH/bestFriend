@@ -60,7 +60,7 @@ import javafx.scene.shape.Polygon;
 ////                                                                ////
 ////////////////////////////////////////////////////////////////////////
  */
-public class FXMLEscapeRoomOneController implements Initializable {
+public class FXMLEscapeRoomTwoController implements Initializable {
 
     // area for the player to collide with to go to the next room
     @FXML
@@ -79,7 +79,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private Button btnKey1, btnKey2, btnKey3;
 
     @FXML
-    private Polygon wall;
+    private Polygon wall, wall2, polyExperiment, polyRock, polySkeleton;
 
     @FXML
     private GridPane gpUser, gpMenuBar, gpInventory;
@@ -90,6 +90,8 @@ public class FXMLEscapeRoomOneController implements Initializable {
     
     // Array list of enemies created
     ArrayList<Enemy> enemies = new ArrayList();
+    
+    Polygon walls[];
 
    // ArrayList<ImageView> item = new ArrayList();
 
@@ -121,7 +123,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     }
 
     private void collisionEnemy() {
-        if (enemies.size() != 0) {
+        if (!enemies.isEmpty()) {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
@@ -132,6 +134,27 @@ public class FXMLEscapeRoomOneController implements Initializable {
             return;
         }
     }
+    
+    private boolean wallCollisionPlayer(Object obj1){
+        for (Polygon p: walls){
+            if (collision(obj1, p)){
+                return true;
+            }
+        }
+        return false;
+            
+    }
+    
+    private boolean wallCollisionEnemy(Object obj1){
+        for (Polygon p: walls){
+            if (collision(obj1, p)){
+                return true;
+            }
+        }
+        return false;
+            
+    }
+    
     public boolean itemCollision(Ellipse block1, ImageView block2) {
         //returns true if the areas intersect, false if they dont
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
@@ -268,7 +291,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
         System.out.println("y: " + rand + "\n");
 
         // If the enemy was placed out of bounds, run the function to relocate the enemy until they are no longer out of bounds
-        while ((collision(enemy, cPlayer)) || collision(enemy, wall) || (collision(enemy, enemies))) { // (collision(enemy, enemies)) is to prevent them from spawning on top of each other
+        while ((collision(enemy, cPlayer)) || (collision(enemy, enemies)) || wallCollisionEnemy(enemy)) {                                               // (collision(enemy, enemies)) is to prevent them from spawning on top of each other
             setNewEnemyPosition(enemy); // Will continuously run this function until the enemy is in a spot that doesn't trigger any of the conditions
         }
         enemies.add(enemy); // Adds the enemy to the ArrayList after completion
@@ -277,7 +300,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private void enemyMovement() {
         if (!enemies.isEmpty()) { // While there are enemies in the ArrayList
             for (Enemy e : enemies) { // Loop through each enemy
-                if (!collision(e, wall) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
+                if (!wallCollisionEnemy(enemy) || !(collision(e, enemies))) { // Make sure they aren't colliding with any walls or with any other enemies
                     if (e.getTranslateX() < (gpUser.getTranslateX() + 42)) { // If the x-val of the enemy is less than that of the player, increase it
                         e.setTranslateX(e.getTranslateX() + 5);
                         directions[0] = false;
@@ -318,7 +341,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private boolean[] directions = new boolean[]{false, false, false, false};
 
     private void rdmEnemyMovement(Enemy e) {
-        if (collision(e, wall)) {
+        if (wallCollisionEnemy(e)) {
             if (directions[1]) {
                 directions[1] = false;
                 e.setTranslateX(e.getTranslateX() - 1);
@@ -482,7 +505,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
         temp.setTranslateY(temp.getTranslateY() + yMove);
 
-        if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
+        if (!wallCollisionPlayer(temp)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
             gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
         } else {
@@ -544,6 +567,9 @@ public class FXMLEscapeRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        walls = new Polygon[]{wall, wall2, polyExperiment, polyRock, polySkeleton};
+        
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
         eMove.setCycleCount(Timeline.INDEFINITE);
@@ -556,6 +582,8 @@ public class FXMLEscapeRoomOneController implements Initializable {
         itemGen.play();
         player.setHealth(player.getHealth());
         lblHealth.setText("" + player.getHealth());
+        
+        
         
 //        item.add(0,blank);
 //        item.add(1,blank);
