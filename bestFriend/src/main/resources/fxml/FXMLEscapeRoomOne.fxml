@@ -2,12 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Polygon?>
@@ -119,5 +122,41 @@
             <Ellipse fx:id="cPlayer" fill="#ffffff56" radiusX="17.0" radiusY="13.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="9.0" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
+      <Rectangle fx:id="rDeath" height="829.0" stroke="#b50c0c" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="947.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.49523809523809526" radius="0.5">
+               <stops>
+                  <Stop color="#a80000" />
+                  <Stop color="#460000" offset="0.6885491961922814" />
+                  <Stop color="BLACK" offset="0.9425287356321839" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="lblYouDied" alignment="CENTER" layoutX="226.0" layoutY="219.0" prefHeight="159.0" prefWidth="496.0" text="YOU DIED" visible="false">
+         <font>
+            <Font name="MS Gothic" size="96.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.4888888888888889" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="WHITE" offset="0.16091954022988506" />
+                  <Stop color="#ab9b9b" offset="0.5544495793340434" />
+                  <Stop color="BLACK" offset="0.9961685823754789" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Button fx:id="btnExit" layoutX="374.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnExit" prefHeight="99.0" prefWidth="218.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Exit" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
