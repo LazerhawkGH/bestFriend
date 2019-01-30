@@ -1,3 +1,10 @@
+/*
+ * Author: Zachary Maarse & Celine Asurza
+ * Date: Dec 7, 2018
+ * Purpose: Initializes all of the unused global variables
+ */
+
+
 package asurza_maarse.bestfriend;
 
 import javafx.application.Application;

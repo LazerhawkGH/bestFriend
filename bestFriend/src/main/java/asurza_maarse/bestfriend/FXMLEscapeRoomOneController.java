@@ -3,7 +3,7 @@ package asurza_maarse.bestfriend;
 /*
  * Author: Zachary Maarse
  * Date: Dec 12, 2018
- * Purpose: One of the rooms the player can encounter
+ * Purpose: Players must avoid enemies and proceed to the next room
  */
 import static asurza_maarse.bestfriend.MainApp.*;
 import java.io.IOException;
