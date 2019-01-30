@@ -481,7 +481,7 @@ public class FXMLRoomFourController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\nThis is a strange room");
+        lblDialog.setText("["+MainApp.getPlayerName()+"]\nThis is a strange room");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
 

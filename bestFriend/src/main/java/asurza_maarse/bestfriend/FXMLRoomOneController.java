@@ -468,7 +468,7 @@ public class FXMLRoomOneController implements Initializable {
         //Sets expresion of character in dialog box
         iMNeutral.setVisible(true);
         //set label to desired text
-        lblDialog.setText("[MC]\nWhere am I?...");
+        lblDialog.setText("["+MainApp.getPlayerName()+"]\nWhere am I?...");
         //plays timer
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();

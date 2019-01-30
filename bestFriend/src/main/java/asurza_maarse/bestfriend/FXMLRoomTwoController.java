@@ -207,7 +207,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI remember BF used to play piano all the time...");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nI remember BF used to play piano all the time...");
                 i = 2;
                 break;
                 
@@ -216,7 +216,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nThe music sheets are all on the floor.");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nThe music sheets are all on the floor.");
                 i = 0;
                 piano = false;
                 break;
@@ -230,7 +230,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nA Book?\nWhy is there a book down here?");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nA Book?\nWhy is there a book down here?");
                 i = 2;
                 break;
 
@@ -239,7 +239,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nOh, it seems to be a diary...\n*Flips to last entry*");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nOh, it seems to be a diary...\n*Flips to last entry*");
                 i = 3;
                 break;
             case 3:
@@ -247,7 +247,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was\ngone. I think he knows now...\"");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was\ngone. I think he knows now...\"");
                 i = 4;
                 break;
 
@@ -256,7 +256,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n\"For anyone who might read this.\nSTAY AWAY FROM---\"");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\n\"For anyone who might read this.\nSTAY AWAY FROM---\"");
                 i = 5;
                 break;
             case 5:
@@ -264,7 +264,7 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n(The rest is illegible)\nI wonder who HE is...");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\n(The rest is illegible)\nI wonder who HE is...");
                 i = 0;
                 diary = false;
                 break;
@@ -506,7 +506,7 @@ public class FXMLRoomTwoController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\n...");
+        lblDialog.setText("["+MainApp.getPlayerName()+"]\n...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
 

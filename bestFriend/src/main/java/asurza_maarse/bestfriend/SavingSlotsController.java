@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 /**
  * FXML Controller class
  *
