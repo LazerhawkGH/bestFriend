@@ -511,6 +511,7 @@ public class FXMLRoomTwoController implements Initializable {
         tMove.play();
 
         player.play();
+        player.setVolume(0.3);
     }
 
 }
