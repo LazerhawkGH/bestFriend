@@ -80,13 +80,16 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private Label lblRoomNum, lblHealth;
+    private Label lblRoomNum, lblHealth, lblYouDied;
 
     @FXML
-    private Button btnKey1, btnKey2, btnKey3;
+    private Button btnExit;
 
     @FXML
     private Polygon wall;
+    
+    @FXML
+    private Rectangle rDeath;
 
     @FXML
     private GridPane gpUser, gpMenuBar, gpInventory;
@@ -112,6 +115,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     Timeline enemyAtk = new Timeline(new KeyFrame(Duration.seconds(1), ae -> collisionEnemy()));
     
     MediaPlayer music = new MediaPlayer((new Media(getClass().getResource("/Caspro - Dark Digital.mp3").toString())));
+    MediaPlayer scream = new MediaPlayer((new Media(getClass().getResource("/Scream.mp3").toString())));
 
     Enemy enemy = new Enemy(); // Handles the Enemy.java class
     Player player = new Player(); // Handles the Player.java class
@@ -127,10 +131,37 @@ public class FXMLEscapeRoomOneController implements Initializable {
         gpInventory.setVisible(false);
         gpMenuBar.setVisible(true);
     }
+    
+    @FXML
+    private void btnExit(ActionEvent e) throws IOException{
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+
+            Scene home_page_scene = new Scene(home_page_parent);
+            //get reference to the stage 
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); //puts the new scence in the stage
+
+            stage.setTitle("BestFriend"); //changes the title
+            stage.show(); //shows the new page
+
+            home_page_scene.getRoot().requestFocus();
+    }
 
     private void collisionEnemy() {
         if (!enemies.isEmpty()) {
             for (Enemy e : enemies) {
+                if (player.getHealth() == 0){
+                    rDeath.setVisible(true);
+                    music.stop();
+                    scream.play();
+                    tMove.stop();
+                    tMove.setDelay(Duration.seconds(5));
+                    tMove.play();
+                    lblYouDied.setVisible(true);
+                    btnExit.setVisible(true);
+                }
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
                     lblHealth.setText("" + player.getHealth());

@@ -42,7 +42,7 @@ public class Enemy extends Rectangle {
                 setDamage(10);
                 setHealth(150);
                 setSpeed(2);
-                this.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/Puzzle Enemy (Front).png").toString())));
+                this.setFill(new ImagePattern(new Image(getClass().getResource("/Puzzle Enemy/Puzzle Enemy (Front).png").toString())));
                 this.setHeight(55);
                 this.setWidth(42);
                 break;
@@ -51,7 +51,7 @@ public class Enemy extends Rectangle {
                 setDamage(20);
                 setHealth(200);
                 setSpeed(5);
-                this.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/Puzzle Enemy (Front).png").toString())));
+                this.setFill(new ImagePattern(new Image(getClass().getResource("/Puzzle Enemy/Puzzle Enemy (Front).png").toString())));
                 this.setHeight(55);
                 this.setWidth(42);
                 break;
@@ -60,7 +60,7 @@ public class Enemy extends Rectangle {
                 setDamage(50);
                 setHealth(250);
                 setSpeed(7);
-                this.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/Puzzle Enemy (Front).png").toString())));
+                this.setFill(new ImagePattern(new Image(getClass().getResource("/Puzzle Enemy/Puzzle Enemy (Front).png").toString())));
                 this.setHeight(55);
                 this.setWidth(42);
                 break;
@@ -69,7 +69,7 @@ public class Enemy extends Rectangle {
                 setDamage(100);
                 setHealth(350);
                 setSpeed(20);
-                this.setFill(new ImagePattern(new Image(getClass().getResource("/fxml/Puzzle Enemy (Front).png").toString())));
+                this.setFill(new ImagePattern(new Image(getClass().getResource("/Puzzle Enemy/Puzzle Enemy (Front).png").toString())));
                 this.setHeight(55);
                 this.setWidth(42);
                 break;

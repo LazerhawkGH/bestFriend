@@ -148,10 +148,10 @@ public class PuzzleRoom1Controller implements Initializable {
     
     @FXML
     private void btnContinue(ActionEvent e) throws IOException{
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/PuzzleRoom1.fxml")); //where FXMLPage2 is the name of the scene
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/PuzzleRoom1.fxml"));
 
             Scene home_page_scene = new Scene(home_page_parent);
-//get reference to the stage 
+            //get reference to the stage 
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
             stage.hide(); //optional
