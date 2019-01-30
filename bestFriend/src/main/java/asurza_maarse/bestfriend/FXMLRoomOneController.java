@@ -160,7 +160,7 @@ public class FXMLRoomOneController implements Initializable {
                 player.stop();               
                 
                 
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); 
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLEscapeRoomOne.fxml")); 
 
                 Scene home_page_scene = new Scene(home_page_parent);
 

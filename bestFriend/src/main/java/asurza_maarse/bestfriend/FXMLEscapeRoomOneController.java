@@ -39,6 +39,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
@@ -108,6 +110,8 @@ public class FXMLEscapeRoomOneController implements Initializable {
     Timeline spawn = new Timeline(new KeyFrame(Duration.seconds(1), ae -> enemyCreation()));
     Timeline itemGen = new Timeline(new KeyFrame(Duration.seconds(1), ae -> rdmItemGen()));
     Timeline enemyAtk = new Timeline(new KeyFrame(Duration.seconds(1), ae -> collisionEnemy()));
+    
+    MediaPlayer music = new MediaPlayer((new Media(getClass().getResource("/Caspro - Dark Digital.mp3").toString())));
 
     Enemy enemy = new Enemy(); // Handles the Enemy.java class
     Player player = new Player(); // Handles the Player.java class
@@ -406,10 +410,10 @@ public class FXMLEscapeRoomOneController implements Initializable {
    
     private Ellipse copy(Ellipse e) { // Handles the creation of the temporary player, used to check for collision before moving actual player
         Ellipse temp = new Ellipse();
-        temp.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX());
-        temp.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY());
-        temp.setRadiusX(21);
-        temp.setRadiusY(24);
+        temp.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 26);
+        temp.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY() + 38);
+        temp.setRadiusX(17);
+        temp.setRadiusY(13);
         temp.setVisible(false);
         return temp;
     }
@@ -440,14 +444,21 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private void nextRoom() throws IOException{
         int rand = ThreadLocalRandom.current().nextInt(1, 3 + 1);
         
-        if (rand == 1 || rand == 2 | rand ==3){
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        if (rand == 1 || rand == 2 | rand == 3){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml"));
             Scene home_page_scene = new Scene(home_page_parent);
             Stage stage = (Stage) cDoor.getScene().getWindow();
+            tMove.stop();
+            eMove.stop();
+            spawn.stop();
+            enemyAtk.stop();
+            itemGen.stop();
+            music.stop();
             stage.hide(); //optional
             stage.setScene(home_page_scene); 
             stage.setTitle("Room Two"); 
             stage.show(); 
+            home_page_scene.getRoot().requestFocus();
 //        } else if (rand == 2){
 //            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml"));
 //            Scene home_page_scene = new Scene(home_page_parent);
@@ -533,7 +544,8 @@ public class FXMLEscapeRoomOneController implements Initializable {
         itemGen.play();
         player.setHealth(player.getHealth());
         lblHealth.setText("" + player.getHealth());
-        
+        music.play();
+        music.setVolume(0.5);
 //        item.add(0,blank);
 //        item.add(1,blank);
 //        item.add(2,blank);
