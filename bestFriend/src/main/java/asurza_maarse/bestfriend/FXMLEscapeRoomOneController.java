@@ -538,7 +538,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
         eMove.play();
         enemyAtk.setCycleCount(Timeline.INDEFINITE);
         enemyAtk.play();
-        spawn.setCycleCount(rand.nextInt(6));
+        spawn.setCycleCount(rand.nextInt(3));
         spawn.play();
         itemGen.setCycleCount(1);
         itemGen.play();

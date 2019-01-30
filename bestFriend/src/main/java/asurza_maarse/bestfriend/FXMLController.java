@@ -39,6 +39,11 @@ public class FXMLController implements Initializable {
         home_page_scene.getRoot().requestFocus();
     }
 
+    @FXML
+    private void exit(ActionEvent e){
+        System.exit(0);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
