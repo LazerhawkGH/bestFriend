@@ -6,6 +6,7 @@ package asurza_maarse.bestfriend;
  * Purpose: One of the rooms the player can encounter
  */
 import static asurza_maarse.bestfriend.MainApp.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -27,6 +28,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,6 +42,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -120,7 +125,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
     }
 
     private void collisionEnemy() {
-        if (enemies.size() != 0) {
+        if (!enemies.isEmpty()) {
             for (Enemy e : enemies) {
                 if (collision(e, cPlayer)) {
                     player.setHealth(player.getHealth() - e.getDamage());
@@ -190,13 +195,18 @@ public class FXMLEscapeRoomOneController implements Initializable {
                 imgHealth.setFitHeight(31);
                 
                 int rand = ThreadLocalRandom.current().nextInt(170, (170 + 562) + 1); // (Min x-val, (min x-val + width) + 1) 
-                imgHealth.setLayoutX(rand); // X-coordinate
+                imgHealth.setLayoutX(0); // X-coordinate
+                imgHealth.setTranslateX(rand);
 
                 rand = ThreadLocalRandom.current().nextInt(257, (257 + 129) + 1); // (Min y-val, (min y-val + height) + 1) 
-                imgHealth.setLayoutY(rand); // Y-coordinate
+                imgHealth.setLayoutY(0); // Y-coordinate
+                imgHealth.setTranslateY(rand);
                 
                 imgHealth.setVisible(true);
                 break;
+            default: 
+                break;    
+                
         }
     }
 
@@ -400,6 +410,7 @@ public class FXMLEscapeRoomOneController implements Initializable {
         temp.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY());
         temp.setRadiusX(21);
         temp.setRadiusY(24);
+        temp.setVisible(false);
         return temp;
     }
 
@@ -410,6 +421,13 @@ public class FXMLEscapeRoomOneController implements Initializable {
         temp.setTranslateX(temp.getTranslateX() + xMove); // Temporary player is moved before the original
         temp.setTranslateY(temp.getTranslateY() + yMove);
 
+        if (collision(temp, cDoor)){
+            try {
+                nextRoom();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (!collision(temp, wall)) { // If the temporary player hasn't collided with a wall, move the original
             gpUser.setTranslateX(gpUser.getTranslateX() + xMove);
             gpUser.setTranslateY(gpUser.getTranslateY() + yMove);
@@ -417,6 +435,36 @@ public class FXMLEscapeRoomOneController implements Initializable {
             return;
         }
         anchorPane.getChildren().remove(temp); // After going through once, the temporary player is removed, and garbage collector throws it out
+    }
+    
+    private void nextRoom() throws IOException{
+        int rand = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+        
+        if (rand == 1){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage stage = (Stage) cDoor.getScene().getWindow();
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); 
+            stage.setTitle("Room Two"); 
+            stage.show(); 
+        } else if (rand == 2){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage stage = (Stage) cDoor.getScene().getWindow();
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); 
+            stage.setTitle("Room Three"); 
+            stage.show();
+        } else if (rand == 3){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage stage = (Stage) cDoor.getScene().getWindow();
+            stage.hide(); //optional
+            stage.setScene(home_page_scene); 
+            stage.setTitle("Room Four"); 
+            stage.show();
+        }
     }
 
 //   //<editor-fold defaultstate="collapsed" desc="comment">
