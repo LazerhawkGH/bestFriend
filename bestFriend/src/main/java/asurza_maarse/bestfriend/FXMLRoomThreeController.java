@@ -153,7 +153,7 @@ public class FXMLRoomThreeController implements Initializable {
             if (r1 || r2 || r3) {
                 player.stop();
 
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml")); //where FXMLPage2 is the name of the scene
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml"));
 
                 Scene home_page_scene = new Scene(home_page_parent);
 //get reference to the stage 

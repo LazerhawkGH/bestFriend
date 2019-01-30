@@ -440,31 +440,32 @@ public class FXMLEscapeRoomOneController implements Initializable {
     private void nextRoom() throws IOException{
         int rand = ThreadLocalRandom.current().nextInt(1, 3 + 1);
         
-        if (rand == 1){
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml"));
+        if (rand == 1 || rand == 2 | rand ==3){
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
             Scene home_page_scene = new Scene(home_page_parent);
             Stage stage = (Stage) cDoor.getScene().getWindow();
             stage.hide(); //optional
             stage.setScene(home_page_scene); 
             stage.setTitle("Room Two"); 
             stage.show(); 
-        } else if (rand == 2){
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml"));
-            Scene home_page_scene = new Scene(home_page_parent);
-            Stage stage = (Stage) cDoor.getScene().getWindow();
-            stage.hide(); //optional
-            stage.setScene(home_page_scene); 
-            stage.setTitle("Room Three"); 
-            stage.show();
-        } else if (rand == 3){
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml"));
-            Scene home_page_scene = new Scene(home_page_parent);
-            Stage stage = (Stage) cDoor.getScene().getWindow();
-            stage.hide(); //optional
-            stage.setScene(home_page_scene); 
-            stage.setTitle("Room Four"); 
-            stage.show();
-        }
+//        } else if (rand == 2){
+//            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml"));
+//            Scene home_page_scene = new Scene(home_page_parent);
+//            Stage stage = (Stage) cDoor.getScene().getWindow();
+//            stage.hide(); //optional
+//            stage.setScene(home_page_scene); 
+//            stage.setTitle("Room Three"); 
+//            stage.show();
+//        } else if (rand == 3){
+//            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomFour.fxml"));
+//            Scene home_page_scene = new Scene(home_page_parent);
+//            Stage stage = (Stage) cDoor.getScene().getWindow();
+//            stage.hide(); //optional
+//            stage.setScene(home_page_scene); 
+//            stage.setTitle("Room Four"); 
+//            stage.show();
+//        }
+    }
     }
 
 //   //<editor-fold defaultstate="collapsed" desc="comment">
