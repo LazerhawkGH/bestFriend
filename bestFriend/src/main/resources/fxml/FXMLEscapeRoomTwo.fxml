@@ -14,8 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="860.0" prefWidth="877.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="asurza_maarse.bestfriend.FXMLEscapeRoomTwoController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#moveKeyPressed" onKeyReleased="#moveKeyReleased" prefHeight="860.0" prefWidth="877.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLEscapeRoomTwoController">
    <children>
       <ImageView fitHeight="858.0" fitWidth="900.0" layoutY="46.0" pickOnBounds="true">
          <image>
@@ -92,7 +91,7 @@
             <Image url="@../health.png" />
          </image>
       </ImageView>
-      <GridPane fx:id="gpUser" layoutX="427.0" layoutY="590.0">
+      <GridPane fx:id="gpUser" translateX="427.0" translateY="590.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="45.0" />
          </columnConstraints>
@@ -120,9 +119,9 @@
                   <Image url="@../MC/MC%20-%20Right.png" />
                </image>
             </ImageView>
-            <Ellipse fx:id="cPlayer" fill="#ffffff00" radiusX="21.0" radiusY="24.0" stroke="TRANSPARENT" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Ellipse fx:id="cPlayer" fill="#ffffff47" radiusX="17.0" radiusY="13.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
          </children>
       </GridPane>
-      <Circle fx:id="cDoor" fill="#1f93ff29" layoutX="451.0" layoutY="209.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="cDoor" fill="#1f93ff29" layoutX="451.0" layoutY="209.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
    </children>
 </AnchorPane>

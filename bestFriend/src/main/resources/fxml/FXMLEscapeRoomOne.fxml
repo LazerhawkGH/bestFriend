@@ -116,7 +116,7 @@
                   <Image url="@../MC/MC%20-%20Right.png" />
                </image>
             </ImageView>
-            <Ellipse fx:id="cPlayer" fill="#ffffff00" radiusX="21.0" radiusY="24.0" stroke="TRANSPARENT" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Ellipse fx:id="cPlayer" fill="#ffffff56" radiusX="17.0" radiusY="13.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="9.0" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
