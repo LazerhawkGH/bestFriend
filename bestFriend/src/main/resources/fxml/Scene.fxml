@@ -14,7 +14,7 @@
             <Image url="@../BestFriend.png" />
          </image>
       </ImageView>
-        <Button fx:id="button" layoutX="218.0" layoutY="552.0" onAction="#handleButtonAction" prefHeight="23.0" prefWidth="309.0" styleClass="yeet-button-blue-four" stylesheets="@../styles/styles-new.css" text="Play">
+        <Button layoutX="218.0" layoutY="552.0" onAction="#btnPlay" prefHeight="23.0" prefWidth="309.0" styleClass="yeet-button-blue-four" stylesheets="@../styles/styles-new.css" text="Play">
 
          <font>
             <Font size="26.0" />
@@ -38,7 +38,7 @@
             <DropShadow blurType="GAUSSIAN" color="#bf0707" height="5.0" offsetX="3.0" offsetY="4.0" radius="2.0" spread="1.0" width="5.0" />
          </effect>
       </ImageView>
-      <Button fx:id="button1" layoutX="219.0" layoutY="618.0" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="309.0" styleClass="yeet-button-blue-four" stylesheets="@../styles/styles-new.css" text="Close">
+      <Button layoutX="219.0" layoutY="618.0" prefHeight="53.0" prefWidth="309.0" styleClass="yeet-button-blue-four" stylesheets="@../styles/styles-new.css" text="Close">
          <font>
             <Font size="26.0" />
          </font>

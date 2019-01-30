@@ -473,6 +473,7 @@ public class FXMLRoomOneController implements Initializable {
         tMove.play();
         //playes bg music
         player.play();
+        player.setVolume(0.3);
 
     }
 
