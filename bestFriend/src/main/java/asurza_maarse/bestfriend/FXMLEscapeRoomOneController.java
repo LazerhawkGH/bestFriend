@@ -438,8 +438,9 @@ public class FXMLEscapeRoomOneController implements Initializable {
             return;
         }
     }
-   
-    private Ellipse copy(Ellipse e) { // Handles the creation of the temporary player, used to check for collision before moving actual player
+    
+    // Handles the creation of the temporary player, used to check for collision before moving actual player
+    private Ellipse copy(Ellipse e) { 
         Ellipse temp = new Ellipse();
         temp.setLayoutX(gpUser.getLayoutX() + gpUser.getTranslateX() + 26);
         temp.setLayoutY(gpUser.getLayoutY() + gpUser.getTranslateY() + 38);
