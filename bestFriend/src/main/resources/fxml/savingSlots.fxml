@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,8 +19,8 @@
             <Image url="@../Gates.png" />
          </image>
       </ImageView>
-      <Rectangle fill="#00000082" height="418.0" layoutX="214.0" layoutY="58.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="5.0" width="321.0" />
-      <Label layoutX="220.0" layoutY="62.0" prefHeight="70.0" prefWidth="321.0" text="Choose A Slot" textFill="WHITE">
+      <Rectangle fx:id="rChoose" fill="#00000082" height="418.0" layoutX="214.0" layoutY="58.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="5.0" width="321.0" />
+      <Label fx:id="lblChoose" layoutX="220.0" layoutY="62.0" prefHeight="70.0" prefWidth="321.0" text="Choose A Slot" textFill="WHITE">
          <font>
             <Font name="Century" size="48.0" />
          </font>
@@ -34,22 +35,44 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="239.0" styleClass="invisibutton" stylesheets="@../styles/styles-new.css" text="Slot 1">
+            <Button fx:id="btn1" mnemonicParsing="false" onAction="#btnSlots" prefHeight="70.0" prefWidth="239.0" stylesheets="@../styles/styles-new.css" text="Slot 1">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="239.0" styleClass="invisibutton" text="Slot 2" GridPane.rowIndex="1">
+            <Button fx:id="btn2" mnemonicParsing="false" prefHeight="70.0" prefWidth="239.0" styleClass="invisibutton" text="Slot 2" GridPane.rowIndex="1">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="239.0" styleClass="invisibutton" text="Slot 3" GridPane.rowIndex="2">
+            <Button fx:id="btn3" mnemonicParsing="false" prefHeight="70.0" prefWidth="239.0" styleClass="invisibutton" text="Slot 3" GridPane.rowIndex="2">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
          </children>
       </GridPane>
+      <Rectangle fx:id="rSaveW" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="206.0" layoutX="200.0" layoutY="164.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="348.0" />
+      <Label fx:id="lblSave" alignment="CENTER" layoutX="248.0" layoutY="180.0" prefHeight="65.0" prefWidth="253.0" text="Choose Slot 1?" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnYes" focusTraversable="false" layoutX="239.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnSYes" prefHeight="55.0" prefWidth="115.0" text="Yes" visible="false">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnNo" focusTraversable="false" layoutX="391.0" layoutY="280.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="115.0" text="No" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtName" layoutX="277.0" layoutY="248.0" prefHeight="38.0" prefWidth="194.0" promptText="Ex.Elliot" visible="false" />
+      <Button fx:id="btnContinue" focusTraversable="false" layoutX="309.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnContinue" prefHeight="38.0" prefWidth="130.0" text="Continue" visible="false">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

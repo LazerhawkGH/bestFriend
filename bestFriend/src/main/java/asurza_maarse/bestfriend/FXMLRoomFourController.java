@@ -205,7 +205,7 @@ public class FXMLRoomFourController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nA priest's table,\nthe book here doesn't seem to be the bible though.");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nA priest's table,\nthe book here doesn't seem to be the bible though.");
                 i = 2;
                 break;
                 
@@ -214,7 +214,7 @@ public class FXMLRoomFourController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads book*\n\"I've killed so many and hurt many more, but he has to\nunderstand that it's been all for him.\"");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\n*Reads book*\n\"I've killed so many and hurt many more, but he has to\nunderstand that it's been all for him.\"");
                 i = 3;
                 break;
                 
@@ -223,7 +223,7 @@ public class FXMLRoomFourController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n\"I can't let anyone near him...\nI have to protect our sacred friendship!\"");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\n\"I can't let anyone near him...\nI have to protect our sacred friendship!\"");
                 i = 0;
                 book = false;
                 break;
@@ -237,7 +237,7 @@ public class FXMLRoomFourController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nWhat is that!!?");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nWhat is that!!?");
                 i = 0;
                 meat = false;
                 break;

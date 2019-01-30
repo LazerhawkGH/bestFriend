@@ -204,7 +204,7 @@ public class FXMLRoomThreeController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nHmm...");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nHmm...");
                 i = 2;
                 break;
                 
@@ -213,7 +213,7 @@ public class FXMLRoomThreeController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nThere something strange in there...");
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nThere something strange in there...");
                 i = 0;
                 toilet = false;
                 break;
