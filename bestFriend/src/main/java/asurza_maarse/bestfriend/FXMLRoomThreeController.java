@@ -439,7 +439,7 @@ public class FXMLRoomThreeController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\nThis room...");
+        lblDialog.setText("["+MainApp.getPlayerName()+"]\nThis room...");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
 

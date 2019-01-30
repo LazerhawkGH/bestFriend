@@ -25,7 +25,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private void btnPlay(ActionEvent event) throws IOException {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomOne.fxml")); 
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/savingSlots.fxml")); 
 
         Scene home_page_scene = new Scene(home_page_parent);
         //get reference to the stage 
