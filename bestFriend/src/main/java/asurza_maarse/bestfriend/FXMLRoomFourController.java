@@ -5,6 +5,7 @@ package asurza_maarse.bestfriend;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,11 +41,8 @@ import javafx.scene.media.MediaPlayer;
  *
  * @author user
  */
-public class FXMLRoomTwoController implements Initializable {
+public class FXMLRoomFourController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
     private GridPane gp1;
     @FXML
@@ -75,7 +73,7 @@ public class FXMLRoomTwoController implements Initializable {
     private ImageView imgUp, imgDown, imgLeft, imgRight;
 
     @FXML
-    private Rectangle rSave, rPiano, rBook, rBasket, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
+    private Rectangle rSave, rStatue1, rStatue2, rStatue3, rTableWBook, rMeat, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
 
     @FXML
     private Circle cPlayer;
@@ -105,7 +103,7 @@ public class FXMLRoomTwoController implements Initializable {
     @FXML
     private ImageView iMAngry, iMNeutralC, iMNeutral, iMCrying, iMCryingC, iMSmiling, iMSmilingC, iMSurprised;
 
-    private boolean diary = false, piano = false;
+    private boolean meat = false, book = false;
     private int i = 0;
 
     //Saving Window
@@ -154,7 +152,7 @@ public class FXMLRoomTwoController implements Initializable {
             if (r1 || r2 || r3) {
                 player.stop();
 
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomThree.fxml")); //where FXMLPage2 is the name of the scene
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomOne.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
 //get reference to the stage 
@@ -188,10 +186,10 @@ public class FXMLRoomTwoController implements Initializable {
             //interactVisibleFalse();
             //dialogVisibleFalse();
             //}
-            if (diary) {
-                diary();
-            } else if (piano){
-                piano();
+            if (meat) {
+                meat();
+            } else if (book){
+                book();
             } else {
                 interactVisibleFalse();
                 dialogVisibleFalse();
@@ -200,14 +198,14 @@ public class FXMLRoomTwoController implements Initializable {
         }
     }
 
-    private void piano() {
+    private void book() {
         switch (i) {
             case 1:
                 interactVisibleFalse();
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI remember BF used to play piano all the time...");
+                lblDialog.setText("[MC]\nA priest's table,\nthe book here doesn't seem to be the bible though.");
                 i = 2;
                 break;
                 
@@ -216,57 +214,32 @@ public class FXMLRoomTwoController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nThe music sheets are all on the floor.");
+                lblDialog.setText("[MC]\n*Reads book*\n\"I've killed so many and hurt many more, but he has to\nunderstand that it's been all for him.\"");
+                i = 3;
+                break;
+                
+            case 3:
+                interactVisibleFalse();
+                dialogVisibleTrue();
+                setExpressionFalse();
+                iMNeutral.setVisible(true);
+                lblDialog.setText("[MC]\n\"I can't let anyone near him...\nI have to protect our sacred friendship!\"");
                 i = 0;
-                piano = false;
+                book = false;
                 break;
         }
     }
 
-    private void diary() {
+    private void meat() {
         switch (i) {
             case 1:
                 interactVisibleFalse();
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nA Book?\nWhy is there a book down here?");
-                i = 2;
-                break;
-
-            case 2:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nOh, it seems to be a diary...\n*Flips to last entry*");
-                i = 3;
-                break;
-            case 3:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n*Reads diary*\n\"I've hid in this cell, hoping he wouldn't notice I was\ngone. I think he knows now...\"");
-                i = 4;
-                break;
-
-            case 4:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n\"For anyone who might read this.\nSTAY AWAY FROM---\"");
-                i = 5;
-                break;
-            case 5:
-                interactVisibleFalse();
-                dialogVisibleTrue();
-                setExpressionFalse();
-                iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\n(The rest is illegible)\nI wonder who HE is...");
+                lblDialog.setText("[MC]\nWhat is that!!?");
                 i = 0;
-                diary = false;
+                meat = false;
                 break;
             default:
                 break;
@@ -279,23 +252,23 @@ public class FXMLRoomTwoController implements Initializable {
         if (collisionT()) {
             if (collision(cPlayer, rSave)) {
                 saveWVisibleTrue();
-            } else if (collision(cPlayer, rBook)) {
+            } else if (collision(cPlayer, rTableWBook)) {
                 interactVisibleTrue();
-                lblInteract.setText("A Book");
-                diary = true;
+                lblInteract.setText("A Priest's Table");
+                book = true;
                 i = 1;
                 //lblInteract.setText("A Teddy Bear");
 
-            } else if (collision(cPlayer, rPiano)) {
+            } else if (collision(cPlayer, rMeat)) {
                 interactVisibleTrue();
-                lblInteract.setText("A Piano");
-                piano = true;
+                lblInteract.setText("???");
+                meat = true;
                 i = 1;
                 //lblInteract.setText("A Teddy Bear");
 
-            } else if (collision(cPlayer, rBasket)) {
+            } else if (collision(cPlayer, rStatue1)||collision(cPlayer, rStatue2)||collision(cPlayer, rStatue3)) {
                 interactVisibleTrue();
-                lblInteract.setText("A Basket");
+                lblInteract.setText("A Statue");
                 //lblInteract.setText("A Teddy Bear");
 
             } else if (collisonE()) {
@@ -495,9 +468,11 @@ public class FXMLRoomTwoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         walls.add(wall);
         walls.add(rSave);
-        walls.add(rPiano);
-        walls.add(rBasket);
-        walls.add(rBook);
+        walls.add(rStatue1);
+        walls.add(rStatue2);
+        walls.add(rStatue3);
+        walls.add(rTableWBook);
+        walls.add(rMeat);
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
@@ -506,7 +481,7 @@ public class FXMLRoomTwoController implements Initializable {
         setExpressionFalse();
         saveWVisibleFalse();
         iMNeutral.setVisible(true);
-        lblDialog.setText("[MC]\n...");
+        lblDialog.setText("[MC]\nThis is a strange room");
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
 
