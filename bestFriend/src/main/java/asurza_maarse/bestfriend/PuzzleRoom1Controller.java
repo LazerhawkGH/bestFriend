@@ -106,7 +106,7 @@ public class PuzzleRoom1Controller implements Initializable {
 //    private Label lblSave;
 //    @FXML
 //    private Button btnYes, btnNo;
-    MediaPlayer player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
+    MediaPlayer player = new MediaPlayer((new Media(getClass().getResource("/Caspro - Dark Digital.mp3").toString())));
     MediaPlayer scream = new MediaPlayer((new Media(getClass().getResource("/Scream.mp3").toString())));
 
     ArrayList<Shape> walls = new ArrayList();
