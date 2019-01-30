@@ -24,13 +24,23 @@ public class MainApp extends Application {
     private static Boolean inPuzzleThree = false;
     private static Boolean inSaveRoom = false;
     
+    private static String playerName = "";
+    
     private static int roomsCleared = 0;
+    
+    public static void setPlayerName(String pName){
+        MainApp.playerName = pName;
+    }
+    
+    public static String getPlayerName(){
+        return playerName;
+    }
     
     
         
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/PuzzleRoom1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/savingSlots.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("BestFriend");

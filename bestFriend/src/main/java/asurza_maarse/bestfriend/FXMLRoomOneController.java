@@ -223,7 +223,8 @@ public class FXMLRoomOneController implements Initializable {
                 dialogVisibleTrue();
                 setExpressionFalse();
                 iMNeutral.setVisible(true);
-                lblDialog.setText("[MC]\nI gave that to BF as a present when we were\nin kindergarden!\nI wonder what it's doing down here...");
+                
+                lblDialog.setText("["+MainApp.getPlayerName()+"]\nI gave that to BF as a present when we were\nin kindergarden!\nI wonder what it's doing down here...");
                 i = 0;
                 teddyB = false;
                 break;
