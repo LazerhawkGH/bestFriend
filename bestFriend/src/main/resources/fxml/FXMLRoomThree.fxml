@@ -13,15 +13,17 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMov" onKeyReleased="#onRelease" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomTwoController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#btnMov" onKeyReleased="#onRelease" prefHeight="639.0" prefWidth="681.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asurza_maarse.bestfriend.FXMLRoomThreeController">
    <children>
-      <ImageView fitHeight="514.0" fitWidth="693.0" layoutX="-4.0" layoutY="126.0" preserveRatio="true">
+      <ImageView fitHeight="514.0" fitWidth="693.0" layoutX="-6.0" layoutY="126.0" preserveRatio="true">
          <image>
-            <Image url="@../Room%202%20.png" />
+            <Image url="@../Room%203.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="1.0" arcWidth="1.0" height="120.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="3.0" width="677.0" />
-      <GridPane fx:id="gp2" layoutX="15.0" layoutY="7.0" prefHeight="99.0" prefWidth="640.0" visible="false">
+      <Polygon fx:id="wall" fill="DODGERBLUE" layoutX="242.0" layoutY="576.0" points="-67.0, -28.0, -67.0, -58.0, -191.0, -58.0, -190.0, -122.0, -128.0, -122.0, -128.0, -298.0, -190.0, -298.0, -190.0, -332.0, -67.0, -332.0, -67.0, -377.0, -36.0, -377.0, -36.0, -332.0, 24.0, -332.0, 24.0, -377.0, 54.0, -377.0, 54.0, -332.0, 143.0, -332.0, 143.0, -377.0, 175.0, -377.0, 175.0, -332.0, 234.0, -332.0, 234.0, -377.0, 265.0, -377.0, 265.0, -332.0, 385.0, -332.0, 385.0, -298.0, 326.0, -298.0, 326.0, -208.0, 265.0, -208.0, 265.0, -93.0, 295.0, -93.0, 295.0, -122.0, 385.0, -122.0, 385.0, -58.0, 24.0, -58.0, 24.0, -28.0, 412.0, 36.0, 412.0, -416.0, -217.0, -416.0, -217.0, -58.0, -92.0, 7.0, 24.0, -28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
+      <Polygon fx:id="wall2" fill="DODGERBLUE" layoutX="324.0" layoutY="373.0" points="0.0, 57.0, 0.0, 112.0, -59.0, 112.0, -59.0, -36.0, 91.0, -36.0, 91.0, 112.0, 33.0, 112.0, 33.0, 57.0, 63.0, 57.0, 63.0, 19.0, -29.0, 19.0, -29.0, 57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
+      <Rectangle arcHeight="1.0" arcWidth="1.0" height="120.0" layoutX="2.0" layoutY="3.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="3.0" width="677.0" />
+      <GridPane fx:id="gp2" layoutX="14.0" layoutY="7.0" prefHeight="99.0" prefWidth="640.0" visible="false">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="157.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="124.0" />
@@ -60,7 +62,7 @@
             </Button>
          </children>
       </GridPane>
-      <GridPane fx:id="gp1" layoutX="54.0" layoutY="26.0" prefHeight="74.0" prefWidth="576.0">
+      <GridPane fx:id="gp1" layoutX="53.0" layoutY="26.0" prefHeight="74.0" prefWidth="576.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -87,16 +89,7 @@
             </Label>
          </children>
       </GridPane>
-      <Polygon fx:id="wall" fill="DODGERBLUE" layoutX="118.0" layoutY="582.0" points="-29.0, 27.0, 540.0, 27.0, 540.0, -438.0, 7.0, -438.0, -88.0, -348.0, -88.0, -95.0, -29.0, 27.0, -4.0, -64.0, -4.0, -125.0, -4.0, -155.0, -4.0, -125.0, -65.0, -125.0, -65.0, -244.0, -4.0, -244.0, -4.0, -305.0, -4.0, -190.0, -4.0, -305.0, 59.0, -305.0, 59.0, -348.0, 89.0, -348.0, 89.0, -305.0, 149.0, -305.0, 149.0, -348.0, 180.0, -348.0, 180.0, -305.0, 270.0, -305.0, 270.0, -348.0, 300.0, -348.0, 300.0, -305.0, 360.0, -305.0, 360.0, -348.0, 390.0, -348.0, 390.0, -305.0, 448.0, -305.0, 448.0, -244.0, 448.0, -190.0, 448.0, -244.0, 511.0, -244.0, 511.0, -125.0, 448.0, -125.0, 448.0, -155.0, 448.0, -125.0, 448.0, -64.0, -4.0, -64.0, -15.0, -26.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
-      <Rectangle fx:id="rPiano" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="312.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
-      <Rectangle fx:id="rSave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="447.0" layoutY="336.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
-      <Rectangle fx:id="rBook" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="54.0" layoutY="338.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
-      <Rectangle fx:id="rBasket" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" layoutX="599.0" layoutY="427.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
-      <Rectangle fx:id="rEntrance1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="182.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
-      <Rectangle fx:id="rEntrance2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="272.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
-      <Rectangle fx:id="rEntrance3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="393.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
-      <Rectangle fx:id="rEntrance4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="19.0" layoutX="483.0" layoutY="238.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="21.0" />
-      <GridPane fx:id="gpPlayer" layoutX="351.0" layoutY="466.0" prefHeight="44.0" prefWidth="42.0">
+      <GridPane fx:id="gpPlayer" layoutX="200.0" layoutY="502.0" prefHeight="44.0" prefWidth="42.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -126,19 +119,19 @@
             </ImageView>
          </children>
       </GridPane>
-      <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="372.0" layoutY="496.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Rectangle fx:id="rSaveW" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="206.0" layoutX="169.0" layoutY="245.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="348.0" />
-      <Label fx:id="lblSave" alignment="CENTER" layoutX="217.0" layoutY="261.0" prefHeight="65.0" prefWidth="253.0" text="Would you like to save?" textFill="WHITE" visible="false">
+      <Circle fx:id="cPlayer" fill="DODGERBLUE" layoutX="221.0" layoutY="532.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Rectangle fx:id="rSaveW" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="206.0" layoutX="167.0" layoutY="253.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="348.0" />
+      <Label fx:id="lblSave" alignment="CENTER" layoutX="215.0" layoutY="269.0" prefHeight="65.0" prefWidth="253.0" text="Would you like to save?" textFill="WHITE" visible="false">
          <font>
             <Font name="Comic Sans MS" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnYes" focusTraversable="false" layoutX="208.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnSYes" prefHeight="55.0" prefWidth="115.0" text="Yes" visible="false">
+      <Button fx:id="btnYes" focusTraversable="false" layoutX="206.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnSYes" prefHeight="55.0" prefWidth="115.0" text="Yes" visible="false">
          <font>
             <Font name="Comic Sans MS" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnNo" focusTraversable="false" layoutX="360.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnSNo" prefHeight="55.0" prefWidth="115.0" text="No" visible="false">
+      <Button fx:id="btnNo" focusTraversable="false" layoutX="358.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnSNo" prefHeight="55.0" prefWidth="115.0" text="No" visible="false">
          <font>
             <Font size="14.0" />
          </font>
@@ -199,11 +192,17 @@
             </ImageView>
          </children>
       </GridPane>
-      <Rectangle fx:id="rInteract" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="84.0" layoutY="554.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="681.0" />
-      <Label fx:id="lblInteract" alignment="CENTER" layoutX="108.0" layoutY="574.0" prefHeight="44.0" prefWidth="472.0" text="Label" textFill="WHITE" visible="false">
+      <Rectangle fx:id="rInteract" arcHeight="40.0" arcWidth="30.0" fill="#00000082" height="84.0" layoutY="555.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="681.0" />
+      <Label fx:id="lblInteract" alignment="CENTER" layoutX="108.0" layoutY="575.0" prefHeight="44.0" prefWidth="472.0" text="Label" textFill="WHITE" visible="false">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Rectangle fx:id="rEntrance1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="182.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="16.0" />
+      <Rectangle fx:id="rEntrance2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="272.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="16.0" />
+      <Rectangle fx:id="rEntrance3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="392.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="16.0" />
+      <Rectangle fx:id="rEntrance4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutX="484.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="16.0" />
+      <Rectangle fx:id="rToilet" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="603.0" layoutY="451.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="24.0" />
+      <Rectangle fx:id="rSave" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="174.0" layoutY="368.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="31.0" />
    </children>
 </AnchorPane>

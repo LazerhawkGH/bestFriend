@@ -5,6 +5,7 @@ package asurza_maarse.bestfriend;
  * Date: Dec 7, 2018
  * Purpose: Initial starting room
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,9 +80,6 @@ public class FXMLRoomOneController implements Initializable {
     private Rectangle rSave, rBear, rEntrance1, rEntrance2, rEntrance3, rEntrance4;
 
     @FXML
-    private ImageView imgUser;
-
-    @FXML
     private Rectangle rSwitch;
 
     @FXML
@@ -123,14 +121,14 @@ public class FXMLRoomOneController implements Initializable {
     @FXML
     private Button btnYes, btnNo;
 
-    MediaPlayer player;
-
     ArrayList<Shape> walls = new ArrayList();
     ArrayList<Rectangle> entrances = new ArrayList();
 
     private Boolean up = false, down = false, left = false, right = false;
 
     Timeline tMove = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
+    
+    MediaPlayer player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
 
     @FXML
     private void btnShowInvent(ActionEvent evt) {
@@ -159,17 +157,22 @@ public class FXMLRoomOneController implements Initializable {
         if (!rDialog.isVisible() || !rInteract.isVisible()) {
 
             if (r1 || r2 || r3) {
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
+                player.stop();               
+                
+                
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRoomTwo.fxml")); //where FXMLPage2 is the name of the scene
 
                 Scene home_page_scene = new Scene(home_page_parent);
 
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
                 stage.hide(); //optional
+
                 stage.setScene(home_page_scene); //puts the new scence in the stage
 
                 stage.setTitle("BestFriend"); //changes the title
                 stage.show(); //shows the new page
+                home_page_scene.getRoot().requestFocus();
                 
                 /*Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLFightingRoomOne.fxml")); //where FXMLPage2 is the name of the scene
 
@@ -388,7 +391,7 @@ public class FXMLRoomOneController implements Initializable {
         right = false;
     }
 
-    private boolean collisionT() {
+    private boolean collisionT() { //Collision with walls in array list
         for (int i = 0; i < walls.size(); i++) {
             if (collision(cPlayer, walls.get(i))) {
                 return true;
@@ -397,7 +400,7 @@ public class FXMLRoomOneController implements Initializable {
         return false;
     }
 
-    private boolean collisonE() {
+    private boolean collisonE() { // Collision with Entrances in arraylist
         for (int i = 0; i < entrances.size(); i++) {
             if (collision(cPlayer, entrances.get(i))) {
                 return true;
@@ -448,21 +451,27 @@ public class FXMLRoomOneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //walls and objects the player can't walk through added to walls ArryList of Shapes 
         walls.add(wall);
         walls.add(rSave);
         walls.add(rBear);
+        //Entrances added to ArrayList of Rectangles
         entrances.add(rEntrance1);
         entrances.add(rEntrance2);
         entrances.add(rEntrance3);
         entrances.add(rEntrance4);
+        //Set the visibility of the Dialog Box, Character Expression to False, and Save Window to false
         dialogVisibleTrue();
         setExpressionFalse();
         saveWVisibleFalse();
+        //Sets expresion of character in dialog box
         iMNeutral.setVisible(true);
+        //set label to desired text
         lblDialog.setText("[MC]\nWhere am I?...");
+        //plays timer
         tMove.setCycleCount(Timeline.INDEFINITE);
         tMove.play();
-        player = new MediaPlayer((new Media(getClass().getResource("/Inside Your Head.mp3").toString())));
+        //playes bg music
         player.play();
 
     }
